@@ -164,7 +164,7 @@ function showMsg(userInfo, wuLiuDetail, k, orderId) {
     // 0008 可能代签收/快递柜/物流寄存点
     const wuLiuStateCode = dealLogList[index].groupType;
 
-    const _30DayBefore = new Date().getTime() - 30 * 24 * 60 * 60 * 1000;
+    const _30DayBefore = Date.now() - 30 * 24 * 60 * 60 * 1000;
     const { createTime } = dealLogList[index];
 
     // 清空派送超过30天的记录
