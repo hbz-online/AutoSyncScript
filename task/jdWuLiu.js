@@ -222,6 +222,7 @@ function showMsg(userInfo, wuLiuDetail, k, orderId) {
     }
 
     $.msg($.name, $.subt, $.desc, {
+      openUrl: `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%20%22des%22:%20%22m%22,%20%22url%22:%20%22https://wqs.jd.com/order/n_detail_v2.shtml?deal_id=${orderId}%22%7D`,
       mediaUrl: $.imgPath,
     });
 
