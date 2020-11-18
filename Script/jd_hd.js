@@ -89,14 +89,20 @@ html =
 `;
 
 
-const title = html.match(/<title>(.*)<\/title>/g)[1];
-const url = $request.url.replace(/https?:\/\/|&sid=\w*/, '');
+let url = $request.url;
+if(!url.includes('?k=r')) {
+  let title = html.match(/<title>(.*)<\/title>/);
+  title = title ? (title.lenght === 2 ? title[1] : '') : '';
   
-$.subt = `页面：${title}`;
-$.desc = `https://${url}`;
-$.msg($.name, $.subt, $.desc, {
-  openUrl: `alook://${url}`
-});
+  url = url.replace(/https?:\/\/|\?.*/g, '') + '?k=r'; 
+    
+  $.subt = `页面：${title}`;
+  $.desc = `https://${url}`;
+  $.msg($.name, $.subt, $.desc, {
+    openUrl: `alook://${url}`
+  });
+}
+
 
 $.done({ body: html });
 
