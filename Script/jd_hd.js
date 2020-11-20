@@ -17,14 +17,15 @@ html =
   `
   <style>
     #alook {
-      position:fixed;
-      bottom:150px;
+      position: fixed;
+      bottom: 150px;
       right: 0;
-      z-index:99999;
+      z-index: 99999;
     }
     #alook img {
-      width:30px;
-      height:30px;
+      box-sizing: content-box;
+      width: 30px;
+      height: 30px;
       padding: 0 20px 0 5px;
       border:1px solid rgba(255,255,255,0.8);
       background: #FFF;
