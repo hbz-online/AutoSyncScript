@@ -3,7 +3,7 @@
 
 [rewrite_local]
 # 京东活动助手
-https://.*\.m\.jd\.com/babelDiy/Zeus/.*\/index\.html url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/Script/jd_hd.js
+https://.*\.m\.jd\.com/.*\.html url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/Script/jd_hd.js
 
 [mitm]
 hostname = *.m.jd.com
