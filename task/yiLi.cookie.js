@@ -7,15 +7,15 @@
  * hostname = club.yili.com
  *
  * # Surge
- * Rewrite: 伊利乳品 = type=http-request,pattern=https:\/\/club\.yili\.com\/MALLIFChe\/MCSWSIAPI\.asmx\/Call,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/yiLi.cookie.js
+ * Rewrite: 伊利乳品 = type=http-request, requires-body=1, pattern=https:\/\/club\.yili\.com\/MALLIFChe\/MCSWSIAPI\.asmx\/Call,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/yiLi.cookie.js
  * Tasks: 伊利乳品 = type=cron,cronexp=10 0 * * *,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/yiLi.js,wake-system=true
  *
  * # QuanX
- * https:\/\/club\.yili\.com\/MALLIFChe\/MCSWSIAPI\.asmx\/Call url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/task/yiLi.cookie.js
+ * https:\/\/club\.yili\.com\/MALLIFChe\/MCSWSIAPI\.asmx\/Call url script-request-body https://raw.githubusercontent.com/id77/QuantumultX/master/task/yiLi.cookie.js
  * 10 0 * * * https://raw.githubusercontent.com/id77/QuantumultX/master/task/yiLi.js, tag=伊利乳品, img-url=https://raw.githubusercontent.com/id77/QuantumultX/master/icon/yiLi.png
  *
  * # Loon
- * http-request https:\/\/club\.yili\.com\/MALLIFChe\/MCSWSIAPI\.asmx\/Call script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/yiLi.cookie.js
+ * http-request https:\/\/club\.yili\.com\/MALLIFChe\/MCSWSIAPI\.asmx\/Call script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/yiLi.cookie.js, requires-body=true,
  * cron "10 0 * * *" script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/yiLi.js
  *
  */
