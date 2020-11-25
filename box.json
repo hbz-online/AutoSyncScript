@@ -33,7 +33,39 @@
     },
     {
       "id": "thg",
-      "name": "太好购",
+      "name": "伊利乳品",
+      "keys": ["id77_yiLi_cookies"],
+      "settings": [
+        {
+          "id": "id77_yiLi_cookies",
+          "name": "session",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 2,
+          "desc": "多账号，不支持单独管理，可以手动更改，不懂不建议修改"
+        }
+      ],
+      "script": "https://raw.githubusercontent.com/id77/QuantumultX/master/task/yiLi.js",
+      "author": "@id77",
+      "repo": "https://raw.githubusercontent.com/id77/QuantumultX/master/task/yiLi.js",
+      "icons": [
+        "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/yiLi.png",
+        "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/yiLi.png"
+      ],
+      "descs_html": [
+        "1、支持多账号，添加好配置，注册小程序后点个人中心，<a target=\"_blank\" href=\"https://raw.githubusercontent.com/id77/QuantumultX/master/task/yiLi.cookie.js\">前往文件获取</a>",
+        "2、<img style=\"width: 120px\" src=\"https://raw.githubusercontent.com/id77/QuantumultX/master/img/yiLi_qr.png\" />",
+        "长按保存小程序码，用微信相机识别进入注册。",
+        "麻烦点一下助力，开发不易 ❤️",
+        "目前支持自动签到，每日阅读、分享任务",
+        "<br />",
+        "ps: 可以用几个微信弄多个账号，但需要手机号"
+      ]
+    },
+    {
+      "id": "thg",
+      "name": "太好购(服务不可用)",
       "keys": ["id77_thg_token"],
       "script": "https://raw.githubusercontent.com/id77/QuantumultX/master/task/thg.js",
       "author": "@id77",
