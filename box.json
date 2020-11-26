@@ -107,37 +107,6 @@
         "https://raw.githubusercontent.com/Orz-3/mini/master/163GameVip.png",
         "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/163GameVip.png"
       ]
-    },
-    {
-      "id": "_10000",
-      "name": "电信余额提醒",
-      "keys": ["id77_10000_balanceReminder", "id77_10000_lowestBalance"],
-      "settings": [
-        {
-          "id": "id77_10000_balanceReminder",
-          "name": "session",
-          "val": "",
-          "type": "textarea",
-          "autoGrow": true,
-          "rows": 2,
-          "desc": "用户查询所需标识数据"
-        },
-        {
-          "id": "id77_10000_lowestBalance",
-          "name": "提醒最低余额",
-          "val": "",
-          "type": "number",
-          "placeholder": "5",
-          "desc": "默认最低5元进行提醒"
-        }
-      ],
-      "script": "https://raw.githubusercontent.com/id77/QuantumultX/master/task/10000.js",
-      "author": "@id77",
-      "repo": "https://raw.githubusercontent.com/id77/QuantumultX/master/task/10000.js",
-      "icons": [
-        "https://raw.githubusercontent.com/Orz-3/mini/master/10000.png",
-        "https://raw.githubusercontent.com/Orz-3/task/master/10000.png"
-      ]
     }
   ]
 }
