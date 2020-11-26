@@ -487,40 +487,29 @@ function invite() {
 
 function showMsg() {
   return new Promise((resolve) => {
-    const { Return } = $.signDetail;
+    const { Return, ReturnInfo } = $.signDetail;
     const { ClientName } = $.user;
     $.subt = `🙆🏻‍♂️账号[${ClientName}]签到: `;
+    if (Return >= 0) {
+      $.subt += `成功 ${$.shareTaskResult.ReturnInfo}`;
+    } else {
+      $.subt += `失败 ${$.shareTaskResult.ReturnInfo}`;
+    }
 
     $.desc = `📚浏览菜谱任务：`;
-    switch ($.recipeTaskResult.Return) {
-      case 110:
-        $.desc += `成功`;
-        break;
-      case -104:
-        $.desc += `重复 ${$.recipeTaskResult.ReturnInfo}`;
-        break;
-      case -8:
-        $.desc += `重复 ${$.recipeTaskResult.ReturnInfo}`;
-        break;
-      default:
-        $.desc += `失败 ${$.recipeTaskResult.ReturnInfo}`;
-        break;
+    if ($.recipeTaskResult.Return >= 0) {
+      $.desc += `成功 ${$.recipeTaskResult.ReturnInfo}`;
+    } else {
+      $.desc += `失败 ${$.recipeTaskResult.ReturnInfo}`;
     }
 
     $.desc += `\n🕊分享任务：`;
-    switch ($.shareTaskResult.Return) {
-      case 1:
-        $.desc += `成功`;
-        break;
-        $.desc += `失败 ${$.shareTaskResult.ReturnInfo}`;
-        break;
+    if ($.shareTaskResult.Return >= 0) {
+      $.desc += `成功 ${$.shareTaskResult.ReturnInfo}`;
+    } else {
+      $.desc += `失败 ${$.shareTaskResult.ReturnInfo}`;
     }
 
-    if (Return === 1) {
-      $.subt += '重复';
-    } else if (Return >= 0) {
-      $.subt += '成功';
-    } else $.subt += message || '失败';
     $.msg($.name, $.subt, $.desc);
     resolve();
   });
