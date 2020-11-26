@@ -10,6 +10,13 @@ $.users = users ? JSON.parse(users) : {};
 $.openIds = Object.keys($.users) || [];
 $.userInfo = $.recipeTaskResult = {};
 
+$.inviteIds = [
+  '9b0dcaec-8281-4007-a331-ba1e5b07f5ac',
+  '5bfaabe5-7ffb-4033-a129-5c8590ba22f8',
+  '625bf8e5-294a-4203-b616-485570c3c52f',
+  '2d82dc6c-877d-4ed5-b4c4-684b9b4a5f3f',
+];
+
 $.cookBookIDs = [49, 45, 46, 29, 30, 14, 6];
 $.cookBookID = $.cookBookIDs[Math.floor(Math.random() * $.cookBookIDs.length)];
 
@@ -70,12 +77,7 @@ const body = {
       $.setData(JSON.stringify($.users), $.COOKIES_KEY);
 
       const { aspnetUserId } = $.userInfo;
-      const inviteIds = [
-        '9b0dcaec-8281-4007-a331-ba1e5b07f5ac',
-        '5bfaabe5-7ffb-4033-a129-5c8590ba22f8',
-        '625bf8e5-294a-4203-b616-485570c3c52f',
-        '2d82dc6c-877d-4ed5-b4c4-684b9b4a5f3f',
-      ].filter((item) => item !== aspnetUserId);
+      $.inviteIds = $.inviteIds.filter((item) => item !== aspnetUserId);
 
       await sign();
 
@@ -84,10 +86,10 @@ const body = {
       await recipeTask();
       await shareTask();
 
-      for (let k = 0; k < inviteIds.length; k++) {
-        $.inviteId = inviteIds[k];
-        await invite();
-      }
+      // for (let k = 0; k < $.inviteIds.length; k++) {
+      //   $.inviteId = $.inviteIds[k];
+      await invite();
+      // }
 
       await showMsg();
     }
@@ -457,6 +459,8 @@ function invite() {
   const _this = this;
   return new Promise((resolve) => {
     const { authKey } = $.userInfo;
+
+    $.inviteId = $.inviteIds[Math.floor(Math.random() * $.inviteIds.length)];
 
     const params = JSON.stringify({
       RecMemberID: $.inviteId,
