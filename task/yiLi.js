@@ -424,9 +424,10 @@ function shareTask() {
 
     const params = JSON.stringify({
       CookBookID: $.cookBookID,
+      InteractivType: 4,
     });
     body.AuthKey = authKey;
-    body.Method = 'MALLIFCheese.CreateCookBookSmallProgramQRCodeJson';
+    body.Method = 'MALLIFCheese.SaveCookBookToFavorite';
     body.Params = params;
 
     const opts = {
