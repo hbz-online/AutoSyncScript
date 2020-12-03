@@ -107,6 +107,18 @@
         "https://raw.githubusercontent.com/Orz-3/mini/master/163GameVip.png",
         "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/163GameVip.png"
       ]
+    },
+    {
+      "id": "_QQYD",
+      "name": "QQ阅读(自用)",
+      "keys": ["qqreadurl1", "qqreadhd1", "qqreadtimehd1", "qqreadtimeurl1"],
+      "script": "https://raw.githubusercontent.com/ziye12/JavaScript/master/qqread.js",
+      "author": "@ziye12",
+      "repo": "https://raw.githubusercontent.com/ziye12/JavaScript/master/qqread.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/task/master/QQ.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/QQ.png"
+      ]
     }
   ]
 }
