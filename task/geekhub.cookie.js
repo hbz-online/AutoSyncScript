@@ -2,18 +2,18 @@
  * Geekhub
  * 签到一次获取 cookie
  *
- * hostname = geekhub.com
+ * hostname = geekhub.com, www.geekhub.com
  *
  * # Surge
- * Rewrite: Geekhub = type=http-request,pattern=^https:\/\/geekhub\.com\/checkins\/start,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/geekhub.cookie.js
+ * Rewrite: Geekhub = type=http-request,pattern=^https:\/\/(www\.)?geekhub\.com\/checkins\/start,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/geekhub.cookie.js
  * Tasks: Geekhub = type=cron,cronexp=1 0 * * *,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/geekhub.js,wake-system=true
  *
  * # QuanX
- * ^https:\/\/geekhub\.com\/checkins\/start url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/task/geekhub.cookie.js
+ * ^https:\/\/(www\.)?geekhub\.com\/checkins\/start url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/task/geekhub.cookie.js
  * 1 0 * * * https://raw.githubusercontent.com/id77/QuantumultX/master/task/geekhub.js, tag=Geekhub, img-url=https://raw.githubusercontent.com/id77/QuantumultX/master/icon/geekhub.png
  *
  * # Loon
- * http-request ^https:\/\/geekhub\.com\/checkins\/start script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/geekhub.cookie.js
+ * http-request ^https:\/\/(www\.)?geekhub\.com\/checkins\/start script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/geekhub.cookie.js
  * cron "1 0 * * *" script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/geekhub.js
  *
  */

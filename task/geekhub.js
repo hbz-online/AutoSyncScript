@@ -61,11 +61,11 @@ const regGbit2 = /<div class="flex-1 text-center">\s+<div>(\d*)<\/div>\s+<div>Gb
 function sign(token) {
   return new Promise((resolve) => {
     const opts = JSON.parse(session);
-    opts.url = 'https://geekhub.com/checkins/start';
+    opts.url = 'https://www.geekhub.com/checkins/start';
     opts.body = '_method=post&authenticity_token=' + encodeURIComponent(token);
     opts.headers = {
-      Origin: 'https://geekhub.com',
-      Referer: 'https://geekhub.com/checkins',
+      Origin: 'https://www.geekhub.com',
+      Referer: 'https://www.geekhub.com/checkins',
     };
 
     // 签到动作
@@ -79,7 +79,7 @@ function getResult() {
   return new Promise((resolve) => {
     const opts = JSON.parse(session);
     // 获取结果
-    opts.url = 'https://geekhub.com/checkins';
+    opts.url = 'https://www.geekhub.com/checkins';
     $.get(opts, (err, resp, data) => {
       try {
         $.resData = data;
