@@ -109,18 +109,6 @@
       ]
     },
     {
-      "id": "_QQYD",
-      "name": "QQ阅读(自用)",
-      "keys": ["qqreadurl1", "qqreadhd1", "qqreadtimehd1", "qqreadtimeurl1"],
-      "script": "https://raw.githubusercontent.com/ziye12/JavaScript/master/qqread.js",
-      "author": "@ziye12",
-      "repo": "https://raw.githubusercontent.com/ziye12/JavaScript/master/qqread.js",
-      "icons": [
-        "https://raw.githubusercontent.com/Orz-3/mini/master/QQ.png",
-        "https://raw.githubusercontent.com/Orz-3/task/master/QQ.png"
-      ]
-    },
-    {
       "id": "_10000JD",
       "name": "电信金豆兑换(自用)",
       "keys": ["dianx_headers", "dianx_body"],
