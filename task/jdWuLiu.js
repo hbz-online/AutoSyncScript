@@ -33,7 +33,7 @@ $.carriageIdArr[0] &&
   $.carriageIdArr.splice(0, 1);
 
 let cookies = [];
-cookies.push($.getData('CookieJD'));
+$.getData('CookieJD') && cookies.push($.getData('CookieJD'));
 $.getData('CookieJD2') && cookies.push($.getData('CookieJD2'));
 
 const extraCookies = JSON.parse($.getData('CookiesJD') || '[]').map(
