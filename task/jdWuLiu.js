@@ -73,11 +73,16 @@ const opts = {
         orderId,
         stateInfo: { stateName },
       } = orderList[k];
+      
+      if(k === 0) {
+        console.log('====================================');
+        console.log(`🙆🏻‍♂️账号：${userInfo.baseInfo.nickname}`);
+      }
 
       if (stateName !== '已取消') {
         wuLiuDetail = await getWuLiu(orderId);
 
-        await showMsg(userInfo, wuLiuDetail, k, orderId);
+        await showMsg(userInfo, wuLiuDetail, orderId);
       }
     }
   }
@@ -143,7 +148,7 @@ function getWuLiu(orderId) {
   });
 }
 
-function showMsg(userInfo, wuLiuDetail, k, orderId) {
+function showMsg(userInfo, wuLiuDetail, orderId) {
   return new Promise((resolve) => {
     const {
       carrier,
@@ -197,8 +202,6 @@ function showMsg(userInfo, wuLiuDetail, k, orderId) {
     )}\n`;
     $.imgPath = `https://img30.360buyimg.com/jdwlcms/${orderWareList[0].itemImgPath}`;
 
-    k === 0 && console.log('====================================');
-    k === 0 && console.log(`🙆🏻‍♂️账号：${userInfo.baseInfo.nickname}`);
     console.log($.subt);
     console.log($.desc);
     console.log($.state);
