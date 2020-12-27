@@ -78,8 +78,8 @@ const opts = {
         console.log('====================================');
         console.log(`🙆🏻‍♂️账号：${userInfo.baseInfo.nickname}`);
       }
-
-      if (stateName !== '已取消') {
+      // 忽略取消订单以及非实物订单
+      if (stateName !== '已取消' && stateName !== '退款成功' && stateName !== '处理成功') {
         wuLiuDetail = await getWuLiu(orderId);
 
         await showMsg(userInfo, wuLiuDetail, orderId);
