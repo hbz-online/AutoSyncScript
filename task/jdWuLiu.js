@@ -73,13 +73,17 @@ const opts = {
         orderId,
         stateInfo: { stateName },
       } = orderList[k];
-      
-      if(k === 0) {
+
+      if (k === 0) {
         console.log('====================================');
         console.log(`🙆🏻‍♂️账号：${userInfo.baseInfo.nickname}`);
       }
       // 忽略取消订单以及非实物订单
-      if (stateName !== '已取消' && stateName !== '退款成功' && stateName !== '处理成功') {
+      if (
+        stateName !== '已取消' &&
+        stateName !== '退款成功' &&
+        stateName !== '处理成功'
+      ) {
         wuLiuDetail = await getWuLiu(orderId);
 
         await showMsg(userInfo, wuLiuDetail, orderId);
