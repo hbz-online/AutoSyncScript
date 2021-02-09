@@ -41,7 +41,6 @@ const extraCookies = JSON.parse($.getData('CookiesJD') || '[]').map(
 cookies = Array.from(new Set([...cookies, ...extraCookies]));
 
 !(async () => {
-  let cookie;
   if (!cookies[0]) {
     $.msg(
       $.name,
@@ -55,14 +54,14 @@ cookies = Array.from(new Set([...cookies, ...extraCookies]));
   }
   for (let i = 0; i < cookies.length; i++) {
     if (cookies[i]) {
-      cookie = cookies[i];
+      $.cookie = cookies[i];
       $.UserName = decodeURIComponent(
-        cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1]
+        $.cookie.match(/pt_pin=(.+?);/) && $.cookie.match(/pt_pin=(.+?);/)[1]
       );
       $.index = i + 1;
       $.isLogin = false;
       $.nickName = '';
-      await TotalBean();
+      await totalBean();
       if (!$.isLogin) {
         $.msg(
           $.name,
@@ -88,7 +87,7 @@ cookies = Array.from(new Set([...cookies, ...extraCookies]));
       // TODO
       $.token = '';
       $.feSt = 'f';
-      // console.log(`💥 获得首页面，解析超参数`)
+      console.log(`💥 获得首页面，解析超参数`);
       await getHyperParams();
       // console.log($.HyperParam)
       console.log(`🧾 获取所有价格保护列表，排除附件商品`);
@@ -98,7 +97,7 @@ cookies = Array.from(new Set([...cookies, ...extraCookies]));
       console.log(`🗑 删除不符合订单`);
       let taskList = [];
       for (let order of $.orderList) {
-        taskList.push(HistoryResultQuery(order));
+        taskList.push(historyResultQuery(order));
       }
       await Promise.all(taskList);
       console.log(`📊 ${$.orderList.length}个商品即将申请价格保护！`);
@@ -141,7 +140,7 @@ function getHyperParams() {
         Accept:
           'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
         Connection: 'keep-alive',
-        Cookie: cookie,
+        Cookie: $.cookie,
         'User-Agent':
           'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
         'Accept-Language': 'zh-cn',
@@ -309,7 +308,7 @@ function skuApply(order) {
 }
 
 // 历史结果查询
-function HistoryResultQuery(order) {
+function historyResultQuery(order) {
   return new Promise((resolve, reject) => {
     const { orderId, sequence, skuId } = order;
     const { sid_hid, type_hid, forcebot } = $.HyperParam;
@@ -416,6 +415,7 @@ function getApplyResult() {
     });
   });
 }
+
 function taskUrl(functionid, body) {
   let urlStr = selfDomain + 'rest/priceprophone/priceskusPull';
   const { useColorApi, forcebot, useColorApi } = $.HyperParam;
@@ -443,11 +443,12 @@ function taskUrl(functionid, body) {
       Referer: 'https://msitepp-fm.jd.com/rest/priceprophone/priceProPhoneMenu',
       'User-Agent':
         'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
-      Cookie: cookie,
+      Cookie: $.cookie,
     },
     body: body ? `body=${JSON.stringify(body)}` : undefined,
   };
 }
+
 function showMsg() {
   console.log(`🧮 本次价格保护金额：${$.refundtotalamount}💰`);
   if ($.refundtotalamount) {
@@ -464,7 +465,8 @@ function showMsg() {
     );
   }
 }
-function TotalBean() {
+
+function totalBean() {
   return new Promise((resolve) => {
     const options = {
       url: `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
@@ -474,7 +476,7 @@ function TotalBean() {
         'Accept-Encoding': 'gzip, deflate, br',
         'Accept-Language': 'zh-cn',
         Connection: 'keep-alive',
-        Cookie: cookie,
+        Cookie: $.cookie,
         Referer: 'https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2',
         'User-Agent':
           'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
@@ -505,6 +507,7 @@ function TotalBean() {
     });
   });
 }
+
 function jsonParse(str) {
   if (typeof str == 'string') {
     try {
