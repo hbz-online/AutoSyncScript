@@ -247,7 +247,7 @@ function getApplyData(page) {
                   skuRefundTypeDiv_orderId
                 );
                 // 设置原路返还
-                item.refundtype === '2' && item.refundtype = '1';
+                if (item.refundtype === '2') item.refundtype = '1';
                 $.orderList.push(item);
               }
               //else...尊敬的顾客您好，您选择的商品本身为赠品，是不支持价保的呦，请您理解。
