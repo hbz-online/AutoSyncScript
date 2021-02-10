@@ -16,13 +16,13 @@
  * > https://raw.githubusercontent.com/dompling/Script/master/jd/JD_extra.js
  *
  * # Surge
- * Tasks: 京东保价 = type=cron,cronexp=0 12 * * *,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdGuaranteedPrice.js,wake-system=true
+ * Tasks: 京东保价 = type=cron,cronexp=3 0 * * *,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdGuaranteedPrice.js,wake-system=true
  *
  * # QuanX
- * 0 12 * * * https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdGuaranteedPrice.js, tag=京东保价, img-url=https://raw.githubusercontent.com/id77/QuantumultX/master/icon/jdGuaranteedPrice.png
+ * 3 0 * * * https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdGuaranteedPrice.js, tag=京东保价, img-url=https://raw.githubusercontent.com/id77/QuantumultX/master/icon/jdGuaranteedPrice.png
  *
  * # Loon
- * cron "0 12 * * *" script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdGuaranteedPrice.js
+ * cron "3 0 * * *" script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdGuaranteedPrice.js
  *
  */
 
