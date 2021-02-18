@@ -107,18 +107,6 @@
         "https://raw.githubusercontent.com/Orz-3/mini/master/163GameVip.png",
         "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/163GameVip.png"
       ]
-    },
-    {
-      "id": "_10000JD",
-      "name": "电信金豆兑换(自用)",
-      "keys": ["dianx_headers", "dianx_body"],
-      "script": "https://raw.githubusercontent.com/elecV2/QuantumultX-Tools/master/dianx/dianx.js",
-      "author": "@elecvV2",
-      "repo": "https://raw.githubusercontent.com/elecV2/QuantumultX-Tools/master/dianx/dianx.js",
-      "icons": [
-        "https://raw.githubusercontent.com/elecV2/QuantumultX-Tools/master/dianx/dianx.png",
-        "https://raw.githubusercontent.com/elecV2/QuantumultX-Tools/master/dianx/dianx.png"
-      ]
     }
   ]
 }
