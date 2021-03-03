@@ -3,26 +3,42 @@
 
 [rewrite_local]
 # 京东活动助手
-https://.*\.m\.jd\.com/.*\.html url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/Script/jd_hd.js
+https://.*\.m\.jd\.com/babelDiy/Zeus/.*/index\.html url script-response-body jd_hd.js
+https://.*\.m\.jd\.com/.*\.html url script-response-body jd_hd.js
+https://jingfen\.jd\.com/.*\.html url script-response-body jd_hd.js
+https://coupon\.m\.jd\.com/center/getCouponCenter\.action url script-response-body jd_hd.js
+https://active.jd.com/forever/btgoose url script-response-body jd_hd.js
 
 [mitm]
-hostname = *.m.jd.com
+hostname = *.jd.com, *.*.jd.com
 */
 
 let html = $response.body;
+
+
+if (!html.includes("</html>")) {
+
+  $done({ body: html });
+  return
+}
+
 let url = $request.url.replace(/https?:\/\/|\?.*/g, '');
 
 html =
   html.replace(/(<\/html>)/g, '') +
   `
   <style>
-    #alook {
+    html, body {
+      -webkit-user-select: auto !important;
+      user-select: auto !important;
+    }
+    #alook, #yyb {
       position: fixed;
       bottom: 150px;
       right: 0;
       z-index: 99999;
     }
-    #alook img {
+    #alook img, #yyb img {
       box-sizing: content-box;
       width: 30px;
       height: 30px;
@@ -31,10 +47,19 @@ html =
       background: #FFF;
       border-radius: 50px 0 0 50px;
     }
+
+    #yyb {
+      bottom: 117px;
+    }
   </style>
   <div id="alook">
     <a href="alook://${url}">
       <img src="https://alookbrowser.com/assets/uploads/profile/1-profileavatar.png" />
+    </a>
+  </div>
+  <div id="yyb">
+    <a href="yybpro://url?${url}">
+      <img src="https://tvax3.sinaimg.cn/crop.0.0.828.828.180/006nobRDly8gel4md0kfzj30n00n03z2.jpg" />
     </a>
   </div>
   
@@ -55,16 +80,13 @@ html =
     function init () {
       
       window.vConsole = new VConsole({ defaultPlugins: ["system", "element"] });
+      /**
       const myPlugin = new VConsole.VConsolePlugin("jd_hd", "京东活动");
       vConsole.addPlugin(myPlugin);
 
       myPlugin.on("renderTab", function (callback) {
         var html = \`
-                    <ul>
-                      <li> 📎可能需要运行多次，查看输出日志，有失败的任务，刷新页面继续执行</li>
-                      <li> 📎经测试，抽奖需要手动</li>
-                      <li> 👇点击下方执行按钮运行任务脚本</li>
-                    </ul>  
+                    1234567  
                     \`;
                     
         callback(html);
@@ -85,7 +107,7 @@ html =
 
         },
         {
-          name: "脚本2",
+          name: "领券页面",
           global: false,
           onClick: function (event) {
             vConsole.showTab("default");
@@ -93,18 +115,24 @@ html =
              // 脚本2
              eval(function(){function c(){var d=document.getElementById(\"loadJs\"),e=document.createElement(\"script\");d&&document.getElementsByTagName(\"head\")[0].removeChild(d),e.id=\"loadJs\",e.type=\"text/javascript\",e.src=\"https://krapnik.cn/tools/JDCouponAssistant/bundle.js\",document.getElementsByTagName(\"head\")[0].appendChild(e)}c()}())
 
-         }
+         },
+         
           
         });
+        
         callback(toolList);
       });
+      
       
       myPlugin.on('ready', function() {
       
           //vConsole.show();
+          
 	      setTimeout(() => vConsole.showTab("jd_hd"), 300);
-
+           console.log(window.location.href)
+          
       });
+      **/
       
     }
   </script>
