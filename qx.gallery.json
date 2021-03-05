@@ -1,0 +1,24 @@
+{
+  "name": "一堆Bug",
+  "task": [
+    {
+      "config": "5 9 4-6 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_xmf.js, tag=京东-小魔方, img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
+    },
+    {
+      "config": "5 8,14,20 2-7 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_jump-jump.js, tag=母婴-跳一跳, img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
+    },
+    {
+      "config": "10 13 23-28,1 2-3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_gjmh.js, tag=国际盲盒, img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
+    },
+    {
+      "config": "3 10 * * * https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js, tag=粉丝互动, img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
+    },
+    {
+      "config": "10 10,11 * * 2-5 https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_entertainment.js, tag=百变大咖秀, img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
+    },
+    {
+      "config": "3 20 * * * https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_shake.js, tag=摇一摇, img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
+    }
+  ],
+  "description": "https://github.com/i-chenzhe/qx"
+}
