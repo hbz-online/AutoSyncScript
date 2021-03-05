@@ -1,6 +1,6 @@
 /**
 京东超市-大转盘
-长期活动，应群友要求写了一个，但是我试了收益不高。
+长期活动，应群友要求写了一个，但是我试了没什么收益。
 活动入口：https://pro.m.jd.com/mall/active/3ryu78eKuLyY5YipWWVSeRQEpLQP/index.html
 更新地址：https://raw.githubusercontent.com/i-chenzhe/qx/main/z_marketLottery.js
 ============Quantumultx===============
