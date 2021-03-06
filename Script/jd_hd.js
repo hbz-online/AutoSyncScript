@@ -3,7 +3,7 @@
 
 [rewrite_local]
 # 京东活动助手
-https://.*\.m\.jd\.com/babelDiy/Zeus/.*/index\.html url script-response-body jd_hd.js
+https://.*\.m\.jd\.com/babelDiy/Zeus/.*\/index\.html url script-response-body jd_hd.js
 https://.*\.m\.jd\.com/.*\.html url script-response-body jd_hd.js
 https://jingfen\.jd\.com/.*\.html url script-response-body jd_hd.js
 https://coupon\.m\.jd\.com/center/getCouponCenter\.action url script-response-body jd_hd.js
