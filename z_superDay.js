@@ -17,14 +17,14 @@
 ============Quantumultx===============
 [task_local]
 #超级品类日
-13 8 8-15 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_superDay.js, tag=超级品类日, enabled=true
+13 8,10 8-15 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_superDay.js, tag=超级品类日, enabled=true
 ================Loon==============
 [Script]
-cron "13 8 8-15 3 *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_superDay.js, tag=超级品类日
+cron "13 8,10 8-15 3 *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_superDay.js, tag=超级品类日
 ===============Surge=================
-超级品类日 = type=cron,cronexp="13 8 8-15 3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_superDay.js
+超级品类日 = type=cron,cronexp="13 8,10 8-15 3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_superDay.js
 ============小火箭=========
-超级品类日 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_superDay.js, cronexpr="13 8 8-15 3 *", timeout=3600, enable=true
+超级品类日 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_superDay.js, cronexpr="13 8,10 8-15 3 *", timeout=3600, enable=true
  */
 
 const $ = new Env('超级品类日');
