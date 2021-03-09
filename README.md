@@ -13,7 +13,7 @@
 ### Zhe's TG
 [  TG Chanel  ](https://t.me/something_bug)
 
-[  TG Group  ](t.me/something_bug_group)
+[  TG Group  ](https://t.me/something_bug_group)
 ### 特别感谢
 脚本使用了 [  @chavyleung  ](https://github.com/chavyleung) 大佬的 `Env` 函数
 
