@@ -2,7 +2,7 @@
   "name": "一堆Bug",
   "task": [
     {
-      "config": "13 8,10 8-15 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_superDay.js, tag=超级品类日, img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
+      "config": "13 8,10 8-15 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_superDay.js, tag=洗护发超级品类日, img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
     },
     {
       "config": "3 10 * * * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_marketLottery.js, tag=京东超市-大转盘, img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
