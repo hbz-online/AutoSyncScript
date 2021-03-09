@@ -15,9 +15,7 @@
 0 0,9,13,20 * * *
 */
 const $ = new Env('美丽颜究院');
-const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require("constants");
 const WebSocket = require("ws");
-const { sendNotify } = require("./sendNotify.js");
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 const needNotify = true;
