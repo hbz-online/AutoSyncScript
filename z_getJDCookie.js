@@ -22,7 +22,7 @@ hostname = *.jd.com
 ===================Quantumult X=====================
 [rewrite_local]
 # 获取多账号京东Cookie
-https:\/\/api\.m\.jd\.com\/client\.action\?functionId\=signBeanIndex url script-request-header https://raw.githubusercontent.com/i-chenzhe/qx/main/z_getJDCookie.js
+^https:\/\/api\.m\.jd\.com\/client\.action\?functionId\=signBeanIndex url script-request-header https://raw.githubusercontent.com/i-chenzhe/qx/main/z_getJDCookie.js
 
  */
 
