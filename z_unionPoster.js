@@ -10,14 +10,14 @@
 ============Quantumultx===============
 [task_local]
 #美的家电节
-15 10 26-31 2,3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_unionPoster.js, tag=美的家电节, enabled=true
+15 10 10-31 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_unionPoster.js, tag=美的家电节, enabled=true
 ================Loon==============
 [Script]
-cron "15 10 26-31 2,3 *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_unionPoster.js, tag=美的家电节
+cron "15 10 10-31 3 *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_unionPoster.js, tag=美的家电节
 ===============Surge=================
-美的家电节 = type=cron,cronexp="15 10 26-31 2,3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_unionPoster.js
+美的家电节 = type=cron,cronexp="15 10 10-31 3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_unionPoster.js
 ============小火箭=========
-美的家电节 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_unionPoster.js, cronexpr="15 10 26-31 2,3 *", timeout=3600, enable=true
+美的家电节 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_unionPoster.js, cronexpr="15 10 10-31 3 *", timeout=3600, enable=true
  */
 
 const $ = new Env('美的家电节');
