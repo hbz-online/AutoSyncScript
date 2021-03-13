@@ -2,7 +2,7 @@
   "name": "一堆Bug",
   "task": [
     {
-      "config": "10 10 13-20 3 *  https://raw.githubusercontent.com/i-chenzhe/qx/main/z_wish.js, tag=众筹许愿池, img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
+      "config": "10 10,15 13-20 3 *  https://raw.githubusercontent.com/i-chenzhe/qx/main/z_wish.js, tag=众筹许愿池, img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
     },
     {
       "config": "15 10 10-31 3 *  https://raw.githubusercontent.com/i-chenzhe/qx/main/z_unionPoster.js, tag=美的家电节, img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
