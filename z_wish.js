@@ -8,14 +8,14 @@
 注：会自动关注任务中的店铺跟商品，介意者勿使用。
 =====================================Quantumult X=================================
 [task_local]
-10 10,15 13-20 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_temp_wish.js, tag=众筹许愿池, enabled=true
+10 10,15 13-20 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_wish.js, tag=众筹许愿池, enabled=true
 =====================================Loon================================
 [Script]
-cron "10 10,15 13-20 3 *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_temp_wish.js,tag=众筹许愿池
+cron "10 10,15 13-20 3 *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_wish.js,tag=众筹许愿池
 ======================================Surge==========================
-众筹许愿池 = type=cron,cronexp="10 10,15 13-20 3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_temp_wish.js
+众筹许愿池 = type=cron,cronexp="10 10,15 13-20 3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_wish.js
 ====================================小火箭=============================
-众筹许愿池 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_temp_wish.js, cronexpr="10 10,15 13-20 3 *", timeout=3600, enable=true
+众筹许愿池 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_wish.js, cronexpr="10 10,15 13-20 3 *", timeout=3600, enable=true
 */
 const $ = new Env('众筹许愿池');
 const notify = $.isNode() ? require('./sendNotify') : '';
