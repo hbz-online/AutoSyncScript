@@ -47,5 +47,19 @@ jobs:
           source_branch: "main"
           destination_branch: "ZIYE"
           github_token: ${{ secrets.PAT }}
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: sync 6Svip120apk69-gitee_q8qsTAUA_cThxc1RBVUE
+        uses: repo-sync/github-sync@v2
+        if: env.PAT
+        with:
+          source_repo: "https://github.com/6Svip120apk69/gitee_q8qsTAUA_cThxc1RBVUE.git"
+          source_branch: "main"
+          destination_branch: "ZIYE"
+          github_token: ${{ secrets.PAT }}
 
           echo test, and deploy your project.
