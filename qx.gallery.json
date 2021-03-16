@@ -2,6 +2,9 @@
   "name": "一堆Bug",
   "task": [
     {
+      "config": "5 8,14,20 17-25 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_mother_jump.js, tag=母婴-跳一跳, img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
+    },
+    {
       "config": "12 15 15-29 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_lenovo.js, tag=联想集卡活动, img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
     },
     {
