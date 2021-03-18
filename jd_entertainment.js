@@ -2,7 +2,7 @@
 百变大咖秀
 活动入口：首页搜索-‘百变大咖秀’-底部最右侧按钮
 请手动进入一次活动页面已确保能够自动抽奖
-活动地址：https://lzdz-isv.isvjcloud.com/dingzhi/change/able/activity/3508994?activityId=dz2102100001340206
+活动地址：https://lzdz-isv.isvjcloud.com/dingzhi/change/able/activity/3508994?activityId=dz2102100001340207
 
 新手写脚本，难免有bug，能用且用。
 多谢 whyour 大佬 指导
@@ -30,17 +30,17 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = '', originCookie = '', message = '';
 let helpAuthor = true;//为作者助力的开关
-const ACT_ID = 'dz2102100001340206';
+const ACT_ID = 'dz2102100001340207';
 const questionList = [
-  { q: '11c87c88d7f54875bb44fba158f78e6b', a: 'B:思文' },
-  { q: '11e4428b2d644422929279b9c84790a4', a: 'B:汪东城' },
-  { q: '562a6a22d9064b2e927bad0b8c1bdce1', a: 'A:袁成杰' },
-  { q: '584359b219ca40f281101f5034de9282', a: 'B:戴军' },
-  { q: '8a04c3f2c05b4f178934cd62fb2e314d', a: 'B:大王' },
-  { q: '90a7ea53393147afa52442a8f2988c24', a: 'A:何炅' },
-  { q: 'be3b10b31e0448d09c6f5e6fff299e9c', a: 'B:王祖蓝' },
-  { q: 'cfcafbe48f2445bfa873b65a3fb987d0', a: 'B:李维嘉' },
-  { q: 'f59e2cfc64a44abb9fa8ea8bf8b87089', a: 'B:大张伟' }
+  { q: '0c32c1c0e2284331beec6910dc07a948', a: 'A:杨钰莹' },
+  { q: '3576e8750b0b4322977420622aff18a0', a: 'C:王勉' },
+  { q: '43669f0fcf074342934e1422a26d164a', a: 'B:杜海涛' },
+  { q: '7ef574a3f282466ea36cbd4d0b6e1685', a: 'A:王晨艺' },
+  { q: 'ade513a501ce48df9a4816566f24904e', a: 'B:沈凌' },
+  { q: 'a8e35c93ad79460d871f42a10bce68d4', a: 'A:沈梦辰' },
+  { q: 'afd88ed596324ba9a84129112d2fb8b6', a: 'C:锤娜丽莎' },
+  { q: 'c6bacb5e9aac49f0bc4beae144decf80', a: 'B:玲花' },
+  { q: 'e5421dda894e4b43863aad4fd524fd9f', a: 'C:杨迪' }
 ]
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
