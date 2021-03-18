@@ -22,14 +22,14 @@ Z_SUPER5G_NOTIFY //通知变量
 ============Quantumultx===============
 [task_local]
 #5G超级盲盒
-5 1,6,11,16,21 * 2-3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_super5g.js, tag=5G超级盲盒, enabled=true
+5 1,6,11,16,21 * 3-4 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_super5g.js, tag=5G超级盲盒, enabled=true
 ================Loon==============
 [Script]
-cron "5 1,6,11,16,21 * 2-3 *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_super5g.js, tag=5G超级盲盒
+cron "5 1,6,11,16,21 * 3-4 * " script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_super5g.js, tag=5G超级盲盒
 ===============Surge=================
-5G超级盲盒 = type=cron,cronexp="5 1,6,11,16,21 * 2-3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_super5g.js
+5G超级盲盒 = type=cron,cronexp="5 1,6,11,16,21 * 3-4 * ",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_super5g.js
 ============小火箭=========
-5G超级盲盒 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_super5g.js, cronexpr="5 1,6,11,16,21 * 2-3 *", timeout=3600, enable=true
+5G超级盲盒 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_super5g.js, cronexpr="5 1,6,11,16,21 * 3-4 * ", timeout=3600, enable=true
  */
 
 const $ = new Env('5G超级盲盒');
