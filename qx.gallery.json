@@ -2,6 +2,9 @@
   "name": "一堆Bug",
   "task": [
     {
+      "config": "5 10 * 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_mgold.js, tag=金口碑奖投票,img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
+    },
+    {
       "config": "5 1,6,11,16,21 * 2-3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_super5g.js, tag=5G超级盲盒,img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
     },
     {
