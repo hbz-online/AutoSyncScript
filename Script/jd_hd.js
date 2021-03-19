@@ -123,16 +123,20 @@ html =
         callback(toolList);
       });
       
-      
       myPlugin.on('ready', function() {
       
           //vConsole.show();
           
-	      setTimeout(() => vConsole.showTab("jd_hd"), 300);
+	      setTimeout(() => {
+// vConsole.showTab("jd_hd"), 300);
            console.log(window.location.href)
           
       });
       **/
+
+     setTimeout(() => {
+        console.log(window.location.href)      
+     });
       
     }
   </script>
