@@ -15,15 +15,6 @@
 手机app端运行的用户是肯定被占便宜的。
 所以请QuantumultX, Surge, Loon, 小火箭用户慎重使用这一脚本。
 
-
-后续发布脚本均有加密
-因为我介意别人把我脚本里的助力改了。
-如果不愿意助力，可以直接下载脚本到本地，通过修改helpAhtor这个参数来关闭助力请求。
-请不要修改我的助力。
-脚本内置了一个给作者任务助力的网络请求，默认开启，如介意请自行关闭。
-助力活动链接： https://h5.m.jd.com/babelDiy/Zeus/4ZK4ZpvoSreRB92RRo8bpJAQNoTq/index.html
-参数 helpAuthor = false
-
 更新地址：https://raw.githubusercontent.com/i-chenzhe/qx/main/z_city_cash.js.js
 已支持IOS双京东账号, Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, 小火箭，JSBox, Node.js
