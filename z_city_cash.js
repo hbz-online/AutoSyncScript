@@ -15,20 +15,20 @@
 手机app端运行的用户是肯定被占便宜的。
 所以请QuantumultX, Surge, Loon, 小火箭用户慎重使用这一脚本。
 
-更新地址：https://raw.githubusercontent.com/i-chenzhe/qx/main/z_city_cash.js.js
+更新地址：https://raw.githubusercontent.com/i-chenzhe/qx/main/z_city_cash.js
 已支持IOS双京东账号, Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, 小火箭，JSBox, Node.js
 ============Quantumultx===============
 [task_local]
 #城城分现金
-12 0 19-24 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_city_cash.js.js, tag=城城分现金, enabled=true
+12 0 19-24 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_city_cash.js, tag=城城分现金, enabled=true
 ================Loon==============
 [Script]
-cron "12 0 19-24 3 * " script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_city_cash.js.js, tag=城城分现金
+cron "12 0 19-24 3 * " script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_city_cash.js, tag=城城分现金
 ===============Surge=================
-城城分现金 = type=cron,cronexp="12 0 19-24 3 * ",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_city_cash.js.js
+城城分现金 = type=cron,cronexp="12 0 19-24 3 * ",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_city_cash.js
 ============小火箭=========
-城城分现金 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_city_cash.js.js, cronexpr="12 0 19-24 3 * ", timeout=3600, enable=true
+城城分现金 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_city_cash.js, cronexpr="12 0 19-24 3 * ", timeout=3600, enable=true
  */
 
 const $ = new Env('城城分现金');
