@@ -483,41 +483,34 @@ function showMsg() {
 
 function totalBean() {
   return new Promise((resolve) => {
-    const options = {
-      url: `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
+    const opts = {
+      url: 'https://wq.jd.com/user_new/info/GetJDUserInfoUnion?orgFlag=JD_PinGou_New&callSource=mainorder&channel=4&isHomewhite=0&sceneval=2&sceneval=2&g_login_type=1g_ty=ls',
       headers: {
-        Accept: 'application/json,text/plain, */*',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Accept-Language': 'zh-cn',
-        Connection: 'keep-alive',
+        Accept: `*/*`,
+        Connection: `keep-alive`,
         Cookie: $.cookie,
-        Referer: 'https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2',
-        'User-Agent':
-          'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
+        Host: `wq.jd.com`,
+        'Accept-Language': 'zh-cn',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 14_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.1 Mobile/15E148 Safari/604.1`,
+        Referer: `https://home.m.jd.com/myJd/home.action`
       },
     };
-    $.post(options, (err, resp, data) => {
+
+    $.get(opts, (err, resp, data) => {
+      let userInfo;
+
       try {
-        if (err) {
-          console.log(`${JSON.stringify(err)}`);
-          console.log(`${$.name} API请求失败，请检查网路重试`);
-        } else {
-          if (data) {
-            data = JSON.parse(data);
-            if (data['retcode'] === 13) {
-              return;
-            }
-            $.isLogin = true;
-            $.nickName = data['base'].nickname;
-          } else {
-            console.log(`京东服务器返回空数据`);
-          }
+        const res = JSON.parse(data)
+        if(res['retcode'] === 0){
+          $.isLogin = true;
+          userInfo = res.data.userInfo;
+          $.nickName = userInfo['baseInfo'].nickname;
         }
       } catch (e) {
         $.logErr(e, resp);
       } finally {
-        resolve();
+        resolve(userInfo);
       }
     });
   });
