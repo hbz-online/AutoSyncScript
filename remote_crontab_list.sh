@@ -24,3 +24,6 @@
 
 # 众筹许愿池
 5 10 13-20 3 * node /scripts/z_wish.js >> /scripts/logs/jd_wish.log 2>&1
+
+#答题赢京豆
+5 1 23-25 3 * node /scripts/z_grassy.js >> /scripts/logs/z_grassy.log 2>&1
