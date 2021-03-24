@@ -7,9 +7,6 @@
 # 超级摇一摇
 5 20 * * * node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1
 
-# 京东小魔方
-8 10 16-18 * * node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1
-
 # 联想集卡活动
 10 15 15-29 3 * node /scripts/z_lenovo.js >> /scripts/logs/jd_lenovo.log 2>&1
 
@@ -18,9 +15,6 @@
 
 # 母婴-跳一跳
 10 8,14,20 17-25 3 * node /scripts/z_mother_jump.js >> /scripts/logs/jd_mother_jump.log 2>&1
-
-# 众筹许愿池
-5 10 13-20 3 * node /scripts/z_wish.js >> /scripts/logs/jd_wish.log 2>&1
 
 #答题赢京豆
 5 1 23-25 3 * node /scripts/z_grassy.js >> /scripts/logs/z_grassy.log 2>&1
