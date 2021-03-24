@@ -36,7 +36,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = '',  message = '';
 let localShareCodesList = [];
-const lottery = $.isNode() ? process.env.Z_CTYTCASH_LOTTERY || false : false;//是否需要抽奖
+const lottery = $.isNode() ? process.env.Z_CTYTCASH_LOTTERY || true : true;//是否需要抽奖
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
         cookiesArr.push(jdCookieNode[item])
