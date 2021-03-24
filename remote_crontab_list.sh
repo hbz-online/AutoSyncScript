@@ -19,5 +19,5 @@
 #答题赢京豆
 5 1 23-25 3 * node /scripts/z_grassy.js >> /scripts/logs/z_grassy.log 2>&1
 
-#乘风破浪的姐姐
-12 12 24-26 3 * node /scripts/z_sister.js >> /scripts/logs/z_sister.log 2>&1
+#京东小魔方
+10 10 25-27 3 * node /scripts/z_xmf.js >> /scripts/logs/z_xmf.log 2>&1
