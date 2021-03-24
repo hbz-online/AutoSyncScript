@@ -18,3 +18,6 @@
 
 #答题赢京豆
 5 1 23-25 3 * node /scripts/z_grassy.js >> /scripts/logs/z_grassy.log 2>&1
+
+#乘风破浪的姐姐
+12 12 24-26 3 * node /scripts/z_sister.js >> /scripts/logs/z_sister.log 2>&1

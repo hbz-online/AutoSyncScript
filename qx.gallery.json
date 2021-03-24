@@ -2,6 +2,9 @@
   "name": "一堆Bug",
   "task": [
     {
+      "config": "12 12 24-26 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_sister.js, tag=乘风破浪的姐姐,img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
+    },
+    {
       "config": "5 1 23-25 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_grassy.js, tag=答题赢京豆,img-url=https://raw.githubusercontent.com/i-chenzhe/qx/master/img/icon.png, enabled=true"
     },
     {
