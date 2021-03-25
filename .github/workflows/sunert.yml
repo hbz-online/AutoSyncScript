@@ -1,0 +1,34 @@
+##  sunert 新仓库自动定时同步代码 ，教程公众号文章讲过了，不废话了，地址https://mp.weixin.qq.com/s/fcI4vQHD8TNajvTML9g3AA
+
+## 每隔3小时拉取一次作者脚本到自己仓库的sunert分支
+
+
+
+name: Sunert-sync
+on:
+  schedule:
+    - cron: '3 */3 * * *'
+  workflow_dispatch:
+  watch:
+    types: started
+  repository_dispatch:
+    types: sync-Sunert-Scripts
+jobs:
+  repo-sync:
+    env:
+      PAT: ${{ secrets.PAT }} 
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: sync Sunert-Scripts
+        uses: repo-sync/github-sync@v2
+        if: env.PAT
+        with:
+          source_repo: "https://github.com/Sunert/Scripts.git"
+          source_branch: "master"
+          destination_branch: "Sunert"
+          github_token: ${{ secrets.PAT }}
