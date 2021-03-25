@@ -1,6 +1,7 @@
 ^_^
 
 AutoSyncScript
+
 此项目用于定时拉取github上各作者的脚本备份。
 
 使用github action的用户，请善用本项目拉取原作者的脚本到自己这里，
