@@ -1,0 +1,29 @@
+  
+name: Peng-YM-sync
+on:
+  schedule:
+    - cron: '1 */3 * * *'
+  workflow_dispatch:
+  watch:
+    types: started
+  repository_dispatch:
+    types: sync-Peng-YM-QuanX
+jobs:
+  repo-sync:
+    env:
+      PAT: ${{ secrets.PAT }} 
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: sync Peng-YM-QuanX
+        uses: repo-sync/github-sync@v2
+        if: env.PAT
+        with:
+          source_repo: "https://github.com/Peng-YM/QuanX.git"
+          source_branch: "master"
+          destination_branch: "Peng-YM"
+          github_token: ${{ secrets.PAT }}
