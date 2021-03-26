@@ -64,24 +64,23 @@
       ]
     },
     {
-      "id": "thg",
-      "name": "太好购(服务不可用)",
-      "keys": ["id77_thg_token"],
-      "script": "https://raw.githubusercontent.com/id77/QuantumultX/master/task/thg.js",
+      "id": "id77",
+      "name": "自用JDCookie管理",
+      "keys": ["id77_api"],
       "author": "@id77",
-      "repo": "https://raw.githubusercontent.com/id77/QuantumultX/master/task/thg.js",
       "icons": [
-        "https://raw.githubusercontent.com/Orz-3/mini/master/thg.png",
-        "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/thg.png"
+        "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/id77.png",
+        "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/id77.png"
       ],
-      "descs_html": [
-        "1、先行添加获取 Cookie 配置，<a target=\"_blank\" href=\"https://raw.githubusercontent.com/id77/QuantumultX/master/task/thg.cookie.js\">前往文件获取</a>",
-        "2、<img style=\"width: 120px\" src=\"https://raw.githubusercontent.com/id77/QuantumultX/master/img/thg_qr.png\" />",
-        "长按保存小程序码，用微信识别进去注册。注册完成，获取到cookie，即可注释获取cookie配置",
-        "注册即得600币，完善资料（手机号验证）再得600币",
-        "3、Task签到配置，在第一步文件获取",
-        "<br />",
-        "ps: 可以用几个微信弄多个账号，设置多几个会话，切换签到。"
+      "settings": [
+        {
+          "id": "id77_api",
+          "name": "api",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 2
+        }
       ]
     },
     {
