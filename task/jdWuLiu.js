@@ -74,9 +74,11 @@ const opts = {
         stateInfo: { stateName },
       } = orderList[k];
 
+      $.logText = '';
       if (k === 0) {
-        console.log('====================================');
-        console.log(`🙆🏻‍♂️账号：${userInfo.baseInfo.nickname}`);
+        console.log('====================================\n');
+        $.logText += `🙆🏻‍♂️账号：${userInfo.baseInfo.nickname}\n`;
+        // console.log(`🙆🏻‍♂️账号：${userInfo.baseInfo.nickname}`);
       }
       // 忽略取消订单以及非实物订单
       if (
@@ -206,12 +208,10 @@ function showMsg(userInfo, wuLiuDetail, orderId) {
     )}\n`;
     $.imgPath = `https://img30.360buyimg.com/jdwlcms/${orderWareList[0].itemImgPath}`;
 
-    console.log($.subt);
-    console.log($.desc);
-    console.log($.state);
-    console.log($.info);
+    $.logText += $.subt + '\n' + $.desc + '\n' + $.state + '\n' + $.info;
+    
+    console.log($.logText);
     console.log('------------------------------------');
-
     // 已通知过的快递，跳过通知
     if ($.carriageIdArr.includes(carriageId)) {
       return resolve();
