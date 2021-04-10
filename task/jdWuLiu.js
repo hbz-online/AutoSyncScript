@@ -85,6 +85,9 @@ const opts = {
         stateName !== '退款成功' &&
         stateName !== '处理成功'
       ) {
+        if (k > 0) {
+          $.logText += `------------------------------------\n`;
+        }
         wuLiuDetail = await getWuLiu(orderId);
         await showMsg(userInfo, wuLiuDetail, orderId);
         console.log($.logText);
@@ -191,25 +194,24 @@ function showMsg(userInfo, wuLiuDetail, orderId) {
     $.subt = ``;
     $.desc = `📦${carrier}：${carriageId}\n📱手机尾号：${recvMobile.slice(
       -4
-    )}\n🚚最新物流：${dealLog}`;
+    )}`;
+    $.info = `📘包含商品：${orderWareList[0].itemName.slice(
+      0,
+      20
+    )}\n📗商品数目：${
+      orderWareList.length
+    }\n📕订单编号：${orderId}`;
+    $.wl = `🚚最新物流：${dealLog}`;
+    $.imgPath = `https://img30.360buyimg.com/jdwlcms/${orderWareList[0].itemImgPath}`;
     $.state = `🚥当前状态：${
       wuLiuStateCode === '0008'
         ? '🟢签收'
         : wuLiuStateCode === '0006'
         ? '🟡派送'
         : '🔴运输'
-    }`;
-    $.info = `📗商品数目：${
-      orderWareList.length
-    }\n📘订单编号：${orderId}\n📕包含商品：${orderWareList[0].itemName.slice(
-      0,
-      20
-    )}\n`;
-    $.imgPath = `https://img30.360buyimg.com/jdwlcms/${orderWareList[0].itemImgPath}`;
+    }\n`;
 
-    $.logText += $.subt + '\n' + $.desc + '\n' + $.state + '\n' + $.info + '\n';
-    $.logText += '------------------------------------';
-    
+    $.logText += $.subt + '\n' + $.desc + '\n' + $.info + '\n' + $.wl + '\n' + $.state;
     // 已通知过的快递，跳过通知
     if ($.carriageIdArr.includes(carriageId)) {
       return resolve();
@@ -226,7 +228,7 @@ function showMsg(userInfo, wuLiuDetail, orderId) {
       $.setData(JSON.stringify($.carriageIdArr), $.CARRIAGE_ID_ARR_KEY);
     }
 
-    $.msg($.name, $.subt, $.desc, {
+    $.msg($.name, $.subt, $.desc + '\n' + $.wl, {
       openUrl: `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%20%22des%22:%20%22m%22,%20%22url%22:%20%22https://wqs.jd.com/order/n_detail_v2.shtml?deal_id=${orderId}%22%7D`,
       mediaUrl: $.imgPath,
     });
