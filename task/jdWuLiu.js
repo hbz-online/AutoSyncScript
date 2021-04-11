@@ -195,10 +195,7 @@ function showMsg(userInfo, wuLiuDetail, orderId) {
     $.desc = `📦${carrier}：${carriageId}\n📱手机尾号：${recvMobile.slice(
       -4
     )}`;
-    $.info = `📘包含商品：${orderWareList[0].itemName.slice(
-      0,
-      20
-    )}\n📗商品数目：${
+    $.info = `📘包含商品：${orderWareList[0].itemName}\n📗商品数目：${
       orderWareList.length
     }\n📕订单编号：${orderId}`;
     $.wl = `🚚最新物流：${dealLog}`;
