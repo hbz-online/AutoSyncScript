@@ -57,6 +57,10 @@ $.api = $.getData('id77_api');
       '',
       tipPrefix + cookieName + 'Cookie成功 🎉'
     );
+
+    await updateCookie(pin, key);
+    await showMsg();
+
     return;
   } catch (error) {
     $.msg('写入京东Cookie失败', '', '请重试 ⚠️');
@@ -66,9 +70,6 @@ $.api = $.getData('id77_api');
       )}\n\n${error}\n\n${JSON.stringify($request.headers)}\n`
     );
   }
-
-  await updateCookie(pin, key);
-  await showMsg();
 })()
   .catch((e) => $.logErr(e))
   .finally(() => $.done());
