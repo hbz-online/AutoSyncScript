@@ -23,8 +23,8 @@ $.api = $.getData('id77_api');
     const userName = pin;
     const decodeName = decodeURIComponent(userName);
     const cookiesData = JSON.parse($.getData('CookiesJD') || '[]');
-    const updateIndex;
-    const cookieName = '【账号】';
+    let updateIndex;
+    let cookieName = '【账号】';
     const existCookie = cookiesData.find((item, index) => {
       const ck = item.cookie;
       const Account = ck
