@@ -60,7 +60,7 @@ const timestamp = new Date().format('yyyy-MM-dd hh:mm:ss');
 const v = '1.0';
 const skuId = $request.url.match(/skuId=(\d+)/)[1];
 
-if (siteId && app_key && appSecret) {
+if (!siteId && !app_key && !appSecret) {
   $.subt = '缺少必要参数';
   $.desc =
     '自行前往申请填写，本人不予帮助\nhttps://union.jd.com/manager/webMng';
