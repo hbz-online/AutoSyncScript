@@ -55,7 +55,7 @@
         },
         {
           "id": "id77_JDLM_log",
-          "name": "appSecret",
+          "name": "输出结果到日志",
           "val": "y",
           "type": "text",
           "placeholder": "y/n",
