@@ -62,8 +62,8 @@
           "desc": "y需要打印结果，n不需要"
         }
       ],
-      "script": "https://raw.githubusercontent.com/id77/QuantumultX/master/Script/id77_JDLM.js",
       "author": "@id77",
+      "repo": "https://raw.githubusercontent.com/id77/QuantumultX/master/Script/id77_JDLM.js",
       "icons": [
         "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/JDLM.png",
         "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/JDLM.png"
