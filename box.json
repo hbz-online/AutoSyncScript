@@ -32,6 +32,43 @@
       ]
     },
     {
+      "id": "JDLM",
+      "name": "京东联盟转链",
+      "settings": [
+        {
+          "id": "id77_JDLM_siteId",
+          "name": "siteId",
+          "val": "",
+          "type": "number"
+        },
+        {
+          "id": "id77_JDLM_app_key",
+          "name": "app_key",
+          "val": "",
+          "type": "text"
+        },
+        {
+          "id": "id77_JDLM_appSecret",
+          "name": "appSecret",
+          "val": "",
+          "type": "text"
+        },
+        {
+          "id": "id77_JDLM_log",
+          "name": "appSecret",
+          "val": "y",
+          "type": "text",
+          "placeholder": "y/n",
+          "desc": "y需要打印结果，n不需要"
+        }
+      ],
+      "author": "@id77",
+      "icons": [
+        "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/jdWuLiu.png",
+        "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/jdWuLiu.png"
+      ]
+    },
+    {
       "id": "yiLi",
       "name": "伊利乳品",
       "keys": ["id77_yiLi_cookies"],
