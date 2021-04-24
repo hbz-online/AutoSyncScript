@@ -4,7 +4,7 @@
 
 [rewrite_local]
 # 通知跳转目的地址
-^https?:\/\/jf\.com\/\?skuId=\d+ url script-echo-response id77_JDLM.js 
+^https?:\/\/jf\.com\/\?skuId=\d+ url script-echo-response https://raw.githubusercontent.com/id77/QuantumultX/master/Script/id77_JDLM.js 
 
 */
 

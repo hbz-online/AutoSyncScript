@@ -2,8 +2,8 @@
 [rewrite_local]
 # 京东、京东极速、京喜
 # 商品id获取, 查看商品详情触发通知
-https:\/\/.+\.jd\.com\/graphext\/draw\?sku=(\d+).* url script-request-header jdapp_to_union.js
-https:\/\/.+\.jd\.com\/product\/.*\/(\d+)\.html url script-request-header jdapp_to_union.js
+https:\/\/.+\.jd\.com\/graphext\/draw\?sku=(\d+).* url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/Script/jdapp_to_union.js
+https:\/\/.+\.jd\.com\/product\/.*\/(\d+)\.html url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/Script/jdapp_to_union.js
 
 [mitm]
 hostname = *.jd.com, *.*.jd.com, 
