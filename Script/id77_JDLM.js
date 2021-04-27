@@ -137,14 +137,21 @@ const link = baseurl + fields_string;
       console.log(`本次结果：${JSON.stringify(response)}`);
     }
 
+    const result = JSON.parse(
+      response.jd_union_open_promotion_common_get_responce.getResult
+    );
+
+    if (result.code !== 200) {
+      $.done({ body: result.message });
+      return;
+    }
+
     $.done({
       status: 'HTTP/1.1 307 Temporary Redirect',
       headers: {
-        Location: JSON.parse(
-          response.jd_union_open_promotion_common_get_responce.getResult
-        ).data.clickURL,
+        Location: result.data.clickURL,
       },
-      body: '京粉转链',
+      body: `京粉转链`,
     });
   } catch (error) {
     console.log(error);
