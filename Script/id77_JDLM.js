@@ -142,7 +142,13 @@ const link = baseurl + fields_string;
     );
 
     if (result.code !== 200) {
-      $.done({ body: result.message });
+      $.done({
+        status: 'HTTP/1.1 200',
+        headers: {
+          'Content-Type': 'text/html;charset=UTF-8',
+        },
+        body: result.message,
+      });
       return;
     }
 
