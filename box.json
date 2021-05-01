@@ -38,7 +38,7 @@
         {
           "id": "id77_JDLM_platform",
           "name": "指定平台",
-          "val": "小程序",
+          "val": "WeChat-MiniApp",
           "type": "radios",
           "desc": "选择使用哪个平台进行转链",
           "items": [
