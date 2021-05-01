@@ -125,6 +125,7 @@ if ($.getData('id77_JDLM_platform') === 'WeChat-MiniApp') {
 
   $.opts = options;
 } else {
+  baseurl = 'https://api.jd.com/routerjson?';
   // 以下三个参数可以去该地址申请
   // https://union.jd.com/manager/webMng
   // 提示：需要备案域名 或 上架 安卓或ios商店 的APP
