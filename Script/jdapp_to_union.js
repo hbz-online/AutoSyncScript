@@ -220,7 +220,7 @@ if ($.getData('id77_JDLM_platform') === 'WeChat-MiniApp') {
       info = result.data;
       const { wlCommissionShare, wlCommission, imgList, promotionUrl } = info;
 
-      mediaUrl = `https://img20.360buyimg.com/devfe${imgList[0]}`;
+      mediaUrl = `https://img20.360buyimg.com/devfe/${imgList[0]}`;
 
       const path = encodeURIComponent(
         `{"category":"jump","des":"m","url":"${promotionUrl}"}`
