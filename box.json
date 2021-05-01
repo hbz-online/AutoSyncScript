@@ -36,6 +36,17 @@
       "name": "京东联盟转链",
       "settings": [
         {
+          "id": "id77_JDLM_platform",
+          "name": "指定平台",
+          "val": "小程序",
+          "type": "radios",
+          "desc": "选择使用哪个平台进行转链",
+          "items": [
+            { "key": "WeChat-MiniApp", "label": "京粉小程序" },
+            { "key": "JDLM-WEB/APP", "label": "京东联盟-WEB/APP" }
+          ]
+        },
+        {
           "id": "id77_JDLM_siteId",
           "name": "siteId",
           "val": "",
