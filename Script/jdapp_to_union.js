@@ -222,7 +222,6 @@ if ($.getData('id77_JDLM_platform') === 'WeChat-MiniApp') {
 
       mediaUrl = `https://img20.360buyimg.com/devfe${imgList[0]}`;
 
-      const openUrl = $.openUrl;
       const path = encodeURIComponent(
         `{"category":"jump","des":"m","url":"${promotionUrl}"}`
       );
@@ -238,7 +237,7 @@ if ($.getData('id77_JDLM_platform') === 'WeChat-MiniApp') {
       }
 
       $.subt = `佣金比：${wlCommissionShare}% ${wlCommission.toFixed(2)}`;
-      $.desc = `点击前往：${openUrl}`;
+      $.desc = `点击前往：${promotionUrl}`;
     } else {
       result = JSON.parse(
         response.jd_union_open_goods_promotiongoodsinfo_query_responce
