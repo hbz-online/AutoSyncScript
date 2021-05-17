@@ -15,14 +15,32 @@ hostname = *.jd.com, *.*.jd.com
 
 let html = $response.body;
 
-
-if (!html.includes("</html>")) {
-
+if (!html.includes('</html>')) {
   $done({ body: html });
-  return
+  return;
 }
 
 let url = $request.url.replace(/https?:\/\/|\?.*/g, '');
+let sku;
+let arr = [];
+
+if (url.includes('graphext/draw')) {
+  arr = url.match(/sku=(\d+)/);
+}
+if (url.includes('/product/')) {
+  arr = url.match(/\/.*\/(\d+)\.html/);
+}
+
+sku = arr.length != 0 ? arr[1] : '';
+
+let tools = !sku
+  ? `<div id="alook" onclick="window.location.href='alook://${url}'">
+      <img src="https://alookbrowser.com/assets/uploads/profile/1-profileavatar.png" />
+    </div>
+    <div id="yyb" onclick="window.location.href='yybpro://url?${url}'">
+      <img src="https://tvax3.sinaimg.cn/crop.0.0.828.828.180/006nobRDly8gel4md0kfzj30n00n03z2.jpg" />
+    </div>`
+  : `<button id="smzdm"></button>`;
 
 html =
   html.replace(/(<\/html>)/g, '') +
@@ -34,7 +52,7 @@ html =
     }
     #alook, #yyb {
       position: fixed;
-      bottom: 150px;
+      bottom: 250px;
       right: 0;
       z-index: 99999;
     }
@@ -49,21 +67,40 @@ html =
     }
 
     #yyb {
-      bottom: 117px;
+      bottom: 217px;
+    }
+    #smzdm {
+      position: fixed;
+      bottom: 217px;
+      right: 0;
+      z-index: 99999;
+      box-sizing: content-box;
+      width: 30px;
+      height: 30px;
+      padding: 0 20px 0 5px;
+      border:1px solid rgba(255,255,255,0.8);
+      background: #FFF;
+      border-radius: 50px 0 0 50px;
+      background: url(http://avatarimg.smzdm.com/default/8282685611/5d146cda8a63a-small.jpg) #FFF no-repeat 5px/30px;
     }
   </style>
-  <div id="alook">
-    <a href="alook://${url}">
-      <img src="https://alookbrowser.com/assets/uploads/profile/1-profileavatar.png" />
-    </a>
-  </div>
-  <div id="yyb">
-    <a href="yybpro://url?${url}">
-      <img src="https://tvax3.sinaimg.cn/crop.0.0.828.828.180/006nobRDly8gel4md0kfzj30n00n03z2.jpg" />
-    </a>
-  </div>
+  ${tools}
   
   <script>
+    const btn = document.querySelector('#smzdm');
+    btn.addEventListener('click',() => {
+      const input = document.createElement('input');
+      input.setAttribute('readonly', 'readonly');
+      input.setAttribute('value', 'https://item.jd.com/${sku}.html');
+      document.body.appendChild(input);
+      input.setSelectionRange(0, input.value.length);
+      if (document.execCommand('copy')) {
+        document.execCommand('copy');
+        console.log('复制成功');
+      }
+      document.body.removeChild(input);
+      window.location.href='smzdm://'
+    })
 
     const script = document.createElement('script');
     script.src = "https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js";
@@ -142,6 +179,5 @@ html =
   </script>
 </html>
 `;
-
 
 $done({ body: html });
