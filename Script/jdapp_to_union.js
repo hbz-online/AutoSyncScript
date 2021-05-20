@@ -9,7 +9,7 @@ https:\/\/.+\.jd\.com\/product\/.*\/(\d+)\.html url script-request-header https:
 hostname = *.jd.com, *.*.jd.com, 
 */
 
-const $ = new Env('获取商品skuId');
+const $ = new Env('京东联盟');
 // 以下三个参数可以去该地址申请
 // https://union.jd.com/manager/webMng
 // 提示：需要备案域名 或 上架 安卓或ios商店 的APP
