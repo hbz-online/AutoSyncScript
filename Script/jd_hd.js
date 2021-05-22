@@ -88,19 +88,21 @@ html =
   
   <script>
     const btn = document.querySelector('#smzdm');
-    btn.addEventListener('click',() => {
-      const input = document.createElement('input');
-      input.setAttribute('readonly', 'readonly');
-      input.setAttribute('value', 'https://item.jd.com/${sku}.html');
-      document.body.appendChild(input);
-      input.setSelectionRange(0, input.value.length);
-      if (document.execCommand('copy')) {
-        document.execCommand('copy');
-        console.log('复制成功');
-      }
-      document.body.removeChild(input);
-      window.location.href='smzdm://'
-    })
+    if (btn) {
+      btn.addEventListener('click',() => {
+        const input = document.createElement('input');
+        input.setAttribute('readonly', 'readonly');
+        input.setAttribute('value', 'https://item.jd.com/${sku}.html');
+        document.body.appendChild(input);
+        input.setSelectionRange(0, input.value.length);
+        if (document.execCommand('copy')) {
+          document.execCommand('copy');
+          console.log('复制成功');
+        }
+        document.body.removeChild(input);
+        window.location.href='smzdm://'
+      })
+    }
 
     const script = document.createElement('script');
     script.src = "https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js";
