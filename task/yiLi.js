@@ -44,7 +44,6 @@ const body = {
     });
 
     $.done();
-    return;
   }
 
   for (let i = 0; i < $.openIds.length; i++) {

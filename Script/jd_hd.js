@@ -17,7 +17,6 @@ let html = $response.body;
 
 if (!html.includes('</html>')) {
   $done({ body: html });
-  return;
 }
 
 let url = $request.url.replace(/https?:\/\/|&un_area=[\d_]+/g, '');
@@ -118,7 +117,7 @@ html =
     
     function init () {
       
-      window.vConsole = new VConsole({ defaultPlugins: ["system", "element"] });
+      window.vConsole = new VConsole();
       /**
       const myPlugin = new VConsole.VConsolePlugin("jd_hd", "京东活动");
       vConsole.addPlugin(myPlugin);

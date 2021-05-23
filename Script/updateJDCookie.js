@@ -15,7 +15,6 @@ $.api = $.getData('id77_api');
     $.msg($.name, $.subt, $.desc);
 
     $.done();
-    return;
   }
 
   try {

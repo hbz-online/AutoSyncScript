@@ -15,7 +15,6 @@ $.SESSION_KEY = 'id77_163GameVip';
     });
 
     $.done();
-    return;
   }
 
   await sign();

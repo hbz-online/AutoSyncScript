@@ -20,7 +20,6 @@ const regGbit2 =
     });
 
     $.done();
-    return;
   }
 
   const result = await getResult();
@@ -34,7 +33,6 @@ const regGbit2 =
     $.desc = data.length > 0 ? data[0] : '';
     $.msg($.name, $.subt, $.desc);
     $.done();
-    return;
   }
 
   if (isNeedLogin) {
@@ -46,7 +44,6 @@ const regGbit2 =
     });
 
     $.done();
-    return;
   }
 
   const token = result.match(/<meta name="csrf-token" content="(.*?)"/)[1];
