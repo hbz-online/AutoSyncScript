@@ -104,7 +104,6 @@ function setReqOpts(method, _360buy_param_json) {
     });
 
     $.done();
-    return;
   }
 
   //应用参数，json格式
