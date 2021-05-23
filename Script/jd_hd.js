@@ -20,7 +20,7 @@ if (!html.includes('</html>')) {
   return;
 }
 
-let url = $request.url.replace(/https?:\/\/|\?.*/g, '');
+let url = $request.url.replace(/https?:\/\/|&un_area=[\d_]+/g, '');
 let sku;
 let arr = [];
 
