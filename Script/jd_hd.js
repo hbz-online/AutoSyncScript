@@ -36,8 +36,8 @@ let tools = !sku
   ? `<div id="alook" onclick="window.location.href='alook://${url}'">
       <img src="https://alookbrowser.com/assets/uploads/profile/1-profileavatar.png" />
     </div>
-    <div id="yyb" onclick="window.location.href='yybpro://url?${url}'">
-      <img src="https://tvax3.sinaimg.cn/crop.0.0.828.828.180/006nobRDly8gel4md0kfzj30n00n03z2.jpg" />
+    <div id="Foxok" onclick="window.location.href='Foxok://url?${url}'">
+      <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple124/v4/78/2f/51/782f518e-1db9-e819-f6fe-72d6ac851f13/source/60x60bb.jpg" />
     </div>`
   : `<button id="smzdm"></button>`;
 
@@ -55,7 +55,7 @@ html =
       right: 0;
       z-index: 99999;
     }
-    #alook img, #yyb img {
+    #alook img, #Foxok img {
       box-sizing: content-box;
       width: 30px;
       height: 30px;
@@ -65,7 +65,7 @@ html =
       border-radius: 50px 0 0 50px;
     }
 
-    #yyb {
+    #Foxok {
       bottom: 217px;
     }
     #smzdm {
