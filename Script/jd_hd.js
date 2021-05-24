@@ -49,7 +49,7 @@ html =
       -webkit-user-select: auto !important;
       user-select: auto !important;
     }
-    #alook, #yyb {
+    #alook, #Foxok {
       position: fixed;
       bottom: 250px;
       right: 0;
