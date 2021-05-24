@@ -19,7 +19,7 @@ if (!html.includes('</html>')) {
   $done({ body: html });
 }
 
-let url = $request.url.replace(/https?:\/\/|&un_area=[\d_]+/g, '');
+let url = $request.url.replace(/&un_area=[\d_]+/g, '');
 let sku;
 let arr = [];
 
@@ -33,7 +33,7 @@ if (url.includes('/product/')) {
 sku = arr.length != 0 ? arr[1] : '';
 
 let tools = !sku
-  ? `<div id="alook" onclick="window.location.href='alook://${url}'">
+  ? `<div id="alook" onclick="window.location.href='alook://${url.replace(/https?:\/\//g, '')}'">
       <img src="https://alookbrowser.com/assets/uploads/profile/1-profileavatar.png" />
     </div>
     <div id="Foxok" onclick="window.location.href='Foxok://url?${url}'">
