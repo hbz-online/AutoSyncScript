@@ -70,7 +70,7 @@ html =
     }
     #smzdm {
       position: fixed;
-      bottom: 217px;
+      bottom: 250px;
       right: 0;
       z-index: 99999;
       box-sizing: content-box;
