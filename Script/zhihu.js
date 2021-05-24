@@ -25,7 +25,7 @@ let nonce = html.match(/nonce="[\w\-]*"/g)[1];
 html = html.replace('apple-itunes-app', '');
 
 html =
-  html.replace(/(<\/html>)/g, '') +
+  html.replace(/(<\/html>)/, '') +
   `
 <style ${nonce}>
 .OpenInAppButton.is-shown {

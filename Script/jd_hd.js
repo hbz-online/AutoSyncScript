@@ -42,7 +42,7 @@ let tools = !sku
   : `<button id="smzdm"></button>`;
 
 html =
-  html.replace(/(<\/html>)/g, '') +
+  html.replace(/(<\/html>)/, '') +
   `
   <style>
     html, body {
