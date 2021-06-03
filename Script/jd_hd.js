@@ -130,7 +130,8 @@ try {
   ${tools}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
   <script>
-    const currentPin = document.cookie.match(/pt_pin=(.+?);/)[1];
+
+    const currentPin = Cookies.get('pt_pin');
 
     function clearData() {
       sessionStorage.clear();
@@ -223,10 +224,12 @@ try {
       JDCKPlugin.on('ready', function() {
       
         // vConsole.show();
-          
-	      setTimeout(() => {
-          document.querySelector("#_" + currentPin).style.background = '#e9e9e9';
-        });
+        if (currentPin) {
+          setTimeout(() => {
+            document.querySelector("#_" + currentPin).style.background = '#e9e9e9';
+          });
+        }
+	      
       });
 
      setTimeout(() => {
