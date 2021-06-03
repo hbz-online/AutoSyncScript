@@ -154,10 +154,10 @@ try {
     }
     
     function setCookie(cookie) {
-      Cookies.set('pt_key', cookie.match(/pt_key=(.+?);/)[1], { path: '/', domain: '.jd.com' });
-      Cookies.set('pt_key', cookie.match(/pt_key=(.+?);/)[1], { path: '/', domain: '.jingxi.com' });
-      Cookies.set('pt_pin', cookie.match(/pt_pin=(.+?);/)[1], { path: '/', domain: '.jd.com' });
-      Cookies.set('pt_pin', cookie.match(/pt_pin=(.+?);/)[1], { path: '/', domain: '.jingxi.com' });
+      Cookies.set('pt_key', cookie.match(/pt_key=(.+?);/)[1], { path: '/', domain: '.jd.com', secure: true });
+      Cookies.set('pt_key', cookie.match(/pt_key=(.+?);/)[1], { path: '/', domain: '.jingxi.com', secure: true });
+      Cookies.set('pt_pin', cookie.match(/pt_pin=(.+?);/)[1], { path: '/', domain: '.jd.com', secure: true });
+      Cookies.set('pt_pin', cookie.match(/pt_pin=(.+?);/)[1], { path: '/', domain: '.jingxi.com', secure: true });
     }
 
     function changeCookie(cookie){
@@ -212,17 +212,17 @@ try {
       JDCKPlugin.on("addTool", function (callback) {
        
         var toolList = [];
-        toolList.push({
-          name: "领券页面",
-          global: false,
-          onClick: function (event) {
-            vConsole.showTab("default");
+        // toolList.push({
+        //   name: "领券页面",
+        //   global: false,
+        //   onClick: function (event) {
+        //     vConsole.showTab("default");
              
-             // 脚本2
-             eval(function(){function c(){var d=document.getElementById(\"loadJs\"),e=document.createElement(\"script\");d&&document.getElementsByTagName(\"head\")[0].removeChild(d),e.id=\"loadJs\",e.type=\"text/javascript\",e.src=\"https://krapnik.cn/tools/JDCouponAssistant/bundle.js\",document.getElementsByTagName(\"head\")[0].appendChild(e)}c()}())
+        //      // 脚本2
+        //      eval(function(){function c(){var d=document.getElementById(\"loadJs\"),e=document.createElement(\"script\");d&&document.getElementsByTagName(\"head\")[0].removeChild(d),e.id=\"loadJs\",e.type=\"text/javascript\",e.src=\"https://krapnik.cn/tools/JDCouponAssistant/bundle.js\",document.getElementsByTagName(\"head\")[0].appendChild(e)}c()}())
 
-          },
-        });
+        //   },
+        // });
 
         const cksDom = document.querySelector('#cks');
         cksDom.addEventListener('click', () => {
