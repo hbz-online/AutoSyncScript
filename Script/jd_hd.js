@@ -184,7 +184,7 @@ try {
     }
 
     const script = document.createElement('script');
-    script.src = "https://cdn.bootcss.com/vConsole/3.4.1/vconsole.min.js";
+    script.src = "https://unpkg.com/vconsole/dist/vconsole.min.js";
     // script.doneState = { loaded: true, complete: true};
     script.onload = function() {
         init();
@@ -200,7 +200,6 @@ try {
       window.vConsole = new VConsole();
       vConsole.setSwitchPosition(10, 50);
       const JDCKPlugin = new VConsole.VConsolePlugin("jd_cookie", "京东CK");
-      vConsole.addPlugin(JDCKPlugin);
 
       JDCKPlugin.on("renderTab", function (callback) {
         var html = \`
@@ -239,11 +238,13 @@ try {
         // vConsole.show();
         if (currentPin) {
           setTimeout(() => {
-            document.querySelector("#_" + currentPin).style.background = '#e9e9e9';
+            document.querySelector("#_" + currentPin).style.background = '#238636';
           });
         }
 	      
       });
+      
+      vConsole.addPlugin(JDCKPlugin);
 
      setTimeout(() => {
         console.log(window.location.href);   
