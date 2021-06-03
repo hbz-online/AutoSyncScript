@@ -1,6 +1,14 @@
 /* 
 打开活动页面自动注入console，需要手动执行脚本
 
+---------
+本脚本使用到以下作者代码
+Author: 2Ya
+Github: https://github.com/domping
+ScriptName: 京东账号登陆辅助
+ScriptUrl: https://raw.githubusercontent.com/dompling/Script/master/jd/jd_login_help.js
+-------
+
 [rewrite_local]
 # 京东活动助手
 https://.*\.m\.jd\.com/babelDiy/Zeus/.*\/index\.html url script-response-body jd_hd.js
@@ -15,7 +23,7 @@ hostname = *.jd.com, *.*.jd.com
 
 let html = $response.body;
 
-if (!html.includes('</html>')) {
+if (!html.includes('<head>')) {
   $done({ body: html });
 }
 
@@ -33,7 +41,10 @@ if (url.includes('/product/')) {
 sku = arr.length != 0 ? arr[1] : '';
 
 let tools = !sku
-  ? `<div id="alook" onclick="window.location.href='alook://${url.replace(/https?:\/\//g, '')}'">
+  ? `<div id="alook" onclick="window.location.href='alook://${url.replace(
+      /https?:\/\//g,
+      ''
+    )}'">
       <img src="https://alookbrowser.com/assets/uploads/profile/1-profileavatar.png" />
     </div>
     <div id="Foxok" onclick="window.location.href='Foxok://url?${url}'">

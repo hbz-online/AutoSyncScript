@@ -1,3 +1,7 @@
+	
+## 赞赏码(开发维护不易,请赏杯茶水费)
+<div align=center><img width="150" height="150" src="./icon/wxpay.jpg"/></div>
+
 自用脚本、配置
 
 QuantumultX可以直接使用，所有配置以及脚本。
