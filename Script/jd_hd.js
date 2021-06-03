@@ -184,7 +184,7 @@ try {
     }
 
     const script = document.createElement('script');
-    script.src = "https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js";
+    script.src = "https://cdn.bootcss.com/vConsole/3.4.1/vconsole.min.js";
     // script.doneState = { loaded: true, complete: true};
     script.onload = function() {
         init();
@@ -198,7 +198,7 @@ try {
     function init () {
       
       window.vConsole = new VConsole();
-      vConsole.setSwitchPosition(10, 50)
+      vConsole.setSwitchPosition(10, 50);
       const JDCKPlugin = new VConsole.VConsolePlugin("jd_cookie", "京东CK");
       vConsole.addPlugin(JDCKPlugin);
 
