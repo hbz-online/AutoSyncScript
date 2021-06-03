@@ -132,20 +132,32 @@ try {
   <script>
 
     const currentPin = Cookies.get('pt_pin');
+    const { host } = window.location;
 
     function clearData() {
       sessionStorage.clear();
       localStorage.clear();
+      let key;
       const cookieKeys = Object.keys(Cookies.get());
       for (let n = 0; n < cookieKeys.length; n++) {
-        const key = cookieKeys[n];
-        Cookies.remove(key, { path: '', domain: '.jd.com' });
-        Cookies.remove(key, { path: '', domain: '.jingxi.com' });
+        key = cookieKeys[n];
       }
+      
+      const hostBlocks = host.split('.');
+      let block = hostBlocks[0];
+      for (let b = 1; b < hostBlocks.length; b++) {
+        block = hostBlocks[b] + "." + block;
+        Cookies.remove(key, { path: '/', domain: "." + block });
+      }
+
+      // Cookies.remove(key, { path: '/', domain: '.jd.com' });
     }
+    
     function setCookie(cookie) {
-      Cookies.set('pt_key', cookie.match(/pt_key=(.+?);/)[1]);
-      Cookies.set('pt_pin', cookie.match(/pt_pin=(.+?);/)[1]);
+      Cookies.set('pt_key', cookie.match(/pt_key=(.+?);/)[1], { path: '/', domain: '.jd.com' });
+      Cookies.set('pt_key', cookie.match(/pt_key=(.+?);/)[1], { path: '/', domain: '.jingxi.com' });
+      Cookies.set('pt_pin', cookie.match(/pt_pin=(.+?);/)[1], { path: '/', domain: '.jd.com' });
+      Cookies.set('pt_pin', cookie.match(/pt_pin=(.+?);/)[1], { path: '/', domain: '.jingxi.com' });
     }
 
     function changeCookie(cookie){
