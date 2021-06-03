@@ -198,6 +198,7 @@ try {
     function init () {
       
       window.vConsole = new VConsole();
+      vConsole.setSwitchPosition(10, 50)
       const JDCKPlugin = new VConsole.VConsolePlugin("jd_cookie", "京东CK");
       vConsole.addPlugin(JDCKPlugin);
 
