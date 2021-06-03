@@ -1,24 +1,23 @@
 /**
- * CCB-E卡
- * 注意： cookie 访问页面获取一次，点击马上抢获取一次
- *
- * hostname = *.kerlala.com
- *
- * # Surge
- * Rewrite: CCB-E卡 = type=http-request,pattern=https://jxjkhd\d?.kerlala.com/activity/freetake/(sixBuy|sixScenes)/,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb_cookie.js
- * Rewrite: CCB-E卡 = type=http-response,pattern=https://jxjkhd\d?.kerlala.com/activity/freetake/(sceneInfo|sixScenes)/,requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb-ek.js
- * Tasks: CCB-E卡 = type=cron,cronexp=1 0 * * *,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb-ek-task.js,wake-system=true
- *
- * # QuanX
- * https://jxjkhd\d?.kerlala.com/activity/freetake/(sixBuy|sixScenes)/ url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb_cookie.js
- * https://jxjkhd\d?.kerlala.com/activity/freetake/(sceneInfo|sixScenes)/ url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb-ek.js
- * 1 0 * * * https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb-ek-task.js, tag=CCB-E卡
- *
- * # Loon
- * http-request https://jxjkhd\d?.kerlala.com/activity/freetake/(sixBuy|sixScenes)/ script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb_cookie.js
- * http-response https://jxjkhd\d?.kerlala.com/activity/freetake/(sceneInfo|sixScenes)/ script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb-ek.js,requires-body=1
- * cron "1 0 * * *" script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb-ek-task.js
- *
+CCB-E卡
+注意： cookie 访问页面获取一次，点击马上抢获取一次
+
+hostname = *.kerlala.com
+
+# Surge
+Rewrite: CCB-E卡 = type=http-request,pattern=https://jxjkhd\d?.kerlala.com/activity/freetake/(sixBuy|sixScenes)/,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb_cookie.js
+Rewrite: CCB-E卡 = type=http-response,pattern=https://jxjkhd\d?.kerlala.com/activity/freetake/(sceneInfo|sixScenes)/,requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb-ek.js
+Tasks: CCB-E卡 = type=cron,cronexp=0 0 10,15,20 * * *,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb-ek-task.js,wake-system=true
+
+# QuanX
+https://jxjkhd\d?.kerlala.com/activity/freetake/(sixBuy|sixScenes)/ url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb_cookie.js
+https://jxjkhd\d?.kerlala.com/activity/freetake/(sceneInfo|sixScenes)/ url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb-ek.js
+0 0 10,15,20 * * * https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb-ek-task.js, tag=CCB-E卡
+
+# Loon
+http-request https://jxjkhd\d?.kerlala.com/activity/freetake/(sixBuy|sixScenes)/ script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb_cookie.js
+http-response https://jxjkhd\d?.kerlala.com/activity/freetake/(sceneInfo|sixScenes)/ script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb-ek.js,requires-body=1
+cron "0 0 10,15,20 * * *" script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/ccb-ek-task.js
  */
 const $ = new Env('CCB-E卡');
 
