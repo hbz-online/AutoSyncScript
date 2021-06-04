@@ -154,10 +154,27 @@ try {
     }
     
     function setCookie(cookie) {
-      Cookies.set('pt_key', cookie.match(/pt_key=(.+?);/)[1], { path: '/', domain: '.jd.com', secure: true });
-      Cookies.set('pt_key', cookie.match(/pt_key=(.+?);/)[1], { path: '/', domain: '.jingxi.com', secure: true });
-      Cookies.set('pt_pin', cookie.match(/pt_pin=(.+?);/)[1], { path: '/', domain: '.jd.com', secure: true });
-      Cookies.set('pt_pin', cookie.match(/pt_pin=(.+?);/)[1], { path: '/', domain: '.jingxi.com', secure: true });
+
+      const other = { 
+        path: '/',
+        expires: 7,
+        secure: true
+      };
+
+      const domains = [
+        ".jd.com",
+        ".jingxi.com"
+      ];
+
+      for (let l = 0; l < domains.length; l++) {
+
+        other.domain = domains[l];
+        
+        Cookies.set('pt_key', cookie.match(/pt_key=(.+?);/)[1], other);
+        Cookies.set('pt_pin', cookie.match(/pt_pin=(.+?);/)[1], other);
+
+      }
+
     }
 
     function changeCookie(cookie){

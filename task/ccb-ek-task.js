@@ -29,7 +29,7 @@ const postOpts = JSON.parse($.getData(`id77_ccb_post`));
   const sceneInfo = data.filter(
     (item) =>
       new Date(item.start_time * 1000 + 2 * 1000) > new Date() - 2 * 1000
-  );
+  )[0];
   if (sceneInfo) {
     const goodsIds = sceneInfo.goods_ids.split(',');
     postOpts.body = `{"sceneId":${sceneInfo.id},"goodsId":${
