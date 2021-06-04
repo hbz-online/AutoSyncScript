@@ -106,7 +106,7 @@ try {
     }
     #cks {
       position: fixed;
-      top: 200px;
+      top: 180px;
       right: 0;
       z-index: 99999;
       box-sizing: content-box;
