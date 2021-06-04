@@ -26,12 +26,19 @@ const postOpts = JSON.parse($.getData(`id77_ccb_post`));
 
 !(async () => {
   const data = await getData();
-  const sceneInfo = data.filter((item) => item.now_status === 1)[0];
-  const goodsIds = sceneInfo.goods_ids.split(',');
-  postOpts.body = `{"sceneId":${sceneInfo.id},"goodsId":${
-    goodsIds[goodsIds.length - 1]
-  }}`;
-  await postData();
+  const sceneInfo = data.filter(
+    (item) =>
+      new Date(item.start_time * 1000 + 2 * 1000) > new Date() - 2 * 1000
+  );
+  if (sceneInfo) {
+    const goodsIds = sceneInfo.goods_ids.split(',');
+    postOpts.body = `{"sceneId":${sceneInfo.id},"goodsId":${
+      goodsIds[goodsIds.length - 1]
+    }}`;
+    await postData();
+  } else {
+    $.data = { message: '当前时间没有场次' };
+  }
   await showMsg();
 })()
   .catch((e) => $.logErr(e))
