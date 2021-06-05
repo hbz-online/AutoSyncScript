@@ -38,8 +38,9 @@ const postOpts = JSON.parse($.getData(`id77_ccb_post`));
       const goodsIds = sceneInfo.goods_ids.split(',');
       postOpts.body = `{"sceneId":${sceneInfo.id},"goodsId":${goodsId}}`;
       await postData();
+    } else {
+      $.data = { message: '当前场次没有100E卡' };
     }
-    $.data = { message: '当前场次没有100E卡' };
   } else {
     $.data = { message: '当前时间没有场次' };
   }
