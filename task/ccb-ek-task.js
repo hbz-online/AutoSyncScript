@@ -25,17 +25,21 @@ const getOpts = JSON.parse($.getData(`id77_ccb_get`));
 const postOpts = JSON.parse($.getData(`id77_ccb_post`));
 
 !(async () => {
+  // 如果抢其他，自行抓包修改券id
+  const goodsId = 20511;
+
   const data = await getData();
   const sceneInfo = data.filter(
     (item) =>
       new Date(item.start_time * 1000 + 2 * 1000) > new Date() - 2 * 1000
   )[0];
   if (sceneInfo) {
-    const goodsIds = sceneInfo.goods_ids.split(',');
-    postOpts.body = `{"sceneId":${sceneInfo.id},"goodsId":${
-      goodsIds[goodsIds.length - 1]
-    }}`;
-    await postData();
+    if (sceneInfo.includes('20511')) {
+      const goodsIds = sceneInfo.goods_ids.split(',');
+      postOpts.body = `{"sceneId":${sceneInfo.id},"goodsId":${goodsId}}`;
+      await postData();
+    }
+    $.data = { message: '当前场次没有100E卡' };
   } else {
     $.data = { message: '当前时间没有场次' };
   }
