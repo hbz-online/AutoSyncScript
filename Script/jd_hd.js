@@ -52,16 +52,20 @@ try {
   cookieListDom += `</ul>`;
 
   let tools =
-    `<div id="cks"></div>
-  <div id="alook" onclick="window.location.href='alook://${url.replace(
-    /https?:\/\//g,
-    ''
-  )}'">
-      <img src="https://alookbrowser.com/assets/uploads/profile/1-profileavatar.png" />
-    </div>
-    <div id="Foxok" onclick="window.location.href='Foxok://url?${url}'">
-      <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple124/v4/78/2f/51/782f518e-1db9-e819-f6fe-72d6ac851f13/source/60x60bb.jpg" />
-    </div>` + (!sku ? `` : `<button id="smzdm"></button>`);
+    `
+    <div id="_btns">
+      <div id="cks" class="_btn"></div>
+      <div id="alook" class="_btn" onclick="window.location.href='alook://${url.replace(
+        /https?:\/\//g,
+        ''
+      )}'">
+        <img src="https://alookbrowser.com/assets/uploads/profile/1-profileavatar.png" />
+      </div>
+      <div id="Foxok" class="_btn" onclick="window.location.href='Foxok://url?${url}'">
+        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple124/v4/78/2f/51/782f518e-1db9-e819-f6fe-72d6ac851f13/source/60x60bb.jpg" />
+      </div>` +
+    (!sku ? `` : `<button id="smzdm" class="_btn"></button>`) +
+    `</div>`;
 
   html =
     html.replace(/(<\/html>)/, '') +
@@ -73,58 +77,64 @@ try {
     }
     #alook, #Foxok {
       position: fixed;
-      bottom: 250px;
+      bottom: 17.8571em;
       right: 0;
       z-index: 99999;
     }
     #alook img, #Foxok img {
       box-sizing: content-box;
-      width: 30px;
-      height: 30px;
-      padding: 0 20px 0 5px;
-      border:1px solid rgba(255,255,255,0.8);
+      width: 2.1429em;
+      height: 2.1429em;
+      padding: 0 1.4286em 0 0.3571em;
+      border: 1px solid rgba(255,255,255,0.8);
       background: #FFF;
       border-radius: 50px 0 0 50px;
     }
 
     #Foxok {
-      bottom: 217px;
+      bottom: 15.5em;
     }
     #smzdm {
       position: fixed;
-      bottom: 283px;
+      bottom: 20.2143em;
       right: 0;
       z-index: 99999;
       box-sizing: content-box;
-      width: 30px;
-      height: 30px;
-      padding: 0 20px 0 5px;
-      border:1px solid rgba(255,255,255,0.8);
+      width: 2.1429em;
+      height: 2.1429em;
+      padding: 0 1.4286em 0 0.3571em;
+      border: 1px solid rgba(255,255,255,0.8);
       background: #FFF;
       border-radius: 50px 0 0 50px;
-      background: url(https://avatarimg.smzdm.com/default/8282685611/5d146cda8a63a-small.jpg) #FFF no-repeat 5px/30px;
+      background: url(https://avatarimg.smzdm.com/default/8282685611/5d146cda8a63a-small.jpg) #FFF no-repeat 0.3571em/2.1429em;
     }
     #cks {
       position: fixed;
-      top: 180px;
+      top: 12.8571em;
       right: 0;
       z-index: 99999;
       box-sizing: content-box;
-      width: 30px;
-      height: 30px;
-      padding: 0 20px 0 5px;
-      border:1px solid rgba(255,255,255,0.8);
+      width: 2.1429em;
+      height: 2.1429em;
+      padding: 0 1.4286em 0 0.3571em;
+      border: 1px solid rgba(255,255,255,0.8);
       background: #FFF;
       border-radius: 50px 0 0 50px;
-      background: url(https://iconfont.alicdn.com/t/1520995303822.jpg@200h_200w.jpg) #FFF no-repeat 5px/30px;
+      background: url(https://iconfont.alicdn.com/t/1520995303822.jpg@200h_200w.jpg) #FFF no-repeat 0.3571em/2.1429em;
     }
     .cks {
-      padding: 16px;
+      padding: 1.1429em;
     }
     .cks li {
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      padding: 5px;
+      margin-bottom: 0.7143em;
+      border: 0.0714em solid #ccc;
+      padding: 0.3571em;
+    }
+    #_btns { 
+      font-size: 14px;
+    }
+    ._btn.hide {
+      display: none !important;
     }
   </style>
   ${tools}
@@ -229,17 +239,32 @@ try {
       JDCKPlugin.on("addTool", function (callback) {
        
         var toolList = [];
-        // toolList.push({
-        //   name: "领券页面",
-        //   global: false,
-        //   onClick: function (event) {
-        //     vConsole.showTab("default");
+        toolList.push({
+          name: "领券页面",
+          global: false,
+          onClick: function (event) {
+            vConsole.showTab("default");
              
-        //      // 脚本2
-        //      eval(function(){function c(){var d=document.getElementById(\"loadJs\"),e=document.createElement(\"script\");d&&document.getElementsByTagName(\"head\")[0].removeChild(d),e.id=\"loadJs\",e.type=\"text/javascript\",e.src=\"https://krapnik.cn/tools/JDCouponAssistant/bundle.js\",document.getElementsByTagName(\"head\")[0].appendChild(e)}c()}())
+             // 脚本2
+             eval(function(){function c(){var d=document.getElementById(\"loadJs\"),e=document.createElement(\"script\");d&&document.getElementsByTagName(\"head\")[0].removeChild(d),e.id=\"loadJs\",e.type=\"text/javascript\",e.src=\"https://krapnik.cn/tools/JDCouponAssistant/bundle.js\",document.getElementsByTagName(\"head\")[0].appendChild(e)}c()}())
 
-        //   },
-        // });
+          },
+        },{
+          name: "显隐图标",
+          global: false,
+          onClick: function (event) {
+            vConsole.hide();
+            const $btns = vConsole.$.all('._btn');
+
+            if (vConsole.$.hasClass($btns[0], 'hide')) {
+              // do something
+              vConsole.$.removeClass($btns, 'hide');
+            } else {
+              vConsole.$.addClass($btns, 'hide'); 
+            }
+
+          },
+        });
 
         const cksDom = document.querySelector('#cks');
         cksDom.addEventListener('click', () => {
@@ -257,8 +282,14 @@ try {
           setTimeout(() => {
             document.querySelector("#_" + currentPin).style.background = '#238636';
           });
+        }	 
+        
+        const fontSize = document.querySelector('#__vconsole').style.fontSize;
+
+        if(fontSize) {
+          document.querySelector('#_btns').style.fontSize = fontSize;
         }
-	      
+        
       });
       
       vConsole.addPlugin(JDCKPlugin);
