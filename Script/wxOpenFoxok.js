@@ -1,16 +1,13 @@
-const $ = new Env('微信打开Foxok');
+const $ = new Env('微信使用默认浏览器');
 
+const { headers } = $request;
+const res = {};
 try {
   let url = $request.url.replace(/&un_area=[\d_]+/g, '');
 
-  const ua = $request.headers['User-Agent'];
+  const ua = headers['User-Agent'];
   if (ua.includes('MicroMessenger')) {
-    $.msg(
-      '微信跳转功能',
-      '💡 微信webview不支持跳转，点击通知跳转。',
-      $.desc,
-      `Foxok://url?${url}`
-    );
+    res.status = 'HTTP/1.1 206 Partial Content';
   }
 } catch (error) {
   console.log(error);
