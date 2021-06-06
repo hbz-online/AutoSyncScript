@@ -8,6 +8,11 @@
     {
       "id": "JDTools",
       "name": "京东助手",
+      "keys": [
+        "id77_vConsole_clickClassNames",
+        "id77_vConsole_clickInterval",
+        "id77_vConsole_clickTime"
+      ],
       "settings": [
         {
           "id": "id77_vConsole_clickClassNames",
