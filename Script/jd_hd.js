@@ -13,6 +13,9 @@ https://active.jd.com/forever/btgoose url script-response-body jd_hd.js
 hostname = *.jd.com, *.*.jd.com
 */
 const $ = new Env('京东助手');
+const clickClassNames = $.getData('id77_vConsole_clickClassNames') || '';
+const clickInterval = $.getData('id77_vConsole_clickInterval') || 70; // ms
+const clickTime = $.getData('id77_vConsole_clickTime') || 30 * 1000; // ms
 
 let html = $response.body;
 
@@ -44,12 +47,24 @@ try {
   sku = arr.length != 0 ? arr[1] : '';
 
   let cookieListDom = `<ul class="cks">`;
-  for (let index = 0; index < cookies.length; index++) {
-    const cookie = cookies[index];
-    const pin = cookie.match(/pt_pin=(.+?);/)[1];
-    cookieListDom += `<li id="_${pin}" onclick="changeCookie('${cookie}')">${pin}</li>`;
+
+  const isJD = url.includes('jd.com') || url.includes('jingxi.com');
+  if (isJD) {
+    for (let index = 0; index < cookies.length; index++) {
+      const cookie = cookies[index];
+      const pin = cookie.match(/pt_pin=(.+?);/)[1];
+      cookieListDom += `<li id="_${pin}" onclick="changeCookie('${cookie}')">${pin}</li>`;
+    }
   }
   cookieListDom += `</ul>`;
+
+  let qgInfoDom = `
+  <div id="QG">
+    <div id="domList">当前选中DOM: <i>点击查询</i></div>
+    <div>点击间隔: ${clickInterval}ms</div>
+    <div>点击时长: ${clickTime / 1000}s</div>
+  </div>
+  `;
 
   let tools =
     `
@@ -110,10 +125,10 @@ try {
       background: #FFF;
       border-radius: 50px 0 0 50px;
     }
-    .cks {
+    .cks, #QG {
       padding: 1.1429em;
     }
-    .cks li {
+    .cks li, #QG > div {
       margin-bottom: 0.7143em;
       border: 0.0714em solid #ccc;
       padding: 0.3571em;
@@ -123,6 +138,9 @@ try {
     }
     ._btn.hide {
       display: none !important;
+    }
+    #domList i {
+      color: #4092BA;
     }
   </style>
   ${tools}
@@ -156,7 +174,7 @@ try {
       const other = { 
         path: '/',
         expires: 7,
-        secure: true
+        // secure: true
       };
 
       const domains = [
@@ -215,10 +233,18 @@ try {
       window.vConsole = new VConsole();
       vConsole.setSwitchPosition(10, 50);
       const JDCKPlugin = new VConsole.VConsolePlugin("jd_cookie", "京东CK");
+      const QGPlugin = new VConsole.VConsolePlugin("qg", "抢购工具");
 
       JDCKPlugin.on("renderTab", function (callback) {
-        var html = \`
+        const html = \`
                       ${cookieListDom}
+                    \`;
+                    
+        callback(html);
+      });
+      QGPlugin.on("renderTab", function (callback) {
+        const html = \`
+                      ${qgInfoDom}
                     \`;
                     
         callback(html);
@@ -226,7 +252,7 @@ try {
       
       JDCKPlugin.on("addTool", function (callback) {
        
-        var toolList = [];
+        const toolList = [];
         toolList.push({
           name: "领券页面",
           global: false,
@@ -262,6 +288,47 @@ try {
         
         callback(toolList);
       });
+
+      QGPlugin.on("addTool", function (callback) {
+       
+        const toolList = [];
+        const $dom = document.querySelector('#domList');
+        let intervalId;
+
+        $dom.addEventListener('click', () => {
+          vConsole.show();
+          vConsole.showTab("default");
+          const $clickDoms = document.querySelectorAll("${clickClassNames}");
+          console.info($clickDoms)
+        })
+
+        toolList.push({
+          name: "开始执行",
+          global: false,
+          onClick: function (event) {
+            vConsole.showTab("network");
+            const $clickDoms = document.querySelectorAll("${clickClassNames}");
+            for (let n = 0; n < $clickDoms.length; n++) {
+              const $element = $clickDoms[n];
+              
+              intervalId = setInterval(() => $element.click(),${Number(
+                clickInterval
+              )});
+
+              setTimeout(() => clearInterval(intervalId), ${Number(clickTime)});
+            }
+          },
+        },{
+          name: "结束执行",
+          global: false,
+          onClick: function (event) {
+            vConsole.showTab("network");
+            clearInterval(intervalId)
+          },
+        });
+
+        callback(toolList);
+      });
       
       JDCKPlugin.on('ready', function() {
       
@@ -280,7 +347,13 @@ try {
         
       });
       
-      vConsole.addPlugin(JDCKPlugin);
+      if (${isJD}) {
+        vConsole.addPlugin(JDCKPlugin);
+      }
+
+      if("${clickClassNames}".includes('.') || "${clickClassNames}".includes('#')) {
+        vConsole.addPlugin(QGPlugin);
+      }
 
      setTimeout(() => {
         console.log(window.location.href);
