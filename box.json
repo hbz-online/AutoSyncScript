@@ -6,6 +6,42 @@
   "repo": "https://github.com/id77/QuantumultX/tree/master",
   "apps": [
     {
+      "id": "JDTools",
+      "name": "京东助手",
+      "settings": [
+        {
+          "id": "id77_vConsole_clickClassNames",
+          "name": "DOM选择器",
+          "val": "",
+          "type": "text",
+          "placeholder": "#id或div.class",
+          "desc": "一定要包含id或class（#或.）"
+        },
+        {
+          "id": "id77_vConsole_clickInterval",
+          "name": "点击间隔",
+          "val": "",
+          "type": "number",
+          "placeholder": "77",
+          "desc": "单位毫秒"
+        },
+        {
+          "id": "id77_vConsole_clickTime",
+          "name": "点击时长",
+          "val": "",
+          "type": "number",
+          "placeholder": "3000",
+          "desc": "单位毫秒"
+        }
+      ],
+      "author": "@id77",
+      "repo": "https://raw.githubusercontent.com/id77/QuantumultX/master/Script/jd_hd.js",
+      "icons": [
+        "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/console.png",
+        "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/console.png"
+      ]
+    },
+    {
       "id": "jdWulLiu",
       "name": "京东物流",
       "keys": ["id77_jdWulLiu_pageMax"],
