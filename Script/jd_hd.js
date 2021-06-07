@@ -16,6 +16,9 @@ const $ = new Env('京东助手');
 const clickClassNames = $.getData('id77_vConsole_clickClassNames') || '';
 const clickInterval = $.getData('id77_vConsole_clickInterval') || 70; // ms
 const clickTime = $.getData('id77_vConsole_clickTime') || 30 * 1000; // ms
+const needDisabled = $.getData('id77_vConsole_disabled') === 'yes' || false; // ms
+const unClassName = $.getData('id77_vConsole_unClassName') || ''; // ms
+const isTest = $.getData('id77_vConsole_test') === 'yes' || false; // ms
 
 let html = $response.body;
 
@@ -306,17 +309,29 @@ try {
           name: "开始执行",
           global: false,
           onClick: function (event) {
-            vConsole.showTab("network");
+            vConsole.hide();
+            // vConsole.showTab("network");
             const $clickDoms = document.querySelectorAll("${clickClassNames}");
+            
             for (let n = 0; n < $clickDoms.length; n++) {
               const $element = $clickDoms[n];
-              
-              intervalId = setInterval(() => $element.click(),${Number(
-                clickInterval
-              )});
 
-              setTimeout(() => clearInterval(intervalId), ${Number(clickTime)});
+              if (${isTest}) {
+                
+                $element.click();
+
+              } else {
+              
+                intervalId = setInterval(() => $element.click(),${Number(
+                  clickInterval
+                )});
+
+                setTimeout(() => clearInterval(intervalId), ${Number(
+                  clickTime
+                )});
+              }
             }
+            
           },
         },{
           name: "结束执行",
@@ -357,6 +372,27 @@ try {
 
      setTimeout(() => {
         console.log(window.location.href);
+
+        const $btns = document.querySelectorAll("button");
+        if (${needDisabled} || "${unClassName}" !== "" ) {
+          for (let n = 0; n < $btns.length; n++) {
+            const $btn = $btns[n];
+            if (${needDisabled}) {
+              $btn.removeAttribute('disabled');
+            }
+            if ("${unClassName}" !== "") {
+              $btn.classList.remove("${unClassName}");
+            }
+          }
+        }  
+        
+        const $clickDoms = document.querySelectorAll("${clickClassNames}");
+        if ("${unClassName}" !== "") {
+          for (let n = 0; n < $clickDoms.length; n++) {
+            const $element = $clickDoms[n];
+            $element.classList.remove("${unClassName}");
+          }
+        }
      });
       
     }
