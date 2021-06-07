@@ -15,10 +15,11 @@ hostname = *.jd.com, *.*.jd.com
 const $ = new Env('京东助手');
 const clickClassNames = $.getData('id77_vConsole_clickClassNames') || '';
 const clickInterval = $.getData('id77_vConsole_clickInterval') || 70; // ms
-const clickTime = $.getData('id77_vConsole_clickTime') || 30 * 1000; // ms
-const needDisabled = $.getData('id77_vConsole_disabled') === 'yes' || false; // ms
+const clickNum = $.getData('id77_vConsole_clickNum') || 1; // 点击次数
+const cancelDisabled =
+  $.getData('id77_vConsole_cancelDisabled') === 'yes' || false; // ms
 const unClassName = $.getData('id77_vConsole_unClassName') || ''; // ms
-const isTest = $.getData('id77_vConsole_test') === 'yes' || false; // ms
+const timingRunningTime = $.getData('id77_vConsole_timingRunningTime') || ''; // ms
 
 let html = $response.body;
 
@@ -65,7 +66,8 @@ try {
   <div id="QG">
     <div id="domList">当前选中DOM: <i>点击查询</i></div>
     <div>点击间隔: ${clickInterval}ms</div>
-    <div>点击时长: ${clickTime / 1000}s</div>
+    <div>点击次数: ${clickNum}s</div>
+    <div>定时运行时间: ${timingRunningTime || '未设定'}</div>
   </div>
   `;
 
@@ -313,24 +315,7 @@ try {
             // vConsole.showTab("network");
             const $clickDoms = document.querySelectorAll("${clickClassNames}");
             
-            for (let n = 0; n < $clickDoms.length; n++) {
-              const $element = $clickDoms[n];
-
-              if (${isTest}) {
-                
-                $element.click();
-
-              } else {
-              
-                intervalId = setInterval(() => $element.click(),${Number(
-                  clickInterval
-                )});
-
-                setTimeout(() => clearInterval(intervalId), ${Number(
-                  clickTime
-                )});
-              }
-            }
+            clickTask($clickDoms);
             
           },
         },{
@@ -370,14 +355,14 @@ try {
         vConsole.addPlugin(QGPlugin);
       }
 
-     setTimeout(() => {
+      setTimeout(() => {
         console.log(window.location.href);
 
         const $btns = document.querySelectorAll("button");
-        if (${needDisabled} || "${unClassName}" !== "" ) {
+        if (${cancelDisabled} || "${unClassName}" !== "" ) {
           for (let n = 0; n < $btns.length; n++) {
             const $btn = $btns[n];
-            if (${needDisabled}) {
+            if (${cancelDisabled}) {
               $btn.removeAttribute('disabled');
             }
             if ("${unClassName}" !== "") {
@@ -387,14 +372,54 @@ try {
         }  
         
         const $clickDoms = document.querySelectorAll("${clickClassNames}");
+        
         if ("${unClassName}" !== "") {
           for (let n = 0; n < $clickDoms.length; n++) {
             const $element = $clickDoms[n];
             $element.classList.remove("${unClassName}");
           }
         }
-     });
+
+        if ("${timingRunningTime}" !== "") {
+          const date = new Date();
+          const seperator = "-";
+
+          let nowMonth = date.getMonth() + 1;
+
+          let strDate = date.getDate();
+
+          if (nowMonth >= 1 && nowMonth <= 9) {
+            nowMonth = "0" + nowMonth;
+          }
+          if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+          }
+
+          let taskDate = date.getFullYear() + seperator + nowMonth + seperator + strDate + " ${timingRunningTime}";
+          let needTask = new Date(taskDate) > new Date() ? true : false;
+
+          if (needTask) {
+            setTimeout(() => clickTask($clickDoms), new Date(taskDate).getTime() - Date.now());
+          }
+        }
+
+      });
       
+    }
+
+    function clickTask($clickDoms ) {
+      for (let n = 0; n < $clickDoms.length; n++) {
+        const $element = $clickDoms[n];
+
+        intervalId = setInterval(() => $element.click(),${Number(
+          clickInterval
+        )});
+
+        setTimeout(() => clearInterval(intervalId), ${Number(
+          clickNum * clickInterval
+        )});
+
+      }
     }
   </script>
 </html>
