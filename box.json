@@ -16,11 +16,30 @@
       "settings": [
         {
           "id": "id77_vConsole_clickClassNames",
-          "name": "DOM选择器",
+          "name": "点击DOM选择器",
           "val": "",
           "type": "text",
           "placeholder": "#id或div.class",
           "desc": "一定要包含id或class（#或.）"
+        },
+        {
+          "id": "id77_vConsole_disabled",
+          "name": "disabled",
+          "val": "no",
+          "type": "radios",
+          "desc": "移除button禁用状态",
+          "items": [
+            { "key": "yes", "label": "是" },
+            { "key": "no", "label": "否" }
+          ]
+        },
+        {
+          "id": "id77_vConsole_unClassName",
+          "name": "移除样式名字",
+          "val": "",
+          "type": "text",
+          "placeholder": "class",
+          "desc": "比如.class填class,为了移除禁用状态"
         },
         {
           "id": "id77_vConsole_clickInterval",
@@ -37,6 +56,17 @@
           "type": "number",
           "placeholder": "3000",
           "desc": "单位毫秒"
+        },
+        {
+          "id": "id77_vConsole_test",
+          "name": "开启测试",
+          "val": "no",
+          "type": "radios",
+          "desc": "测试1次",
+          "items": [
+            { "key": "yes", "label": "是" },
+            { "key": "no", "label": "否" }
+          ]
         }
       ],
       "author": "@id77",
