@@ -10,6 +10,8 @@
       "name": "京东助手",
       "keys": [
         "id77_vConsole_clickClassNames",
+        "id77_vConsole_disabled",
+        "id77_vConsole_unClassName",
         "id77_vConsole_clickInterval",
         "id77_vConsole_clickTime"
       ],
