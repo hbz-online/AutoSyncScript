@@ -17,9 +17,10 @@ const clickClassNames = $.getData('id77_vConsole_clickClassNames') || '';
 const clickInterval = $.getData('id77_vConsole_clickInterval') || 70; // ms
 const clickNum = $.getData('id77_vConsole_clickNum') || 1; // 点击次数
 const cancelDisabled =
-  $.getData('id77_vConsole_cancelDisabled') === 'yes' || false; // ms
-const unClassName = $.getData('id77_vConsole_unClassName') || ''; // ms
-const timingRunningTime = $.getData('id77_vConsole_timingRunningTime') || ''; // ms
+  $.getData('id77_vConsole_cancelDisabled') === 'yes' || false;
+const unClassName = $.getData('id77_vConsole_unClassName') || '';
+const inClassName = $.getData('id77_vConsole_inClassName') || '';
+const timingRunningTime = $.getData('id77_vConsole_timingRunningTime') || '';
 
 let html = $response.body;
 
@@ -66,7 +67,7 @@ try {
   <div id="QG">
     <div id="domList">当前选中DOM: <i>点击查询</i></div>
     <div>点击间隔: ${clickInterval}ms</div>
-    <div>点击次数: ${clickNum}s</div>
+    <div>点击次数: ${clickNum}</div>
     <div>定时运行时间: ${timingRunningTime || '未设定'}</div>
   </div>
   `;
@@ -298,7 +299,6 @@ try {
        
         const toolList = [];
         const $dom = document.querySelector('#domList');
-        let intervalId;
 
         $dom.addEventListener('click', () => {
           vConsole.show();
@@ -317,13 +317,6 @@ try {
             
             clickTask($clickDoms);
             
-          },
-        },{
-          name: "结束执行",
-          global: false,
-          onClick: function (event) {
-            vConsole.showTab("network");
-            clearInterval(intervalId)
           },
         });
 
@@ -359,30 +352,32 @@ try {
         console.log(window.location.href);
 
         const $btns = document.querySelectorAll("button");
-        if (${cancelDisabled} || "${unClassName}" !== "" ) {
+        if (${cancelDisabled}) {
           for (let n = 0; n < $btns.length; n++) {
             const $btn = $btns[n];
             if (${cancelDisabled}) {
               $btn.removeAttribute('disabled');
-            }
-            if ("${unClassName}" !== "") {
-              $btn.classList.remove("${unClassName}");
             }
           }
         }  
         
         const $clickDoms = document.querySelectorAll("${clickClassNames}");
         
-        if ("${unClassName}" !== "") {
+        if ("${unClassName}" !== "" || "${inClassName}" !== "") {
           for (let n = 0; n < $clickDoms.length; n++) {
             const $element = $clickDoms[n];
-            $element.classList.remove("${unClassName}");
+            if ("${unClassName}" !== "") {
+              $element.classList.remove("${unClassName}");
+            }
+            if ("${inClassName}" !== "") {
+              $element.classList.add("${inClassName}");
+            }
           }
         }
 
         if ("${timingRunningTime}" !== "") {
           const date = new Date();
-          const seperator = "-";
+          const separator = "/";
 
           let nowMonth = date.getMonth() + 1;
 
@@ -395,29 +390,31 @@ try {
             strDate = "0" + strDate;
           }
 
-          let taskDate = date.getFullYear() + seperator + nowMonth + seperator + strDate + " ${timingRunningTime}";
-          let needTask = new Date(taskDate) > new Date() ? true : false;
+          let taskDate = date.getFullYear() + separator + nowMonth + separator + strDate + " ${timingRunningTime}";
+          let needTask = new Date(taskDate) >= new Date() ? true : false;
 
           if (needTask) {
             setTimeout(() => clickTask($clickDoms), new Date(taskDate).getTime() - Date.now());
           }
         }
 
-      });
+      },3000);
       
     }
 
-    function clickTask($clickDoms ) {
+    function clickTask($clickDoms) {
+      console.log($clickDoms);
+
       for (let n = 0; n < $clickDoms.length; n++) {
         const $element = $clickDoms[n];
 
-        intervalId = setInterval(() => $element.click(),${Number(
+        let intervalId = setInterval(() => $element.click(),${Number(
           clickInterval
         )});
 
-        setTimeout(() => clearInterval(intervalId), ${Number(
-          clickNum * clickInterval
-        )});
+        setTimeout(() => clearInterval(intervalId), ${
+          (Number(clickNum) + 1) * clickInterval
+        });
 
       }
     }

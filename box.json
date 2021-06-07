@@ -45,6 +45,14 @@
           "desc": "比如.class填class,为了移除禁用状态"
         },
         {
+          "id": "id77_vConsole_inClassName",
+          "name": "添加样式名字",
+          "val": "",
+          "type": "text",
+          "placeholder": "class",
+          "desc": "比如.class填class,为了设置可用状态"
+        },
+        {
           "id": "id77_vConsole_clickInterval",
           "name": "点击间隔",
           "val": "",
@@ -66,7 +74,7 @@
           "val": "",
           "type": "text",
           "placeholder": "07:07:07",
-          "desc": "时分秒"
+          "desc": "时分秒;建议提前3秒钟进入页面，页面加载需要时间"
         }
       ],
       "author": "@id77",
