@@ -26,6 +26,14 @@
           "desc": "一定要包含id或class（#或.）"
         },
         {
+          "id": "id77_vConsole_clickClassNames2",
+          "name": "二次确认DOM选择器",
+          "val": "",
+          "type": "text",
+          "placeholder": "#id或div.class",
+          "desc": "一定要包含id或class（#或.）"
+        },
+        {
           "id": "id77_vConsole_cancelDisabled",
           "name": "disabled",
           "val": "no",
@@ -73,8 +81,8 @@
           "name": "定时运行时间",
           "val": "",
           "type": "text",
-          "placeholder": "07:07:07",
-          "desc": "时分秒;建议提前3秒钟进入页面，页面加载需要时间"
+          "placeholder": "07:07",
+          "desc": "分:秒;建议提前3秒钟进入页面，页面加载需要时间"
         }
       ],
       "author": "@id77",

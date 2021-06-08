@@ -14,6 +14,7 @@ hostname = *.jd.com, *.*.jd.com
 */
 const $ = new Env('京东助手');
 const clickClassNames = $.getData('id77_vConsole_clickClassNames') || '';
+const clickClassNames2 = $.getData('id77_vConsole_clickClassNames2') || '';
 const clickInterval = $.getData('id77_vConsole_clickInterval') || 70; // ms
 const clickNum = $.getData('id77_vConsole_clickNum') || 1; // 点击次数
 const cancelDisabled =
@@ -390,7 +391,7 @@ try {
             strDate = "0" + strDate;
           }
 
-          let taskDate = date.getFullYear() + separator + nowMonth + separator + strDate + " ${timingRunningTime}";
+          let taskDate = date.getFullYear() + separator + nowMonth + separator + strDate + " " + date.getHours() + "${timingRunningTime}";
           let needTask = new Date(taskDate) >= new Date() ? true : false;
 
           if (needTask) {
@@ -408,9 +409,12 @@ try {
       for (let n = 0; n < $clickDoms.length; n++) {
         const $element = $clickDoms[n];
 
-        let intervalId = setInterval(() => $element.click(),${Number(
-          clickInterval
-        )});
+        let intervalId = setInterval(() => {
+          $element.click()
+          if ("${clickClassNames2}" !== "") {
+            document.querySelector("${clickClassNames2}").click();
+          }
+        },${Number(clickInterval)});
 
         setTimeout(() => clearInterval(intervalId), ${
           (Number(clickNum) + 1) * clickInterval
