@@ -70,6 +70,7 @@ try {
     <div>点击间隔: ${clickInterval}ms</div>
     <div>点击次数: ${clickNum}</div>
     <div>定时运行时间: ${timingRunningTime || '未设定'}</div>
+    <div id="_time">倒计时: <i>N</i></div>
   </div>
   `;
 
@@ -267,7 +268,7 @@ try {
             vConsole.showTab("default");
              
              // 脚本2
-             eval(function(){function c(){var d=document.getElementById(\"loadJs\"),e=document.createElement(\"script\");d&&document.getElementsByTagName(\"head\")[0].removeChild(d),e.id=\"loadJs\",e.type=\"text/javascript\",e.src=\"https://krapnik.cn/tools/JDCouponAssistant/bundle.js\",document.getElementsByTagName(\"head\")[0].appendChild(e)}c()}())
+             eval(function(){function c(){let d=document.getElementById(\"loadJs\"),e=document.createElement(\"script\");d&&document.getElementsByTagName(\"head\")[0].removeChild(d),e.id=\"loadJs\",e.type=\"text/javascript\",e.src=\"https://krapnik.cn/tools/JDCouponAssistant/bundle.js\",document.getElementsByTagName(\"head\")[0].appendChild(e)}c()}())
 
           },
         },{
@@ -374,8 +375,17 @@ try {
             strDate = "0" + strDate;
           }
 
-          let taskDate = date.getFullYear() + separator + nowMonth + separator + strDate + " " + date.getHours() + "${timingRunningTime}";
-          let needTask = new Date(taskDate) >= new Date() ? true : false;
+          let strHour = date.getHours();
+
+          if (strHour >= 0 && strHour <= 9) {
+            strHour = "0" + strHour;
+          }
+
+          let taskDate = date.getFullYear() + separator + nowMonth + separator + strDate + " " + strHour + ":${timingRunningTime}";
+          let endTime = new Date(taskDate);
+          let needTask = endTime >= new Date() ? true : false;
+
+          initializeClock('#_time i', new Date(Date.parse(endTime) + 1 * 60 * 60 * 1000));
 
           if (needTask) {
             setTimeout(() => clickTask($clickDom), new Date(taskDate).getTime() - Date.now());
@@ -436,6 +446,41 @@ try {
         $dom.removeAttribute('disabled');
       } 
     }
+
+    function getTimeRemaining(endTime) {
+      const total = Date.parse(endTime) - Date.parse(new Date());
+      const seconds = Math.floor((total / 1000) % 60);
+      const minutes = Math.floor((total / 1000 / 60) % 60);
+      const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+      const days = Math.floor(total / (1000 * 60 * 60 * 24));
+
+      return {
+        total,
+        days,
+        hours,
+        minutes,
+        seconds,
+      };
+    }
+
+    function initializeClock(className, endTime) {
+      const $dom = document.querySelector(className);
+      let timeInterval;
+
+      function updateClock() {
+        const t = getTimeRemaining(endTime);
+
+        if (t.total <= 0) {
+          clearInterval(timeInterval);
+        } else {
+          $dom.textContent = ('0' + t.minutes).slice(-2) + ':' + ('0' + t.seconds).slice(-2);
+        }
+      }
+
+      updateClock();
+      timeInterval = setInterval(updateClock, 1000);
+    }
+    
   </script>
 </html>
 `;
