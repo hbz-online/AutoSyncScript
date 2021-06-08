@@ -39,7 +39,7 @@
           "val": "",
           "type": "text",
           "placeholder": "#id或div.class",
-          "desc": "一定要包含id或class（#或.）"
+          "desc": "规则同上；但设置后只能模拟点击一次"
         },
         {
           "id": "id77_vConsole_cancelDisabled",

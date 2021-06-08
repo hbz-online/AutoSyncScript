@@ -13,8 +13,8 @@ https://active.jd.com/forever/btgoose url script-response-body jd_hd.js
 hostname = *.jd.com, *.*.jd.com
 */
 const $ = new Env('京东助手');
-const clickClassNames = $.getData('id77_vConsole_clickClassNames') || '';
-const clickClassNames2 = $.getData('id77_vConsole_clickClassNames2') || '';
+const clickClassName = $.getData('id77_vConsole_clickClassName') || '';
+const clickClassName2 = $.getData('id77_vConsole_clickClassName2') || '';
 const clickInterval = $.getData('id77_vConsole_clickInterval') || 70; // ms
 const clickNum = $.getData('id77_vConsole_clickNum') || 1; // 点击次数
 const cancelDisabled =
@@ -304,8 +304,8 @@ try {
         $dom.addEventListener('click', () => {
           vConsole.show();
           vConsole.showTab("default");
-          const $clickDoms = document.querySelectorAll("${clickClassNames}");
-          console.info($clickDoms)
+          const $clickDom = document.querySelector("${clickClassName}");
+          console.info($clickDom);
         })
 
         toolList.push({
@@ -314,9 +314,9 @@ try {
           onClick: function (event) {
             vConsole.hide();
             // vConsole.showTab("network");
-            const $clickDoms = document.querySelectorAll("${clickClassNames}");
+            const $clickDom = document.querySelector("${clickClassName}");
             
-            clickTask($clickDoms);
+            clickTask($clickDom);
             
           },
         });
@@ -345,7 +345,7 @@ try {
         vConsole.addPlugin(JDCKPlugin);
       }
 
-      if("${clickClassNames}".includes('.') || "${clickClassNames}".includes('#')) {
+      if("${clickClassName}".includes('.') || "${clickClassName}".includes('#')) {
         vConsole.addPlugin(QGPlugin);
       }
 
@@ -353,28 +353,11 @@ try {
         console.log(window.location.href);
 
         const $btns = document.querySelectorAll("button");
-        if (${cancelDisabled}) {
-          for (let n = 0; n < $btns.length; n++) {
-            const $btn = $btns[n];
-            if (${cancelDisabled}) {
-              $btn.removeAttribute('disabled');
-            }
-          }
-        }  
+        btnTask($btns);
         
-        const $clickDoms = document.querySelectorAll("${clickClassNames}");
+        const $clickDom = document.querySelector("${clickClassName}");
+        classNameTask($clickDom);
         
-        if ("${unClassName}" !== "" || "${inClassName}" !== "") {
-          for (let n = 0; n < $clickDoms.length; n++) {
-            const $element = $clickDoms[n];
-            if ("${unClassName}" !== "") {
-              $element.classList.remove("${unClassName}");
-            }
-            if ("${inClassName}" !== "") {
-              $element.classList.add("${inClassName}");
-            }
-          }
-        }
 
         if ("${timingRunningTime}" !== "") {
           const date = new Date();
@@ -395,7 +378,7 @@ try {
           let needTask = new Date(taskDate) >= new Date() ? true : false;
 
           if (needTask) {
-            setTimeout(() => clickTask($clickDoms), new Date(taskDate).getTime() - Date.now());
+            setTimeout(() => clickTask($clickDom), new Date(taskDate).getTime() - Date.now());
           }
         }
 
@@ -403,24 +386,54 @@ try {
       
     }
 
-    function clickTask($clickDoms) {
-      console.log($clickDoms);
-
-      for (let n = 0; n < $clickDoms.length; n++) {
-        const $element = $clickDoms[n];
-
-        let intervalId = setInterval(() => {
-          $element.click()
-          if ("${clickClassNames2}" !== "") {
-            setTimeout(() => document.querySelector("${clickClassNames2}").click(), 77)
-          }
-        },${Number(clickInterval)});
-
-        setTimeout(() => clearInterval(intervalId), ${
-          (Number(clickNum) + 1) * clickInterval
-        });
-
+    function clickTask($clickDom) {
+      let $dom = $clickDom;
+      async function* asyncGenerator() {
+        let i = 0;
+        while (i < Number(${clickNum}) && "${clickClassName2}" === "") {
+          yield i++;
+        }
       }
+
+      (async function() {
+        for await (let num of asyncGenerator()) {
+          let time = Number(${clickInterval}) * num;
+          console.info("========" + num + "========");
+          console.log($dom);
+
+          setTimeout(() =>  {
+            btnTask($dom);
+            classNameTask($dom);
+            $dom.click();
+
+            if ("${clickClassName2}" !== "") {
+              setTimeout(() => {
+                const $dom2 = document.querySelector("${clickClassName2}");
+                console.log($dom2);
+                $dom2.click();
+              });
+            }
+          }, time);
+        }
+      })();
+
+    }
+
+    function classNameTask ($dom) {
+      if(!$dom) return;
+
+      if ("${unClassName}" !== "") {
+        $dom.classList.remove("${unClassName}");
+      }
+      if ("${inClassName}" !== "") {
+        $dom.classList.add("${inClassName}");
+      }
+    }
+
+    function btnTask ($dom) {
+      if (${cancelDisabled}) {
+        $dom.removeAttribute('disabled');
+      } 
     }
   </script>
 </html>
