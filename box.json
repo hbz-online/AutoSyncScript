@@ -9,6 +9,7 @@
       "id": "JDTools",
       "name": "京东助手",
       "keys": [
+        "id77_vConsole_name",
         "id77_vConsole_clickClassName",
         "id77_vConsole_cancelDisabled",
         "id77_vConsole_unClassName",
@@ -17,6 +18,12 @@
         "id77_vConsole_timingRunningTime"
       ],
       "settings": [
+        {
+          "id": "id77_vConsole_name",
+          "name": "备注名字",
+          "val": "",
+          "type": "text"
+        },
         {
           "id": "id77_vConsole_clickClassName",
           "name": "点击DOM选择器",
