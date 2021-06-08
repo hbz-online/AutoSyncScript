@@ -11,6 +11,7 @@
       "keys": [
         "id77_vConsole_name",
         "id77_vConsole_clickClassName",
+        "id77_vConsole_clickClassName2",
         "id77_vConsole_cancelDisabled",
         "id77_vConsole_unClassName",
         "id77_vConsole_clickInterval",
