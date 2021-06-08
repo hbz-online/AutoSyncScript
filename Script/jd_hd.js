@@ -412,7 +412,7 @@ try {
         let intervalId = setInterval(() => {
           $element.click()
           if ("${clickClassNames2}" !== "") {
-            document.querySelector("${clickClassNames2}").click();
+            setTimeout(() => document.querySelector("${clickClassNames2}").click(), 77)
           }
         },${Number(clickInterval)});
 
