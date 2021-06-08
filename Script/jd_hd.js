@@ -390,7 +390,8 @@ try {
       let $dom = $clickDom;
       async function* asyncGenerator() {
         let i = 0;
-        while (i < Number(${clickNum}) && "${clickClassName2}" === "") {
+        const num = "${clickClassName2}" === "" ? 0 : Number(${clickNum});
+        while (i < num) {
           yield i++;
         }
       }
