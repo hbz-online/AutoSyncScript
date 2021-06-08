@@ -9,7 +9,7 @@
       "id": "JDTools",
       "name": "京东助手",
       "keys": [
-        "id77_vConsole_clickClassNames",
+        "id77_vConsole_clickClassName",
         "id77_vConsole_cancelDisabled",
         "id77_vConsole_unClassName",
         "id77_vConsole_clickInterval",
@@ -18,7 +18,7 @@
       ],
       "settings": [
         {
-          "id": "id77_vConsole_clickClassNames",
+          "id": "id77_vConsole_clickClassName",
           "name": "点击DOM选择器",
           "val": "",
           "type": "text",
@@ -26,7 +26,7 @@
           "desc": "一定要包含id或class（#或.）"
         },
         {
-          "id": "id77_vConsole_clickClassNames2",
+          "id": "id77_vConsole_clickClassName2",
           "name": "二次确认DOM选择器",
           "val": "",
           "type": "text",
