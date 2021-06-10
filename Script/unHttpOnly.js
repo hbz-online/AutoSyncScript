@@ -12,8 +12,6 @@ cookies.forEach((ck, i) => {
   modifiedHeaders[key] = ck.replace(/@/g, ',');
 });
 
-console.log(JSON.stringify(modifiedHeaders));
-
 $.done({ headers: modifiedHeaders });
 
 // https://github.com/chavyleung/scripts/blob/master/Env.js
