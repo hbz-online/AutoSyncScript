@@ -2,8 +2,8 @@ const $ = new Env('移除HttpOnly');
 
 const modifiedHeaders = $response.headers;
 const cookies = $response.headers['Set-Cookie']
-  .replace(/HTTPONLY|httponly|HttpOnly/g, '')
-  .replace(/((Expires|EXPIRES)=.+?),/g, '$1@')
+  .replace(/HttpOnly/gi, '')
+  .replace(/(Expires=.+?),/gi, '$1@')
   .split(', ');
 
 let key = 'Set-Cookie';
