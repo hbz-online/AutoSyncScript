@@ -21,7 +21,7 @@ const UA = $request.headers['User-Agent'];
 const appType = UA.match(/(.+?);/)[1];
 let sku;
 let arr = [];
-const isWeChatMiniApp = $.getData('id77_JDLM_platform') === 'WeChat-MiniApp';
+const isWeChatMiniApp = $.getData('id77_JDLM_platform') !== 'JDLM-WEB/APP';
 
 if (url.includes('graphext/draw')) {
   arr = url.match(/sku=(\d+)/);
