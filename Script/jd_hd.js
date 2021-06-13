@@ -2,15 +2,21 @@
 打开活动页面自动注入console，需要手动执行脚本
 
 [rewrite_local]
-# 京东活动助手
-https://.*\.m\.jd\.com/babelDiy/Zeus/.*\/index\.html url script-response-body jd_hd.js
-https://.*\.m\.jd\.com/.*\.html url script-response-body jd_hd.js
-https://jingfen\.jd\.com/.*\.html url script-response-body jd_hd.js
-https://coupon\.m\.jd\.com/center/getCouponCenter\.action url script-response-body jd_hd.js
-https://active.jd.com/forever/btgoose url script-response-body jd_hd.js
+
+https://plogin.m.jd.com/cgi-bin/mm/domlogin url script-response-header https://raw.githubusercontent.com/id77/QuantumultX/master/Script/unHttpOnly.js
+https://jdqd.jd.com/poststring url reject
+
+# web切换jd cookie
+
+^https:\/\/.{0,27}\.?jd\.com\/?((?!\.(js|json|jpg|gif|png|webp|dpg|flv|mp3|mp4)).)*$ url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/Script/jd_hd.js
+^https:\/\/.*\.jingxi\.com\/?((?!\.(js|json|jpg|gif|png|flv|mp3|mp4)).)*$ url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/Script/jd_hd.js
+
+# 京东活动
+https?://.*\.isvjcloud\.com url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/Script/jd_hd.js
+https?://.*\.moxigame\.cn url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/Script/jd_hd.js
 
 [mitm]
-hostname = *.jd.com, *.*.jd.com
+hostname = *.jd.com, *.*.jd.com, *.moxigame.cn
 */
 const $ = new Env('京东助手');
 const clickClassName = $.getData('id77_vConsole_clickClassName') || '';
