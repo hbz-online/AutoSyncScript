@@ -43,7 +43,7 @@ try {
   let sku;
   let arr = [];
 
-  if (url.includes('graphext/draw')) {
+  if (url.includes('sku=')) {
     arr = url.match(/sku=(\d+)/);
   }
   if (url.includes('/product/')) {
@@ -106,29 +106,30 @@ try {
     }
     #smzdm {
       bottom: 20.2143em;
-      background: url(https://avatarimg.smzdm.com/default/8282685611/5d146cda8a63a-small.jpg) #FFF no-repeat 0.3571em/2.1429em;
+      font-size: inherit;
+      background: url(https://avatarimg.smzdm.com/default/8282685611/5d146cda8a63a-small.jpg) #FFF no-repeat 0.3571em/1.64em;
     }
     #cks {
       top: 12.8571em;
-      background: url(https://iconfont.alicdn.com/t/1520995303822.jpg@200h_200w.jpg) #FFF no-repeat 0.3571em/2.1429em;
+      background: url(https://iconfont.alicdn.com/t/1520995303822.jpg@200h_200w.jpg) #FFF no-repeat 0.3571em/1.64em;
     }
     ._btn {
       position: fixed;
       right: 0;
       z-index: 99999;
       box-sizing: content-box;
-      width: 2.1429em;
+      width: 1.14em;
       height: 2.1429em;
-      padding: 0 1.4286em 0 0.3571em;
+      padding: 0 1.4286em 0 0;
       border: 1px solid rgba(255,255,255,0.8);
       background: #FFF;
       border-radius: 50px 0 0 50px;
+      background-size: 80%;
     }
     ._btn img {
       box-sizing: content-box;
       width: 2.1429em;
       height: 2.1429em;
-      padding: 0 1.4286em 0 0.3571em;
       border: 1px solid rgba(255,255,255,0.8);
       background: #FFF;
       border-radius: 50px 0 0 50px;
