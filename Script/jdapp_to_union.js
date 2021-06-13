@@ -343,18 +343,18 @@ function setReqOpts(method, _360buy_param_json) {
   .finally(() => $.done());
 
 function setScheme(url) {
-  const path = encodeURIComponent(
+  const params = encodeURIComponent(
     `{"category":"jump","des":"m","keplerID":"jd20170713smzdm","url":"${url}"}`
   );
 
   if (appType === 'jdapp') {
-    $.openUrl = `openjd://virtual?params=${path}`;
+    $.openUrl = `openjd://virtual?params=${params}`;
   }
   if (appType === 'jdltapp') {
-    $.openUrl = `openjdlite://virtual?params=${path}`;
+    $.openUrl = `openjdlite://virtual?params=${params}`;
   }
   if (appType === 'jdpingou') {
-    $.openUrl = `openapp.jdpingou://virtual?params=${path}`;
+    $.openUrl = `openapp.jdpingou://virtual?params=${params}`;
   }
 }
 
