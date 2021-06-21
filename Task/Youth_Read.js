@@ -190,6 +190,9 @@ function AutoRead() {
 }
 
 function removebody() {
+  if($.isNode()) {
+    return;
+  }
   if (articlebody !== ReadArr[0]) {
       smallbody = $.getdata('youth_autoread').replace("&" + articlebody, "");
   } else {
