@@ -27,11 +27,6 @@ $.carriageIdArr = JSON.parse($.getData($.CARRIAGE_ID_ARR_KEY) || '[]');
 $.isMuteLog = true;
 $.page = 1;
 
-// 清除错误数据
-$.carriageIdArr[0] &&
-  Array.isArray($.carriageIdArr[0]) &&
-  $.carriageIdArr.splice(0, 1);
-
 let cookies = [];
 $.getData('CookieJD') && cookies.push($.getData('CookieJD'));
 $.getData('CookieJD2') && cookies.push($.getData('CookieJD2'));
@@ -40,6 +35,18 @@ const extraCookies = JSON.parse($.getData('CookiesJD') || '[]').map(
   (item) => item.cookie
 );
 cookies = Array.from(new Set([...cookies, ...extraCookies]));
+
+// 清除过期缓存
+const length = $.carriageIdArr.length;
+$.log(`💡缓存数据：${length}条`);
+
+const total = $.pageMax * cookies.length;
+if ( length >  total ) {
+  $.setData(
+    JSON.stringify($.carriageIdArr.slice(length - total,length)),
+    $.CARRIAGE_ID_ARR_KEY
+  );
+}
 
 const opts = {
   headers: {
