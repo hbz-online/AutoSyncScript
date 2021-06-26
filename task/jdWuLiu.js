@@ -71,6 +71,7 @@ const opts = {
     for (let k = 0; k < orderList.length; k++) {
       const {
         orderId,
+        orderType,
         stateInfo: { stateName },
       } = orderList[k];
 
@@ -83,7 +84,9 @@ const opts = {
       if (
         stateName !== '已取消' &&
         stateName !== '退款成功' &&
-        stateName !== '处理成功'
+        stateName !== '处理成功' &&
+        orderType !== '75' &&
+        stateName !== '已消费'
       ) {
         if (k > 0) {
           $.logText += `------------------------------------\n`;
