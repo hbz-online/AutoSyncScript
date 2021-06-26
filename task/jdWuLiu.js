@@ -93,7 +93,9 @@ const opts = {
         stateName !== '退款成功' &&
         stateName !== '处理成功' &&
         orderType !== '75' &&
-        stateName !== '已消费'
+        stateName !== '已消费' &&
+        orderType !== '37' &&
+        stateName !== '充值成功'
       ) {
         wuLiuDetail = await getWuLiu(orderId);
         await showMsg(userInfo, wuLiuDetail, orderId, k);
