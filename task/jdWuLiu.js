@@ -88,11 +88,8 @@ const opts = {
         orderType !== '75' &&
         stateName !== '已消费'
       ) {
-        if (k > 0) {
-          $.logText += `------------------------------------\n`;
-        }
         wuLiuDetail = await getWuLiu(orderId);
-        await showMsg(userInfo, wuLiuDetail, orderId);
+        await showMsg(userInfo, wuLiuDetail, orderId, k);
         console.log($.logText);
       }
     }
@@ -159,7 +156,7 @@ function getWuLiu(orderId) {
   });
 }
 
-function showMsg(userInfo, wuLiuDetail, orderId) {
+function showMsg(userInfo, wuLiuDetail, orderId, k) {
   return new Promise((resolve) => {
     const { carrier, carriageId, recvMobile, orderWareList, dealLogList } =
       wuLiuDetail;
@@ -186,6 +183,10 @@ function showMsg(userInfo, wuLiuDetail, orderId) {
       );
 
       return resolve();
+    }
+    
+    if (k > 0) {
+      $.logText += `------------------------------------\n`;
     }
 
     $.name = `京东物流 账号：${userInfo.baseInfo.nickname}`;
