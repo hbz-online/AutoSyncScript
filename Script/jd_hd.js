@@ -235,7 +235,7 @@ try {
     script.src = "https://unpkg.com/vconsole/dist/vconsole.min.js";
     // script.doneState = { loaded: true, complete: true};
     script.onload = function() {
-        init();
+        __init();
         console.log("初始化成功");
     };
     
@@ -243,7 +243,7 @@ try {
     document.getElementsByTagName('head')[0].appendChild(script);
     
     
-    function init () {
+    function __init () {
       
       window.vConsole = new VConsole();
       vConsole.setSwitchPosition(10, 50);
@@ -363,11 +363,12 @@ try {
         const $btns = document.querySelectorAll("button");
         btnTask($btns);
         
-        const $clickDom = document.querySelector("${clickClassName}");
-        classNameTask($clickDom);
-        
+        if ("${clickClassName}") {
+          const $clickDom = document.querySelector("${clickClassName}");
+          classNameTask($clickDom);
+        }
 
-        if ("${timingRunningTime}" !== "") {
+        if ("${timingRunningTime}" && "${timingRunningTime}" !== "") {
           const date = new Date();
           const separator = "/";
 
@@ -392,7 +393,7 @@ try {
           let endTime = new Date(taskDate);
           let needTask = endTime >= new Date() ? true : false;
 
-          initializeClock('#_time i', new Date(Date.parse(endTime) + 1 * 60 * 60 * 1000));
+          if (document.querySelector("#_time")) initializeClock('#_time i', new Date(Date.parse(endTime) + 1 * 60 * 60 * 1000));
 
           if (needTask) {
             setTimeout(() => clickTask($clickDom), new Date(taskDate).getTime() - Date.now());
