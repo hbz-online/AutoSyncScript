@@ -190,6 +190,14 @@
         
 		
 		
+		{
+            "config": "6 6 * * * * https:\/\/cdn.jsdelivr.net\/gh\/ziye888\/JavaScript@main\/Task\/rl.js, img-url=https:\/\/cdn.jsdelivr.net\/gh\/ziye888\/JavaScript@master\/Task\/rl.png, tag=燃旅视频, enabled=false",
+        }, {
+            "config": "0 0 0 1 1 * https:\/\/cdn.jsdelivr.net\/gh\/ziye888\/JavaScript@main\/Task\/ziye-rl-url.txt, img-url=https:\/\/cdn.jsdelivr.net\/gh\/ziye888\/JavaScript@master\/Task\/rl.png, tag=燃旅视频获取url, enabled=false",
+            "addons": "https:\/\/cdn.jsdelivr.net\/gh\/ziye888\/JavaScript@main\/Task\/ziye-rl-url.txt, tag=燃旅视频获取url, update-interval=86400, opt-parser=false, enabled=false",
+        },
+		
+		
 		
     ],
 }
