@@ -19,15 +19,6 @@ https?://.*\.moxigame\.cn url script-response-body https://raw.githubusercontent
 hostname = *.jd.com, *.*.jd.com, *.moxigame.cn
 */
 const $ = new Env('京东助手');
-const clickClassName = $.getData('id77_vConsole_clickClassName') || '';
-const clickClassName2 = $.getData('id77_vConsole_clickClassName2') || '';
-const clickInterval = $.getData('id77_vConsole_clickInterval') || 70; // ms
-const clickNum = $.getData('id77_vConsole_clickNum') || 1; // 点击次数
-const cancelDisabled =
-  $.getData('id77_vConsole_cancelDisabled') === 'yes' || false;
-const unClassName = $.getData('id77_vConsole_unClassName') || '';
-const inClassName = $.getData('id77_vConsole_inClassName') || '';
-const timingRunningTime = $.getData('id77_vConsole_timingRunningTime') || '';
 
 let html = $response.body;
 
@@ -69,16 +60,6 @@ try {
     }
   }
   cookieListDom += `</ul>`;
-
-  let qgInfoDom = `
-  <div id="QG">
-    <div id="domList">当前选中DOM: <i>点击查询</i></div>
-    <div>点击间隔: ${clickInterval}ms</div>
-    <div>点击次数: ${clickNum}</div>
-    <div>定时运行时间: ${timingRunningTime || '未设定'}</div>
-    <div id="_time">倒计时: <i>N</i></div>
-  </div>
-  `;
 
   let tools =
     `
@@ -140,10 +121,10 @@ try {
       background: #FFF;
       border-radius: 50px 0 0 50px;
     }
-    .cks, #QG {
+    .cks {
       padding: 1.1429em;
     }
-    .cks li, #QG > div {
+    .cks li {
       margin-bottom: 0.7143em;
       border: 0.0714em solid #ccc;
       padding: 0.3571em;
@@ -153,9 +134,6 @@ try {
     }
     ._btn.hide {
       display: none !important;
-    }
-    #domList i {
-      color: #4092BA;
     }
   </style>
   ${tools}
@@ -248,18 +226,10 @@ try {
       window.vConsole = new VConsole();
       vConsole.setSwitchPosition(10, 50);
       const JDCKPlugin = new VConsole.VConsolePlugin("jd_cookie", "京东CK");
-      const QGPlugin = new VConsole.VConsolePlugin("qg", "抢购工具");
 
       JDCKPlugin.on("renderTab", function (callback) {
         const html = \`
                       ${cookieListDom}
-                    \`;
-                    
-        callback(html);
-      });
-      QGPlugin.on("renderTab", function (callback) {
-        const html = \`
-                      ${qgInfoDom}
                     \`;
                     
         callback(html);
@@ -303,34 +273,6 @@ try {
         
         callback(toolList);
       });
-
-      QGPlugin.on("addTool", function (callback) {
-       
-        const toolList = [];
-        const $dom = document.querySelector('#domList');
-
-        $dom.addEventListener('click', () => {
-          vConsole.show();
-          vConsole.showTab("default");
-          const $clickDom = document.querySelector("${clickClassName}");
-          console.info($clickDom);
-        })
-
-        toolList.push({
-          name: "开始执行",
-          global: false,
-          onClick: function (event) {
-            vConsole.hide();
-            // vConsole.showTab("network");
-            const $clickDom = document.querySelector("${clickClassName}");
-            
-            clickTask($clickDom);
-            
-          },
-        });
-
-        callback(toolList);
-      });
       
       JDCKPlugin.on('ready', function() {
       
@@ -353,142 +295,12 @@ try {
         vConsole.addPlugin(JDCKPlugin);
       }
 
-      if("${clickClassName}".includes('.') || "${clickClassName}".includes('#')) {
-        vConsole.addPlugin(QGPlugin);
-      }
-
       setTimeout(() => {
         console.log(window.location.href);
-
-        const $btns = document.querySelectorAll("button");
-        btnTask($btns);
-        
-        if ("${clickClassName}") {
-          const $clickDom = document.querySelector("${clickClassName}");
-          classNameTask($clickDom);
-        }
-
-        if ("${timingRunningTime}" && "${timingRunningTime}" !== "") {
-          const date = new Date();
-          const separator = "/";
-
-          let nowMonth = date.getMonth() + 1;
-
-          let strDate = date.getDate();
-
-          if (nowMonth >= 1 && nowMonth <= 9) {
-            nowMonth = "0" + nowMonth;
-          }
-          if (strDate >= 0 && strDate <= 9) {
-            strDate = "0" + strDate;
-          }
-
-          let strHour = date.getHours();
-
-          if (strHour >= 0 && strHour <= 9) {
-            strHour = "0" + strHour;
-          }
-
-          let taskDate = date.getFullYear() + separator + nowMonth + separator + strDate + " " + strHour + ":${timingRunningTime}";
-          let endTime = new Date(taskDate);
-          let needTask = endTime >= new Date() ? true : false;
-
-          if (document.querySelector("#_time")) initializeClock('#_time i', new Date(Date.parse(endTime) + 1 * 60 * 60 * 1000));
-
-          if (needTask) {
-            setTimeout(() => clickTask($clickDom), new Date(taskDate).getTime() - Date.now());
-          }
-        }
 
       },3000);
       
     }
-
-    function clickTask($clickDom) {
-      let $dom = $clickDom;
-      async function* asyncGenerator() {
-        let i = 0;
-        const num = "${clickClassName2}" !== "" ? 1 : Number(${clickNum});
-        while (i < num) {
-          yield i++;
-        }
-      }
-
-      (async function() {
-        for await (let num of asyncGenerator()) {
-          let time = Number(${clickInterval}) * num;
-          console.info("========" + num + "========");
-          console.log($dom);
-
-          setTimeout(() =>  {
-            btnTask($dom);
-            classNameTask($dom);
-            $dom.click();
-
-            if ("${clickClassName2}" !== "") {
-              setTimeout(() => {
-                const $dom2 = document.querySelector("${clickClassName2}");
-                console.log($dom2);
-                $dom2.click();
-              });
-            }
-          }, time);
-        }
-      })();
-
-    }
-
-    function classNameTask ($dom) {
-      if(!$dom) return;
-
-      if ("${unClassName}" !== "") {
-        $dom.classList.remove("${unClassName}");
-      }
-      if ("${inClassName}" !== "") {
-        $dom.classList.add("${inClassName}");
-      }
-    }
-
-    function btnTask ($dom) {
-      if (${cancelDisabled}) {
-        $dom.removeAttribute('disabled');
-      } 
-    }
-
-    function getTimeRemaining(endTime) {
-      const total = Date.parse(endTime) - Date.parse(new Date());
-      const seconds = Math.floor((total / 1000) % 60);
-      const minutes = Math.floor((total / 1000 / 60) % 60);
-      const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
-      const days = Math.floor(total / (1000 * 60 * 60 * 24));
-
-      return {
-        total,
-        days,
-        hours,
-        minutes,
-        seconds,
-      };
-    }
-
-    function initializeClock(className, endTime) {
-      const $dom = document.querySelector(className);
-      let timeInterval;
-
-      function updateClock() {
-        const t = getTimeRemaining(endTime);
-
-        if (t.total <= 0) {
-          clearInterval(timeInterval);
-        } else {
-          $dom.textContent = ('0' + t.minutes).slice(-2) + ':' + ('0' + t.seconds).slice(-2);
-        }
-      }
-
-      updateClock();
-      timeInterval = setInterval(updateClock, 1000);
-    }
-    
   </script>
 </html>
 `;
