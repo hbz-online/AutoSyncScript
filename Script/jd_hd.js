@@ -167,6 +167,7 @@ try {
       const other = { 
         path: '/',
         expires: 7,
+        SameSite: 'Strict',
         // secure: true
       };
 
@@ -210,7 +211,7 @@ try {
     }
 
     const script = document.createElement('script');
-    script.src = "https://unpkg.com/vconsole/dist/vconsole.min.js";
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/vConsole/3.8.1/vconsole.min.js";
     // script.doneState = { loaded: true, complete: true};
     script.onload = function() {
         __init();
