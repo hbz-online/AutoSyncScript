@@ -1,0 +1,4 @@
+hostname =znapi.yili.com,
+//////////////////////////// 圈x
+//臻浓星球获取ck
+https://znapi.yili.com/api/user/getUser url script-request-header https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/znxq.js
