@@ -1358,7 +1358,7 @@
         },{
             "id": "znxq",
             "name": "臻浓星球",
-            "keys": ["znxqheader", "znxqheader2", "znxquznxq3", "znxquznxq4", "znxquznxq5", "znxquznxq6", "znxquznxq7", "znxquznxq8", "znxquznxq9", "znxquznxq10", "znxquznxq11", "znxquznxq12", "znxquznxq13", "znxquznxq14", "znxquznxq15", "znxquznxq16", "znxquznxq17", "znxquznxq18", "znxquznxq19", "znxquznxq20"],
+            "keys": ["znxqheader", "znxqheader2", "znxqheader3", "znxqheader4", "znxqheader5", "znxqheader6", "znxqheader7", "znxqheader8", "znxqheader9", "znxqheader10", "znxqheader11", "znxqheader12", "znxqheader13", "znxqheader14", "znxqheader15", "znxqheader16", "znxqheader17", "znxqheader18", "znxqheader19", "znxqheader20"],
             "author": "@ziye",
             "settings": [{
                     "id": "znxqSuffix",
