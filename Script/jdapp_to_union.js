@@ -25,7 +25,7 @@ const isWeChatMiniApp = $.getData('id77_JDLM_platform') !== 'JDLM-WEB/APP';
 
 if (url.includes('graphext/draw')) {
   arr = url.match(/sku=(\d+)/);
-} else if () {
+} else if (url.includes('wqsitem.jd.com/detail')) {
   arr = url.match(/wqsitem\.jd\.com\/detail\/(\d+)_/);
 } else {
   arr = url.match(/\/.*\/(\d+)\.html/);
