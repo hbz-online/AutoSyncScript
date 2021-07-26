@@ -1186,7 +1186,7 @@
         {
             "id": "dsj",
             "name": "电视家APP",
-            "keys": ["dsjheader", "dsjurl", "dsjheader2", "dsjurl2", "dsjheader3", "dsjurl3", "dsjheader4", "dsjurl4", "dsjheader5", "dsjurl5", "dsjheader6", "dsjurl6", "dsjheader7", "dsjurl7", "dsjheader8", "dsjurl8", "dsjheader9", "dsjurl9", "dsjheader10", "dsjurl10", "dsjheader11", "dsjurl11", "dsjheader12", "dsjurl12", "dsjheader13", "dsjurl13", "dsjheader14", "dsjurl14", "dsjheader15", "dsjurl15", "dsjheader16", "dsjurl16", "dsjheader17", "dsjurl17", "dsjheader18", "dsjurl18", "dsjheader19", "dsjurl19", "dsjheader20", "dsjurl20"],
+            "keys": ["dsjheader","dsjheader2","dsjheader3","dsjheader4","dsjheader5","dsjheader6","dsjheader7","dsjheader8","dsjheader9","dsjheader10","dsjheader11","dsjheader12","dsjheader13","dsjheader14","dsjheader15","dsjheader16","dsjheader17","dsjheader18", "dsjheader19","dsjheader20"],
             "author": "@ziye",
             "settings": [{
                     "id": "dsjSuffix",
@@ -1215,6 +1215,13 @@
                     "val": "100",
                     "type": "number",
                     "desc": "0不执行 可设置0-100,默认百分百"
+                }, 
+                {
+                    "id": "dsjTXTX",
+                    "name": "余额提醒",
+                    "val": "0",
+                    "type": "number",
+                    "desc": "0不提醒 可设置0,5,10,20,25,30,100"
                 },
                 {
                     "id": "dsjnotifyttt",
