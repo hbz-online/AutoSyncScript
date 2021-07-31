@@ -4,9 +4,8 @@
 # 商品id获取, 查看商品详情触发通知
 https:\/\/.+\.jd\.com\/graphext\/draw\?sku=(\d+).* url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/Script/jdapp_to_union.js
 https:\/\/.+\.jd\.com\/product\/.*\/(\d+)\.html url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/Script/jdapp_to_union.js
-
 [mitm]
-hostname = *.jd.com, *.*.jd.com, 
+hostname = *.jd.com, *.*.jd.com
 */
 
 const $ = new Env('京东联盟');
@@ -16,6 +15,8 @@ const $ = new Env('京东联盟');
 const siteId = $.getData('id77_JDLM_siteId'); // 网站或APP的ID
 const app_key = $.getData('id77_JDLM_app_key'); // 网站或APP的 app_key
 const appSecret = $.getData('id77_JDLM_appSecret'); // 网站或APP的 appSecret
+
+console.log(`🔗捕获：\n${$request.url}`);
 let url = $request.url.replace(/https?:\/\//g, '');
 const UA = $request.headers['User-Agent'];
 const appType = UA.match(/(.+?);/)[1];
@@ -33,6 +34,8 @@ if (url.includes('graphext/draw')) {
 
 sku = arr[1];
 
+console.log(`👾SKU：${sku}`);
+
 if ($.getData('id77_JDSkuId_Cache') === sku) {
   $.msg(
     $.name,
@@ -47,7 +50,8 @@ if ($.getData('id77_JDSkuId_Cache') === sku) {
 }
 
 // const openUrl = `https://union.jd.com/proManager/index?pageNo=1&keywords=${sku}`;
-$.openUrl = `http://jf.com/?skuId=${sku}&appType=${appType}`;
+// $.openUrl = `http://jf.com/?skuId=${sku}&appType=${appType}`;
+$.openUrl = `https://item.jd.com/${sku}.html`;
 
 Date.prototype.format = function (fmt) {
   var o = {
@@ -187,6 +191,8 @@ function setReqOpts(method, _360buy_param_json) {
         },
       };
 
+      console.log(`🔗materialUrl：\nhttps://item.jd.com/${skuId}.html`);
+
       const options = {
         url: `${baseurl}functionId=ConvertSuperLink&appid=u&_=${Date.now()}&body=${encodeURIComponent(
           JSON.stringify(body)
@@ -225,6 +231,9 @@ function setReqOpts(method, _360buy_param_json) {
       const materialUrl = productLinks[appType]
         ? productLinks[appType].replace(/{{skuId}}/, skuId)
         : `https://item.jd.com/${skuId}.html`;
+
+      console.log(`🔗materialUrl：\n${materialUrl}`);
+
       setReqOpts('jd.union.open.promotion.common.get', {
         promotionCodeReq: {
           siteId,
