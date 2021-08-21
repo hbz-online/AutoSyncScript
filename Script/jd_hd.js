@@ -150,10 +150,10 @@ try {
       let _block = _hostBlocks[0];
       for (let b = 1; b < _hostBlocks.length; b++) {
         _block = _hostBlocks[b] + "." + _block;
-        Cookies.remove(key, { path: '/', domain: "." + _block });
+        Cookies.remove(_key, { path: '/', domain: "." + _block });
       }
 
-      // Cookies.remove(key, { path: '/', domain: '.jd.com' });
+      // Cookies.remove(_key, { path: '/', domain: '.jd.com' });
     }
     
     function _setCookie(cookie) {
