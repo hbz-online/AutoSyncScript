@@ -56,7 +56,7 @@ try {
     for (let index = 0; index < cookies.length; index++) {
       const cookie = cookies[index];
       const pin = cookie.match(/pt_pin=(.+?);/)[1];
-      cookieListDom += `<li id="_${pin}" onclick="changeCookie('${cookie}')">${pin}</li>`;
+      cookieListDom += `<li id="_${pin}" onclick="_changeCookie('${cookie}')">${pin}</li>`;
     }
   }
   cookieListDom += `</ul>`;
@@ -65,12 +65,6 @@ try {
     `
     <div id="_btns">
       <div id="cks" class="_btn"></div>
-      <div id="alook" class="_btn" onclick="window.location.href='alook://${url.replace(
-        /https?:\/\//g,
-        ''
-      )}'">
-        <img src="https://alookbrowser.com/assets/uploads/profile/1-profileavatar.png" />
-      </div>
       <div id="Foxok" class="_btn" onclick="window.location.href='Foxok://url?${url}'">
         <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple124/v4/78/2f/51/782f518e-1db9-e819-f6fe-72d6ac851f13/source/60x60bb.jpg" />
       </div>` +
@@ -89,7 +83,7 @@ try {
       bottom: 17.8571em;
     }
     #Foxok {
-      bottom: 15.5em;
+      bottom: 17.5em;
     }
     #smzdm {
       bottom: 20.2143em;
@@ -140,29 +134,29 @@ try {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
   <script>
 
-    const currentPin = Cookies.get('pt_pin');
-    const { host } = window.location;
+    const _currentPin = Cookies.get('pt_pin');
+    const _host = window.location.host;
 
-    function clearData() {
+    function _clearData() {
       sessionStorage.clear();
       localStorage.clear();
-      let key;
-      const cookieKeys = Object.keys(Cookies.get());
-      for (let n = 0; n < cookieKeys.length; n++) {
-        key = cookieKeys[n];
+      let _key;
+      const _cookieKeys = Object.keys(Cookies.get());
+      for (let n = 0; n < _cookieKeys.length; n++) {
+        _key = _cookieKeys[n];
       }
       
-      const hostBlocks = host.split('.');
-      let block = hostBlocks[0];
-      for (let b = 1; b < hostBlocks.length; b++) {
-        block = hostBlocks[b] + "." + block;
-        Cookies.remove(key, { path: '/', domain: "." + block });
+      const _hostBlocks = _host.split('.');
+      let _block = _hostBlocks[0];
+      for (let b = 1; b < _hostBlocks.length; b++) {
+        _block = _hostBlocks[b] + "." + _block;
+        Cookies.remove(key, { path: '/', domain: "." + _block });
       }
 
       // Cookies.remove(key, { path: '/', domain: '.jd.com' });
     }
     
-    function setCookie(cookie) {
+    function _setCookie(cookie) {
 
       const other = { 
         path: '/',
@@ -187,15 +181,15 @@ try {
 
     }
 
-    function changeCookie(cookie){
-      clearData();
-      setCookie(cookie);
+    function _changeCookie(cookie){
+      _clearData();
+      _setCookie(cookie);
       window.location.reload();
     }
 
-    const btn = document.querySelector('#smzdm');
-    if (btn) {
-      btn.addEventListener('click',() => {
+    const _btn = document.querySelector('#smzdm');
+    if (_btn) {
+      _btn.addEventListener('click',() => {
         const input = document.createElement('input');
         input.setAttribute('readonly', 'readonly');
         input.setAttribute('value', 'https://item.jd.com/${sku}.html');
@@ -210,16 +204,16 @@ try {
       })
     }
 
-    const script = document.createElement('script');
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/vConsole/3.8.1/vconsole.min.js";
-    // script.doneState = { loaded: true, complete: true};
-    script.onload = function() {
+    const _script = document.createElement('script');
+    _script.src = "https://cdnjs.cloudflare.com/ajax/libs/vConsole/3.8.1/vconsole.min.js";
+    // _script.doneState = { loaded: true, complete: true};
+    _script.onload = function() {
         __init();
         console.log("初始化成功");
     };
     
     
-    document.getElementsByTagName('head')[0].appendChild(script);
+    document.getElementsByTagName('head')[0].appendChild(_script);
     
     
     function __init () {
@@ -278,9 +272,9 @@ try {
       JDCKPlugin.on('ready', function() {
       
         // vConsole.show();
-        if (currentPin) {
+        if (_currentPin) {
           setTimeout(() => {
-            document.querySelector("#_" + currentPin).style.background = '#238636';
+            document.querySelector("#_" + _currentPin).style.background = '#238636';
           });
         }	 
         
