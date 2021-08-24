@@ -31,9 +31,9 @@ $.api = $.getData('id77_api_sync_cookie');
 
 function getCookie() {
   return new Promise((resolve) => {
-    $.get($.api, (err, resp, data) => {
+    $.get({ url: $.api }, (err, resp, data) => {
       try {
-        if (data.length > 0) {
+        if (data && data.length > 0) {
           $.resData = data;
         }
       } catch (e) {
