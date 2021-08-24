@@ -34,7 +34,7 @@ function getCookie() {
     $.get({ url: $.api }, (err, resp, data) => {
       try {
         if (data && data.length > 0) {
-          $.resData = data;
+          $.resData = JSON.parse(data);
         }
       } catch (e) {
         $.logErr(e, resp);
