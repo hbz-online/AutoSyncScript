@@ -49,7 +49,7 @@ if (length > total) {
   );
 }
 
-$.userNum = $.USER_NUM ? $.getData($.USER_NUM) || cookies.length;
+$.userNum = $.USER_NUM ? $.getData($.USER_NUM) : cookies.length;
 
 const opts = {
   headers: {
@@ -65,7 +65,7 @@ const opts = {
 !(async () => {
   let cookie, userInfo, orderList, order, wuLiuDetail;
 
-  for (let index = 0; index < $.userNum - 1; index++) {
+  for (let index = 0; index < $.userNum; index++) {
     cookie = cookies[index];
     opts.headers.Cookie = cookie;
 
