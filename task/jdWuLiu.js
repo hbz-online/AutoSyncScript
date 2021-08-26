@@ -22,6 +22,7 @@ const $ = new Env('京东物流');
 $.SESSION_KEY = 'id77_jdWulLiu';
 $.PAGE_MAX_KEY = 'id77_jdWulLiu_pageMax';
 $.CARRIAGE_ID_ARR_KEY = 'id77_carriageIdArr';
+$.USER_NUM = 'id77_jdWulLiu_userNum';
 $.pageMax = $.getData($.PAGE_MAX_KEY) || 10;
 $.carriageIdArr = JSON.parse($.getData($.CARRIAGE_ID_ARR_KEY) || '[]');
 $.isMuteLog = true;
@@ -41,12 +42,14 @@ const length = $.carriageIdArr.length;
 $.log(`💡缓存数据：${length}条`);
 
 const total = $.pageMax * cookies.length;
-if ( length >  total ) {
+if (length > total) {
   $.setData(
-    JSON.stringify($.carriageIdArr.slice(length - total,length)),
+    JSON.stringify($.carriageIdArr.slice(length - total, length)),
     $.CARRIAGE_ID_ARR_KEY
   );
 }
+
+$.userNum = $.USER_NUM ? $.getData($.USER_NUM) || cookies.length;
 
 const opts = {
   headers: {
@@ -62,7 +65,7 @@ const opts = {
 !(async () => {
   let cookie, userInfo, orderList, order, wuLiuDetail;
 
-  for (let index = 0; index < cookies.length; index++) {
+  for (let index = 0; index < $.userNum - 1; index++) {
     cookie = cookies[index];
     opts.headers.Cookie = cookie;
 
@@ -193,7 +196,7 @@ function showMsg(userInfo, wuLiuDetail, orderId, k) {
 
       return resolve();
     }
-    
+
     if (k > 0) {
       $.logText += `------------------------------------\n`;
     }
