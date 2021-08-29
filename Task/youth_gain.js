@@ -117,6 +117,8 @@ function GainStart() {
                     smbody = $.getdata('youth_start').replace(gainbody + "&", "");
                     $.setdata(smbody, 'youth_start');
                     $.log(startres.message + "已自动删除")
+                } else {
+                 $.log("未知错误，本次跳过")
                 }
             } else {
                 comstate = startres.items.comtele_state;
@@ -137,10 +139,14 @@ function lookStart() {
     return new Promise((resolve, reject) => {
         $.post(gainHost('Nameless/adlickstart.json', lookbody), async(error, resp, data) => {
             startlk = JSON.parse(data);
-            if (!$.isNode()&&startlk.success == false) {
+            if (startlk.success == false) {
+              if(!$.isNode()){
                 smbody = $.getdata('youth_look').replace(lookbody + "&", "");
                 $.setdata(smbody, 'youth_look');
                 $.log(startlk.message + "已自动删除")
+                } else {
+                 $.log("未知错误，本次跳过")
+                }
             } else {
                 comstate = startlk.items.comtele_state;
                 if (comstate == 0) {
