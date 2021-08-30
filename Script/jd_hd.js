@@ -160,7 +160,7 @@ try {
 
       const other = { 
         path: '/',
-        expires: 7,
+        expires: 30,
         SameSite: 'Strict',
         // secure: true
       };
