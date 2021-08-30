@@ -41,15 +41,15 @@ cookies = Array.from(new Set([...cookies, ...extraCookies]));
 const length = $.carriageIdArr.length;
 $.log(`💡缓存数据：${length}条`);
 
-const total = $.pageMax * cookies.length;
+$.userNum = $.USER_NUM ? $.getData($.USER_NUM) : cookies.length;
+
+const total = $.pageMax * $.userNum;
 if (length > total) {
   $.setData(
     JSON.stringify($.carriageIdArr.slice(length - total, length)),
     $.CARRIAGE_ID_ARR_KEY
   );
 }
-
-$.userNum = $.USER_NUM ? $.getData($.USER_NUM) : cookies.length;
 
 const opts = {
   headers: {
