@@ -69,11 +69,14 @@ if (_TGUserID) {
       const verify = userName === Account;
       if (verify) {
         updateIndex = index;
+        if (ck !== cookie) {
+          $.needUpdate = true;
+        }
       }
       return verify;
     });
     let tipPrefix = '';
-    if (existCookie) {
+    if (existCookie && $.needUpdate) {
       cookiesData[updateIndex].cookie = cookie;
       cookieName = '【账号' + (updateIndex + 1) + '】';
       tipPrefix = '更新京东';
