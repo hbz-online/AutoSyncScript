@@ -10,7 +10,7 @@
 ===================
 [Script]
 自动上车-id77 = type=http-request,pattern=^https:\/\/me\-api\.jd\.com\/user_new\/info\/GetJDUserInfoUnion,requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js,script-update-interval=0
-京东个人中心登陆辅助 = type=http-response,pattern=^https:\/\/un\.m\.jd\.com\/cgi\-bin\/app\/appjmp\?tokenKey=,requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js,script-update-interval=0
+自动上车-id77 = type=http-response,pattern=^https:\/\/un\.m\.jd\.com\/cgi\-bin\/app\/appjmp\?tokenKey=,requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js,script-update-interval=0
 ===================
 【Loon脚本配置】:
 ===================
