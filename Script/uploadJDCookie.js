@@ -30,7 +30,9 @@ const $ = new Env('🍪上传Cookie');
 let CK = $request.headers['Cookie'] || $request.headers['cookie'];
 if ($request.url.includes('appjmp')) {
   const setCookieContent = $response.headers['Set-Cookie'];
-  CK = setCookieContent.match(/pt_key=[\w\-_]+;/)?[0] + setCookieContent.match(/pt_pin=[\w\-_%]+;/)?[0];
+  CK =
+    setCookieContent.match(/pt_key=[\w\-_]+;/)[0] +
+    setCookieContent.match(/pt_pin=[\w\-_%]+;/)[0];
 }
 const pin = CK.match(/pt_pin=(.+?);/)[1];
 const key = CK.match(/pt_key=(.+?);/)[1];
@@ -75,6 +77,11 @@ if (_TGUserID) {
       cookiesData[updateIndex].cookie = cookie;
       cookieName = '【账号' + (updateIndex + 1) + '】';
       tipPrefix = '更新京东';
+
+      for (const userId of $.TGUserIDs) {
+        await updateCookie(cookie, userId);
+        await showMsg(userId);
+      }
     } else {
       cookiesData.push({
         userName: decodeName,
@@ -90,10 +97,6 @@ if (_TGUserID) {
     //   tipPrefix + cookieName + 'Cookie成功 🎉'
     // );
 
-    for (const userId of $.TGUserIDs) {
-      await updateCookie(cookie, userId);
-      await showMsg(userId);
-    }
     return;
   } catch (error) {
     $.msg('写入京东Cookie失败', '', '请重试 ⚠️');
