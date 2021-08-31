@@ -22,7 +22,7 @@ http-response ^https:\/\/un\.m\.jd\.com\/cgi\-bin\/app\/appjmp\?tokenKey= tag=è‡
 ===================
 [rewrite_local]
 ^https:\/\/me\-api\.jd\.com\/user_new\/info\/GetJDUserInfoUnion url script-echo-response https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js
-^https:\/\/un\.m\.jd\.com\/cgi\-bin\/app\/appjmp\?tokenKey= url script-echo-response https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js
+^https:\/\/un\.m\.jd\.com\/cgi\-bin\/app\/appjmp\?tokenKey= url script-response-header https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js
  *
  */
 
