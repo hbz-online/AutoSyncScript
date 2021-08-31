@@ -9,20 +9,20 @@
 【Surge脚本配置】:
 ===================
 [Script]
-自动上车-id77 = type=http-response,pattern=^https:\/\/me\-api\.jd\.com\/user_new\/info\/GetJDUserInfoUnion,requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js,script-update-interval=0
+自动上车-id77 = type=http-request,pattern=^https:\/\/me\-api\.jd\.com\/user_new\/info\/GetJDUserInfoUnion,requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js,script-update-interval=0
 京东个人中心登陆辅助 = type=http-response,pattern=^https:\/\/un\.m\.jd\.com\/cgi\-bin\/app\/appjmp\?tokenKey=,requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js,script-update-interval=0
 ===================
 【Loon脚本配置】:
 ===================
 [Script]
-http-response ^https:\/\/me\-api\.jd\.com\/user_new\/info\/GetJDUserInfoUnion tag=自动上车-id77, script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js,requires-body=1
+http-request ^https:\/\/me\-api\.jd\.com\/user_new\/info\/GetJDUserInfoUnion tag=自动上车-id77, script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js,requires-body=1
 http-response ^https:\/\/un\.m\.jd\.com\/cgi\-bin\/app\/appjmp\?tokenKey= tag=自动上车-id77, script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js,requires-body=1
 ===================
 【 QX  脚本配置 】:
 ===================
 [rewrite_local]
-^https:\/\/me\-api\.jd\.com\/user_new\/info\/GetJDUserInfoUnion url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js
-^https:\/\/un\.m\.jd\.com\/cgi\-bin\/app\/appjmp\?tokenKey= url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js
+^https:\/\/me\-api\.jd\.com\/user_new\/info\/GetJDUserInfoUnion url script-echo-response https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js
+^https:\/\/un\.m\.jd\.com\/cgi\-bin\/app\/appjmp\?tokenKey= url script-echo-response https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDCookie.js
  *
  */
 
