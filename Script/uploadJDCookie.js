@@ -27,12 +27,14 @@ http-response ^https:\/\/un\.m\.jd\.com\/cgi\-bin\/app\/appjmp\?tokenKey= tag=�
  */
 
 const $ = new Env('🍪上传Cookie');
-let CK = $request.headers['Cookie'] || $request.headers['cookie'];
+let CK;
 if ($request.url.includes('appjmp')) {
   const setCookieContent = $response.headers['Set-Cookie'];
   CK =
     setCookieContent.match(/pt_key=[\w\-_]+;/)[0] +
     setCookieContent.match(/pt_pin=[\w\-_%]+;/)[0];
+} else {
+  CK = $request.headers['Cookie'] || $request.headers['cookie'];
 }
 const pin = CK.match(/pt_pin=(.+?);/)[1];
 const key = CK.match(/pt_key=(.+?);/)[1];
