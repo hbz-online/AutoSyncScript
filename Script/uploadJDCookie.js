@@ -113,7 +113,7 @@ if (_TGUserID) {
 function updateCookie(cookie, TGUserID) {
   return new Promise((resolve) => {
     const opts = {
-      url: `https://api.telegram.org/bot${TGBotToken}/sendMessage`,
+      url: `https://api.telegram.org/bot${$.TGBotToken}/sendMessage`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
