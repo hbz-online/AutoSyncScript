@@ -1,10 +1,10 @@
-	
 ## 赞赏码(开发维护不易,请赏杯茶水费)
-<div align=center><img width="150" height="150" src="./icon/wxpay.jpg"/></div>
+
+<div align=center><img width="150" height="150" src="./img/wxpay.jpg"/></div>
 
 自用脚本、配置
 
-QuantumultX可以直接使用，所有配置以及脚本。
+QuantumultX 可以直接使用，所有配置以及脚本。
 
 Task 同时兼容 Surge、Loon, 由于个人精力有限，仅测试 QuantumultX。
 
@@ -12,7 +12,8 @@ Task 同时兼容 Surge、Loon, 由于个人精力有限，仅测试 QuantumultX
 
 特别感谢[@Orz-3](https://github.com/Orz-3/mini)提供图标库
 
-⚠️免责声明：
+⚠️ 免责声明：
+
 1. 脚本仅用于学习研究，不保证其合法性、准确性、有效性，请根据情况自行判断，本人对此不承担任何保证责任。
 2. 由于脚本仅用于学习研究，您必须在下载后 24 小时内将所有内容从您的计算机或手机或任何存储设备中完全删除，若违反规定引起任何事件本人对此均不负责。
 3. 请勿将脚本用于任何商业或非法目的，若违反规定请自行对此负责。
