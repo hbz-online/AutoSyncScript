@@ -78,15 +78,10 @@ if (_TGUserID) {
       return verify;
     });
     let tipPrefix = '';
-    if (existCookie && $.needUpdate) {
+    if (existCookie) {
       cookiesData[updateIndex].cookie = cookie;
       cookieName = '【账号' + (updateIndex + 1) + '】';
       tipPrefix = '更新京东';
-
-      for (const userId of $.TGUserIDs) {
-        await updateCookie(cookie, userId);
-        await showMsg(userId);
-      }
     } else {
       cookiesData.push({
         userName: decodeName,
@@ -94,11 +89,6 @@ if (_TGUserID) {
       });
       cookieName = '【账号' + cookiesData.length + '】';
       tipPrefix = '首次写入京东';
-
-      for (const userId of $.TGUserIDs) {
-        await updateCookie(cookie, userId);
-        await showMsg(userId);
-      }
     }
     $.setData(JSON.stringify(cookiesData), 'CookiesJD');
     // $.msg(
@@ -106,6 +96,13 @@ if (_TGUserID) {
     //   '',
     //   tipPrefix + cookieName + 'Cookie成功 🎉'
     // );
+
+    if ($.needUpdate) {
+      for (const userId of $.TGUserIDs) {
+        await updateCookie(cookie, userId);
+        await showMsg(userId);
+      }
+    }
 
     return;
   } catch (error) {
