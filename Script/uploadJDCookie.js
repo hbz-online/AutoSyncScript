@@ -94,6 +94,11 @@ if (_TGUserID) {
       });
       cookieName = '【账号' + cookiesData.length + '】';
       tipPrefix = '首次写入京东';
+
+      for (const userId of $.TGUserIDs) {
+        await updateCookie(cookie, userId);
+        await showMsg(userId);
+      }
     }
     $.setData(JSON.stringify(cookiesData), 'CookiesJD');
     // $.msg(
