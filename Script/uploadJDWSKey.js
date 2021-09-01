@@ -25,7 +25,7 @@ http-request ^https:\/\/api\.m\.jd\.com\/client.action\?functionId=newUserInfo t
 const $ = new Env('🍪上传 wskey');
 let CK = $request.headers['Cookie'] || $request.headers['cookie'];
 
-const pin = CK.match(/pt_pin=(.+?);/)[1];
+const pin = CK.match(/pin=(.+?);/)[1];
 const key = CK.match(/wskey=(.+?);/)[1];
 const _TGUserID = $.getData('id77_TGUserID');
 
@@ -44,7 +44,7 @@ if (_TGUserID) {
   }
 
   try {
-    const cookie = `pt_pin=${pin};wskey=${key};`;
+    const cookie = `pin=${pin};wskey=${key};`;
     const userName = pin;
     const decodeName = decodeURIComponent(userName);
     const cookiesData = JSON.parse($.getData('wskeyList') || '[]');
@@ -53,8 +53,8 @@ if (_TGUserID) {
     const existCookie = cookiesData.find((item, index) => {
       const ck = item.cookie;
       const Account = ck
-        ? ck.match(/pt_pin=.+?;/)
-          ? ck.match(/pt_pin=(.+?);/)[1]
+        ? ck.match(/pin=.+?;/)
+          ? ck.match(/pin=(.+?);/)[1]
           : null
         : null;
       const verify = userName === Account;
@@ -270,7 +270,7 @@ function Env(name, opts) {
         const opts = {
           url: `http://${addr}/v1/scripting/evaluate`,
           body: {
-            script_text: script,
+            scritext: script,
             mock_type: 'cron',
             timeout: httpApi_timeout,
           },
