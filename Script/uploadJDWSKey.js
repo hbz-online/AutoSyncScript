@@ -270,7 +270,7 @@ function Env(name, opts) {
         const opts = {
           url: `http://${addr}/v1/scripting/evaluate`,
           body: {
-            scritext: script,
+            script_text: script,
             mock_type: 'cron',
             timeout: httpApi_timeout,
           },
