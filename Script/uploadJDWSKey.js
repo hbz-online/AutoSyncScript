@@ -79,7 +79,7 @@ if (_TGUserID) {
       cookieName = '【账号' + cookiesData.length + '】';
       tipPrefix = '首次写入京东 wskey';
     }
-    $.setData(JSON.stringify(cookiesData), 'wskeyList');
+    $.setData(JSON.stringify(cookiesData, null, 2), 'wskeyList');
     // $.msg(
     //   '用户名: ' + decodeName,
     //   '',
