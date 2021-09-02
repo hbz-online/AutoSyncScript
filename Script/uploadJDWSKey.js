@@ -1,24 +1,24 @@
 /**
- * 1、打开App随机出现，自动捕抓 wskey 上传
- * 
- * 
+ * 1、打开App，自动捕抓 wskey 上传
+ * 2、点击APP-个人中心，或 个人中心 下拉刷新，自动捕抓 wskey 上传
+ * 注：如有变更才会上传，如果 wskey 没变，不会重复上传。
  *
  * hostname = api.m.jd.com
  *
 【Surge脚本配置】:
 ===================
 [Script]
-自动上车-id77 = type=http-request,pattern=^https:\/\/api\.m\.jd\.com\/client.action\?functionId=newUserInfo,requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js,script-update-interval=0
+自动上车-id77 = type=http-request,pattern=^https:\/\/api\.m\.jd\.com\/client.action\?functionId=(serverConfig|welcomeHome),requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js,script-update-interval=0
 ===================
 【Loon脚本配置】:
 ===================
 [Script]
-http-request ^https:\/\/api\.m\.jd\.com\/client.action\?functionId=newUserInfo tag=自动上车-id77, script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js,requires-body=1
+http-request ^https:\/\/api\.m\.jd\.com\/client.action\?functionId=(serverConfig|welcomeHome) tag=自动上车-id77, script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js,requires-body=1
 ===================
 【 QX  脚本配置 】:
 ===================
 [rewrite_local]
-^https:\/\/api\.m\.jd\.com\/client.action\?functionId=newUserInfo url script-echo-response https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js
+^https:\/\/api\.m\.jd\.com\/client.action\?functionId=(serverConfig|welcomeHome) url script-echo-response https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js
  *
  */
 
