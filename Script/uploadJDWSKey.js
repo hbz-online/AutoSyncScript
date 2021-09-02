@@ -91,6 +91,8 @@ if (_TGUserID) {
         await updateCookie(cookie, userId);
         await showMsg(userId);
       }
+    } else {
+      console.log(`🍪wskey 没有改变`);
     }
 
     return;
