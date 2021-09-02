@@ -1,7 +1,3 @@
-/**
- * @fileoverview Template to compose HTTP reqeuest.
- *
- */
 const $ = new Env('更新 Docker JDCookie');
 const CK = $request.headers['Cookie'] || $request.headers['cookie'];
 const pin = CK.match(/pt_pin=(.+?);/)[1];
@@ -50,7 +46,7 @@ $.api = $.getData('id77_api');
       cookieName = '【账号' + cookiesData.length + '】';
       tipPrefix = '首次写入京东';
     }
-    $.setData(JSON.stringify(cookiesData), 'CookiesJD');
+    $.setData(JSON.stringify(cookiesData, null, 2), 'CookiesJD');
     $.msg(
       '用户名: ' + decodeName,
       '',

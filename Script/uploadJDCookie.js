@@ -90,7 +90,7 @@ if (_TGUserID) {
       cookieName = '【账号' + cookiesData.length + '】';
       tipPrefix = '首次写入京东';
     }
-    $.setData(JSON.stringify(cookiesData), 'CookiesJD');
+    $.setData(JSON.stringify(cookiesData, null, 2), 'CookiesJD');
     // $.msg(
     //   '用户名: ' + decodeName,
     //   '',
