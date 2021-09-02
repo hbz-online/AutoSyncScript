@@ -61,7 +61,7 @@ if (_TGUserID) {
       if (verify) {
         updateIndex = index;
         if (ck !== cookie) {
-          $.needUpdate = true;
+          $.needUpload = true;
         }
       }
       return verify;
@@ -78,6 +78,7 @@ if (_TGUserID) {
       });
       cookieName = '【账号' + cookiesData.length + '】';
       tipPrefix = '首次写入京东 wskey';
+      $.needUpload = true;
     }
     $.setData(JSON.stringify(cookiesData, null, 2), 'wskeyList');
     // $.msg(
@@ -86,7 +87,7 @@ if (_TGUserID) {
     //   tipPrefix + cookieName + 'Cookie成功 🎉'
     // );
 
-    if ($.needUpdate) {
+    if ($.needUpload) {
       for (const userId of $.TGUserIDs) {
         await updateCookie(cookie, userId);
         await showMsg(userId);
