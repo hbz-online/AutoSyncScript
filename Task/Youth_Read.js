@@ -7,6 +7,7 @@
 
 */
 
+
 const $ = new Env("中青看点阅读")
 //const notify = $.isNode() ? require('./sendNotify') : '';
 let ReadArr = [], timebodyVal ="";
@@ -205,7 +206,7 @@ function batHost(api, body) {
     return {
         url: 'https://kandian.wkandian.com/v5/' + api,
         headers: {
-            'User-Agent': 'KDApp/2.1.1 (iPhone; iOS 14.6; Scale/3.00)',
+            'User-Agent': 'KDApp/2.4.1 (iPhone; iOS 14.6; Scale/3.00)',
             'Host': 'kandian.wkandian.com',
             'Content-Type': 'application/x-www-form-urlencoded'
         },
