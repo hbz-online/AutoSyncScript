@@ -159,7 +159,7 @@
       "settings": [
         {
           "id": "CookiesJD",
-          "name": "api",
+          "name": "cookie List",
           "val": "",
           "type": "textarea",
           "autoGrow": true,

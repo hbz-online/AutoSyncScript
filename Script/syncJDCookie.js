@@ -18,7 +18,7 @@ $.api = $.getData('id77_api_sync_cookie');
       $.desc = '没有新数据';
     }
 
-    $.setData(JSON.stringify($.cookieArr), 'CookiesJD');
+    $.setData(JSON.stringify($.cookieArr, null, 2), 'CookiesJD');
     await showMsg();
 
     return;
