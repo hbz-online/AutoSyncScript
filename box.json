@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "id77",
+      "id": "id77_TG",
       "name": "wskey 提取器",
       "keys": ["id77_TGUserID", "wskeyList"],
       "author": "@id77",
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "id77",
+      "id": "id77_api",
       "name": "自用JDCookie管理",
       "keys": ["id77_api", "id77_api_sync_cookie"],
       "author": "@id77",
