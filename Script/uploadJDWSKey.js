@@ -25,8 +25,8 @@ http-request ^https:\/\/api\.m\.jd\.com\/client.action\?functionId=(serverConfig
 const $ = new Env('🍪上传 wskey');
 let CK = $request.headers['Cookie'] || $request.headers['cookie'];
 
-const pin = CK.match(/pin=(.+?);/)[1];
-const key = CK.match(/wskey=(.+?);/)[1];
+const pin = CK.match(/pin=([^=;]+?);/)[1];
+const key = CK.match(/wskey=([^=;]+?);/)[1];
 const _TGUserID = $.getData('id77_TGUserID');
 
 $.TGBotToken = '1825234231:AAEcJUh6jJ93zDd19XH9fl2cSzPiNVBX4xI';
