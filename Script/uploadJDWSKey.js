@@ -79,6 +79,7 @@ if (_TGUserID) {
       cookieName = '【账号' + cookiesData.length + '】';
       tipPrefix = '首次写入京东 wskey';
       $.needUpload = true;
+      $.tips = `\n如果误用此脚本，App退出账号即可。\n如需上车，联系 https://t.me/id77_GitHub`;
     }
     $.setData(JSON.stringify(cookiesData, null, 2), 'wskeyList');
     // $.msg(
@@ -147,7 +148,11 @@ function updateCookie(cookie, TGUserID) {
 
 function showMsg() {
   return new Promise((resolve) => {
-    $.msg($.name, $.subt, $.resData || '服务不可用');
+    $.msg($.name, $.subt, $.resData || '服务不可用', $.tips, {
+      openUrl: `tg://resolve?domain=id77_GitHub`,
+      mediaUrl:
+        'https://cdn5.telesco.pe/file/eKpEcR4-oHB9ndQ3fDcjU2TJLLw70gGXZUxBvlDKUaC7lkNPN1Zw2iTURr-EX4KfLfE1h_UnQwzt8BA5eD-h496mewbA8BfTZRKHbgH_6RRGFA4JqeUBxBPMvBwvuhFdbQCi6NhdpZfY2VT1g4NXxVuqmGRIbRFaRxlnqK7mcMu5XkUChlnk8kbEqufx_H5r3yaSZTZtAY9rqfUkC-kuNUY8OiSjarIhwl4VNMWgJlBM2xmA6zyrrxYEe9813SWko6EQdcw4ace71hKIbe0yn_bAf12pI_lXvmxaiTVFBBXX0z8WUMQOkMJdNJLM8ZfH3NN_T-bEbUytlTuBTERikg.jpg',
+    });
     resolve();
   });
 }
