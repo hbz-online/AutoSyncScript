@@ -60,6 +60,9 @@ if (_TGUserID) {
       const verify = userName === Account;
       if (verify) {
         updateIndex = index;
+        if (ck !== cookie) {
+          $.needUpload = true;
+        }
       }
       return verify;
     });
@@ -68,7 +71,6 @@ if (_TGUserID) {
       cookiesData[updateIndex].cookie = cookie;
       cookieName = '【账号' + (updateIndex + 1) + '】';
       tipPrefix = '更新京东 wskey';
-      $.needUpload = true;
       $.tips = '';
     } else {
       cookiesData.push({
