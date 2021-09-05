@@ -69,6 +69,7 @@ if (_TGUserID) {
       cookieName = '【账号' + (updateIndex + 1) + '】';
       tipPrefix = '更新京东 wskey';
       $.needUpload = true;
+      $.tips = '';
     } else {
       cookiesData.push({
         userName: decodeName,
