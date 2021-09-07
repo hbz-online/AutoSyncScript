@@ -82,11 +82,11 @@ const key = CK.match(/wskey=([^=;]+?);/)[1];
     //   tipPrefix + cookieName + 'Cookie成功 🎉'
     // );
     if ($.needUpload) {
-      await updateCookie(cookie);
+      await updateCookie(cookie, $.userId);
       if ($.uploadState) {
         $.setData(JSON.stringify(cookiesData, null, 2), 'wskeyList');
       }
-      await showMsg($.userId);
+      await showMsg();
     } else {
       console.log(`🍪wskey 没有改变`);
     }

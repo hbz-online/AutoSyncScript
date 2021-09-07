@@ -92,11 +92,11 @@ $.userId = 'id77';
     // );
 
     if ($.needUpdate) {
-      await updateCookie(cookie);
+      await updateCookie(cookie, $.userId);
       if ($.uploadState) {
         $.setData(JSON.stringify(cookiesData, null, 2), 'CookiesJD');
       }
-      await showMsg($.userId);
+      await showMsg();
     }
 
     return;
