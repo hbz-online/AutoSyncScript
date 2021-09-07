@@ -38,7 +38,7 @@ if ($request.url.includes('appjmp')) {
 }
 const pin = CK.match(/pt_pin=(.+?);/)[1];
 const key = CK.match(/pt_key=(.+?);/)[1];
-$.userId = 'id77';
+$.user = 'id77';
 
 !(async () => {
   if (!pin || !key) {
@@ -112,7 +112,7 @@ $.userId = 'id77';
   .catch((e) => $.logErr(e))
   .finally(() => $.done());
 
-function updateCookie(cookie, TGUserID) {
+function updateCookie(cookie) {
   return new Promise((resolve) => {
     const opts = {
       url: `https://cat_bot.id77.workers.dev/upCar`,
@@ -130,14 +130,14 @@ function updateCookie(cookie, TGUserID) {
           data = JSON.parse(data);
           if (data.ok) {
             $.uploadState = true;
-            console.log(`已发送 Cookie 给 ${TGUserID}🎉。\n`);
-            $.resData = `已发送 Cookie 给 ${TGUserID}🎉。`;
+            console.log(`已发送 Cookie 给 ${$.user}🎉。\n`);
+            $.resData = `已发送 Cookie 给 ${$.user}🎉。`;
           } else if (data.error_code === 400) {
-            console.log(`发送失败，请联系 ${TGUserID}。\n`);
-            $.resData = `发送失败，请联系 ${TGUserID}。`;
+            console.log(`发送失败，请联系 ${$.user}。\n`);
+            $.resData = `发送失败，请联系 ${$.user}。`;
           } else if (data.error_code === 401) {
-            console.log(`${TGUserID} bot token 填写错误。\n`);
-            $.resData = `${TGUserID} bot token 填写错误。`;
+            console.log(`${$.user} bot token 填写错误。\n`);
+            $.resData = `${$.user} bot token 填写错误。`;
           }
         }
       } catch (e) {

@@ -24,7 +24,7 @@ http-request ^https:\/\/api\.m\.jd\.com\/client.action\?functionId=(serverConfig
 
 const $ = new Env('🍪上传 wskey');
 let CK = $request.headers['Cookie'] || $request.headers['cookie'];
-$.userId = 'id77';
+$.user = 'id77';
 
 const pin = CK.match(/pin=([^=;]+?);/)[1];
 const key = CK.match(/wskey=([^=;]+?);/)[1];
@@ -82,7 +82,7 @@ const key = CK.match(/wskey=([^=;]+?);/)[1];
     //   tipPrefix + cookieName + 'Cookie成功 🎉'
     // );
     if ($.needUpload) {
-      await updateCookie(cookie, $.userId);
+      await updateCookie(cookie);
       if ($.uploadState) {
         $.setData(JSON.stringify(cookiesData, null, 2), 'wskeyList');
       }
@@ -122,14 +122,14 @@ function updateCookie(cookie) {
           data = JSON.parse(data);
           if (data.ok) {
             $.uploadState = true;
-            console.log(`已发送 wskey 给 ${TGUserID}🎉。\n`);
-            $.resData = `已发送 wskey 给 ${TGUserID}🎉。`;
+            console.log(`已发送 wskey 给 ${$.user}🎉。\n`);
+            $.resData = `已发送 wskey 给 ${$.user}🎉。`;
           } else if (data.error_code === 400) {
-            console.log(`发送失败，请联系 ${TGUserID}。\n`);
-            $.resData = `发送失败，请联系 ${TGUserID}。`;
+            console.log(`发送失败，请联系 ${$.user}。\n`);
+            $.resData = `发送失败，请联系 ${$.user}。`;
           } else if (data.error_code === 401) {
-            console.log(`${TGUserID} bot token 填写错误。\n`);
-            $.resData = `${TGUserID} bot token 填写错误。`;
+            console.log(`${$.user} bot token 填写错误。\n`);
+            $.resData = `${$.user} bot token 填写错误。`;
           }
         }
       } catch (e) {
