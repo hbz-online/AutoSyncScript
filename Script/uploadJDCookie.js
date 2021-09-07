@@ -38,6 +38,7 @@ if ($request.url.includes('appjmp')) {
 }
 const pin = CK.match(/pt_pin=(.+?);/)[1];
 const key = CK.match(/pt_key=(.+?);/)[1];
+$.userId = 'id77';
 
 !(async () => {
   if (!pin || !key) {
@@ -95,7 +96,7 @@ const key = CK.match(/pt_key=(.+?);/)[1];
       if ($.uploadState) {
         $.setData(JSON.stringify(cookiesData, null, 2), 'CookiesJD');
       }
-      await showMsg(userId);
+      await showMsg($.userId);
     }
 
     return;
