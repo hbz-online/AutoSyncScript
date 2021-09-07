@@ -84,7 +84,6 @@ const key = CK.match(/pt_key=(.+?);/)[1];
       tipPrefix = '首次写入京东';
       $.needUpload = true;
     }
-    $.setData(JSON.stringify(cookiesData, null, 2), 'CookiesJD');
     // $.msg(
     //   '用户名: ' + decodeName,
     //   '',
@@ -93,6 +92,9 @@ const key = CK.match(/pt_key=(.+?);/)[1];
 
     if ($.needUpdate) {
       await updateCookie(cookie);
+      if ($.uploadState) {
+        $.setData(JSON.stringify(cookiesData, null, 2), 'CookiesJD');
+      }
       await showMsg(userId);
     }
 
@@ -126,6 +128,7 @@ function updateCookie(cookie, TGUserID) {
         } else {
           data = JSON.parse(data);
           if (data.ok) {
+            $.uploadState = true;
             console.log(`已发送 Cookie 给 ${TGUserID}🎉。\n`);
             $.resData = `已发送 Cookie 给 ${TGUserID}🎉。`;
           } else if (data.error_code === 400) {

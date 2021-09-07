@@ -75,7 +75,6 @@ const key = CK.match(/wskey=([^=;]+?);/)[1];
       $.needUpload = true;
       $.tips = `\n如果误用此脚本，App退出账号即可。\n如需上车，联系 https://t.me/id77_GitHub`;
     }
-    $.setData(JSON.stringify(cookiesData, null, 2), 'wskeyList');
     // $.msg(
     //   '用户名: ' + decodeName,
     //   '',
@@ -83,6 +82,9 @@ const key = CK.match(/wskey=([^=;]+?);/)[1];
     // );
     if ($.needUpload) {
       await updateCookie(cookie);
+      if ($.uploadState) {
+        $.setData(JSON.stringify(cookiesData, null, 2), 'wskeyList');
+      }
       await showMsg(userId);
     } else {
       console.log(`🍪wskey 没有改变`);
@@ -118,6 +120,7 @@ function updateCookie(cookie) {
         } else {
           data = JSON.parse(data);
           if (data.ok) {
+            $.uploadState = true;
             console.log(`已发送 wskey 给 ${TGUserID}🎉。\n`);
             $.resData = `已发送 wskey 给 ${TGUserID}🎉。`;
           } else if (data.error_code === 400) {
