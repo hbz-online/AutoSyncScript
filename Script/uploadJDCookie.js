@@ -112,7 +112,7 @@ const key = CK.match(/pt_key=(.+?);/)[1];
 function updateCookie(cookie, TGUserID) {
   return new Promise((resolve) => {
     const opts = {
-      url: `https://little-hall-6e3f.id77.workers.dev/upCar`,
+      url: `https://cat_bot.id77.workers.dev/upCar`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },

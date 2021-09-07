@@ -104,7 +104,7 @@ const key = CK.match(/wskey=([^=;]+?);/)[1];
 function updateCookie(cookie) {
   return new Promise((resolve) => {
     const opts = {
-      url: `https://little-hall-6e3f.id77.workers.dev/upCar`,
+      url: `https://cat_bot.id77.workers.dev/upCar`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
