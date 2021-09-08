@@ -16,12 +16,12 @@ QuantumultX 脚本配置:
 **********************
 [task_local]
 # 无忧行签到
-0 9 * * * https://ooxx.be/js/jegotrip.js, tag=无忧行, img-url=https://ooxx.be/js/icon/jegotrip.png, enabled=true
+0 9 * * * https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.js, tag=无忧行, enabled=true
 
 [rewrite_local]
 # 获取无忧行Cookie
-https?:\/\/app.*\.jegotrip\.com\.cn\/.*getUser\? url script-response-body https://ooxx.be/js/jegotrip.js
-https?:\/\/task\.jegotrip\.com\.cn\:8080\/app\/tasks\?userid url script-response-body https://ooxx.be/js/jegotrip.js
+https?:\/\/app.*\.jegotrip\.com\.cn\/.*getUser url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.js
+https?:\/\/task\.jegotrip\.com\.cn\:8080\/app\/tasks\?userid url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.js
 
 [mitm] 
 hostname= app*.jegotrip.com.cn, task.jegotrip.com.cn
@@ -30,10 +30,10 @@ hostname= app*.jegotrip.com.cn, task.jegotrip.com.cn
 Surge 4.2.0+ 脚本配置:
 **********************
 [Script]
-无忧行签到 = type=cron,cronexp=0 9 * * *,script-path=https://ooxx.be/js/jegotrip.js
+无忧行签到 = type=cron,cronexp=0 9 * * *,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.js
 
-获取无忧行Cookie1 = type=http-response,pattern=https?:\/\/app.*\.jegotrip\.com\.cn\/.*getUser\?,script-path=https://ooxx.be/js/jegotrip.js, requires-body=true
-获取无忧行Cookie2 = type=http-response,pattern=https?:\/\/task\.jegotrip\.com\.cn\:8080\/app\/tasks\?userid,script-path=https://ooxx.be/js/jegotrip.js, requires-body=true
+获取无忧行Cookie1 = type=http-response,pattern=https?:\/\/app.*\.jegotrip\.com\.cn\/.*getUser,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.js, requires-body=true
+获取无忧行Cookie2 = type=http-response,pattern=https?:\/\/task\.jegotrip\.com\.cn\:8080\/app\/tasks\?userid,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.js, requires-body=true
 
 [MITM] 
 hostname= app*.jegotrip.com.cn, task.jegotrip.com.cn
@@ -44,11 +44,11 @@ Loon 2.1.0+ 脚本配置:
 
 [Script]
 # 无忧行签到
-cron "0 9 * * *" script-path=https://ooxx.be/js/jegotrip.js
+cron "0 9 * * *" script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.js
 
 # 获取无忧行Cookie
-http-response https?:\/\/app.*\.jegotrip\.com\.cn\/.*getUser\? script-path=https://ooxx.be/js/jegotrip.js, requires-body=true
-http-response https?:\/\/task\.jegotrip\.com\.cn\:8080\/app\/tasks\?userid script-path=https://ooxx.be/js/jegotrip.js, requires-body=true
+http-response https?:\/\/app.*\.jegotrip\.com\.cn\/.*getUser script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.js, requires-body=true
+http-response https?:\/\/task\.jegotrip\.com\.cn\:8080\/app\/tasks\?userid script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.js, requires-body=true
 
 [Mitm] 
 hostname= app*.jegotrip.com.cn, task.jegotrip.com.cn
