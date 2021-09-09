@@ -70,7 +70,7 @@ $.TASK_ID_KEY = 'id77_jegotrip_taskId';
   }
 
   if (url.includes('jegotrip/users')) {
-    const accountId = url.match(/jegotrip\/users\/(\d+)"/)[1];
+    const accountId = url.match(/jegotrip\/users\/(\d+)/)[1];
     $.setData(accountId, $.ACCOUNT_ID_KEY);
     $.desc += `获取AccountId: 成功 <accountId> ${accountId}\n`;
   }
