@@ -198,7 +198,10 @@
     },
     {
       "id": "id77_jegotrip",
-      "name": "网易游戏会员",
+      "name": "无忧行",
+      "descs_html": [
+        "支持开发者：<a href=\"http://www.jegotrip.com.cn/api/atv/callback/wechat?code=&state=eyJhIjo0NDgyLCJlIjoxMTAyLCJrIjoic2hhcmVJbnZpdGVCdG5fMzc5NjUxNyIsImwiOnRydWUsInVyaSI6IjExMDIiLCJvIjozNzk2NTE3fQ==\" target=\"_blank\">App邀请活动链接</a>"
+      ],
       "keys": [
         "id77_jegotrip_accountId",
         "id77_jegotrip_userId",

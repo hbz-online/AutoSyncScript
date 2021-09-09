@@ -20,7 +20,7 @@ QuantumultX 脚本配置:
 # 获取无忧行Cookie
 https?:\/\/app.*\.jegotrip\.com\.cn\/.*getUser url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js
 https?:\/\/task\.jegotrip\.com\.cn\:8080\/app\/tasks\?userid url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js
-https:\/\/.+\.easemob\.com(:443)?\/\d+\/jegotrip\/users\/ url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js
+https:\/\/.+\.easemob\.com(\:443)?\/\d+\/jegotrip\/users\/ url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js
 
 **********************
 Surge 4.2.0+ 脚本配置:
@@ -28,7 +28,7 @@ Surge 4.2.0+ 脚本配置:
 
 获取无忧行Cookie1 = type=http-response,pattern=https?:\/\/app.*\.jegotrip\.com\.cn\/.*getUser,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js, requires-body=true
 获取无忧行Cookie2 = type=http-response,pattern=https?:\/\/task\.jegotrip\.com\.cn\:8080\/app\/tasks\?userid,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js, requires-body=true
-获取无忧行Cookie3 = type=http-response,pattern=https:\/\/.+\.easemob\.com(:443)?\/\d+\/jegotrip\/users\/,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js, requires-body=true
+获取无忧行Cookie3 = type=http-response,pattern=https:\/\/.+\.easemob\.com(\:443)?\/\d+\/jegotrip\/users\/,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js, requires-body=true
 
 ************************
 Loon 2.1.0+ 脚本配置:
@@ -37,7 +37,7 @@ Loon 2.1.0+ 脚本配置:
 # 获取无忧行Cookie
 http-response https?:\/\/app.*\.jegotrip\.com\.cn\/.*getUser script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js, requires-body=true
 http-response https?:\/\/task\.jegotrip\.com\.cn\:8080\/app\/tasks\?userid script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js, requires-body=true
-http-response https:\/\/.+\.easemob\.com(:443)?\/\d+\/jegotrip\/users\/ script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js, requires-body=true
+http-response https:\/\/.+\.easemob\.com(\:443)?\/\d+\/jegotrip\/users\/ script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js, requires-body=true
 
 **/
 
