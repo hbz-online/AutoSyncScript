@@ -10,7 +10,7 @@ v7.0.2
 脚本将在每天上午9:00执行, 您可以修改执行时间。
 
 [Mitm] 
-hostname= app*.jegotrip.com.cn, task.jegotrip.com.cn, *.easemob.com
+hostname= -app3.jegotrip.com.cn, app*.jegotrip.com.cn, task.jegotrip.com.cn, *.easemob.com
 
 **********************
 QuantumultX 脚本配置:
@@ -56,23 +56,23 @@ $.TASK_ID_KEY = 'id77_jegotrip_taskId';
   if (url.includes('userid=')) {
     const userId = url.match(/userid=(\w+)/)[1];
     $.setData(userId, $.USER_ID_KEY);
-    $.desc += `获取用户ID: 成功 <userId> ${userId}`;
+    $.desc += `获取用户ID: 成功 <userId> ${userId}\n`;
 
     const taskId = body.match(/"id":"(\w+)",/)[1];
     $.setData(taskId, $.TASK_ID_KEY);
-    $.desc += `获取任务ID: 成功 <taskId> ${taskId}`;
+    $.desc += `获取任务ID: 成功 <taskId> ${taskId}\n`;
   }
 
   if (url.includes('getUserAssets')) {
     const token = url.match(/token=(\w+)/)[1];
     $.setData(token, $.TOKEN_KEY);
-    $.desc += `获取Token: 成功 <token> ${token}`;
+    $.desc += `获取Token: 成功 <token> ${token}\n`;
   }
 
   if (url.includes('jegotrip/users')) {
     const accountId = url.match(/jegotrip\/users\/(\d+)"/)[1];
     $.setData(accountId, $.ACCOUNT_ID_KEY);
-    $.desc += `获取AccountId: 成功 <accountId> ${accountId}`;
+    $.desc += `获取AccountId: 成功 <accountId> ${accountId}\n`;
   }
 
   $.msg($.name, '', $.desc);
