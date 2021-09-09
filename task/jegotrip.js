@@ -12,8 +12,21 @@ const taskId =
 const headers = {
   'Accept-Encoding': `gzip, deflate`,
   Accept: `application/json, text/plain, */*`,
+  'Content-Type': `application/json;charset=UTF-8`,
   Connection: `keep-alive`,
   'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 source/jegotrip`,
+  'Accept-Language': `zh-CN,zh-Hans;q=0.9`,
+};
+
+const headers2 = {
+  Origin: `https://ishow.jegotrip.com.cn`,
+  'Accept-Encoding': `gzip, deflate, br`,
+  Connection: `keep-alive`,
+  'Content-Type': `application/json;charset=UTF-8`,
+  Accept: `application/json`,
+  Host: `uds-i.cmishow.com:1443`,
+  'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 source/jegotrip`,
+  Referer: `https://ishow.jegotrip.com.cn/`,
   'Accept-Language': `zh-CN,zh-Hans;q=0.9`,
 };
 
@@ -24,35 +37,36 @@ const headers = {
   let status = dailyTasks[0].triggerAction;
   console.log(status);
   let coins = 0;
+  coins = dailyTasks[0].credits;
   if (status.indexOf('已签到') >= 0) {
-    coins = dailyTasks[0].credits;
     $.desc = `签到失败：今日已签到‼️ 无忧币 +${coins}`;
   } else {
-    coins = dailyTasks[0].credits;
     await sign();
     if ($.sign.indexOf('true') >= 0) {
       $.desc = `签到成功：无忧币 +${coins}🎉`;
       $.log('\nsign body: \n' + $.sign);
-      await videoTask();
-      if ($.videoTask.indexOf('update success') >= 0) {
-        $.log('\n视频任务成功🎉\nVideoTask body: \n' + $.videoTask);
-        await receiveVideoRewards();
-        if ($.receiveVideoRewards.indexOf('exchangeNum') >= 0) {
-          $.log('\n兑换成功🎉\nExchange body: \n' + $.receiveVideoRewards);
-          $.desc += `\n视频任务：无忧币 +${
-            JSON.parse($.receiveVideoRewards).data.exchangeNum
-          }🎉`;
-        } else {
-          $.log('\n兑换失败‼️\nExchange body: \n' + $.receiveVideoRewards);
-          $.desc +=
-            '\n视频任务：' +
-            JSON.parse($.receiveVideoRewards.replace('.', '')).mes +
-            '‼️';
-        }
-      } else {
-        $.desc += '\n获取视频任务失败‼️';
-      }
     }
+  }
+
+  await videoTask();
+  if ($.videoTask.indexOf('update success') >= 0) {
+    $.log('\n视频任务成功🎉\nVideoTask body: \n' + $.videoTask);
+    await receiveVideoRewards();
+    if ($.receiveVideoRewards.indexOf('exchangeNum') >= 0) {
+      $.log('\n兑换成功🎉\nExchange body: \n' + $.receiveVideoRewards);
+      $.desc += `\n视频任务：无忧币 +${
+        JSON.parse($.receiveVideoRewards).data.exchangeNum
+      }🎉`;
+    } else {
+      $.log('\n兑换失败‼️\nExchange body: \n' + $.receiveVideoRewards);
+      $.desc +=
+        '\n视频任务：' +
+        JSON.parse($.receiveVideoRewards.replace('.', '')).mes +
+        '‼️';
+    }
+  } else {
+    $.desc += '\n获取视频任务失败‼️';
+    $.log('\n获取视频任务失败‼️\nVideoTask body: \n' + $.videoTask);
   }
 
   await getUserAssets();
@@ -65,7 +79,7 @@ const headers = {
 
 function getTaskList() {
   return new Promise((resolve, reject) => {
-    const url = `http://task.jegotrip.com.cn:8080/app/tasks?userid=${userid}`;
+    const url = `http://task.jegotrip.com.cn:8080/app/tasks?userid=${userId}`;
     const options = {
       url: url,
       headers: headers,
@@ -75,7 +89,6 @@ function getTaskList() {
 
     $.get(options, (err, resp, data) => {
       try {
-        const data = resp.body;
         let res = JSON.parse(data);
         $.taskList = res;
       } catch (err) {
@@ -88,26 +101,29 @@ function getTaskList() {
 }
 
 function sign(coins) {
-  const url = 'http://task.jegotrip.com.cn:8080/app/sign';
-  const body = `{
+  return new Promise(async (resolve) => {
+    const url = 'http://task.jegotrip.com.cn:8080/app/sign';
+    const body = `{
       "userid":"${userId}",
       "taskId":"${taskId}"
   }`;
-  const options = {
-    url: url,
-    headers: headers,
-    body: body,
-  };
+    const options = {
+      url: url,
+      headers: headers,
+      body: body,
+    };
 
-  options.headers.Referer = `http://task.jegotrip.com.cn:8080/task/index.html`;
+    options.headers.Referer = `http://task.jegotrip.com.cn:8080/task/index.html`;
 
-  $.post(options, (err, resp, data) => {
-    try {
-      const data = resp.body;
-      $.sign = data;
-    } catch (err) {
-      console.log(err);
-    }
+    $.post(options, (err, resp, data) => {
+      try {
+        $.sign = data;
+      } catch (err) {
+        console.log(err);
+      } finally {
+        resolve(resp);
+      }
+    });
   });
 }
 
@@ -116,23 +132,17 @@ function videoTask() {
     const url =
       'https://uds-i.cmishow.com:1443/uds/cloud/watch/update?version=1';
 
-    const body = `{
-      "userId":"${accountId}",
-      "userWatchTime":"10.0",
-      "accountId":"${mobile}"
-  }`;
+    const body = `{"userWatchTime":"10.0","userId":"${accountId}","accountId":"${mobile}"}`;
     const options = {
       url: url,
-      headers: headers,
-      body: body,
+      headers: headers2,
+      body,
     };
 
-    options.headers.Origin = `https://ishow.jegotrip.com.cn`;
-    options.headers.Referer = `https://ishow.jegotrip.com.cn/`;
+    console.log(JSON.stringify(options));
 
     $.post(options, (err, resp, data) => {
       try {
-        const data = resp.body;
         $.videoTask = data;
       } catch (err) {
         console.log(err);
@@ -147,16 +157,11 @@ function receiveVideoRewards() {
   const url =
     'https://uds-i.cmishow.com:1443/uds/cloud/watch/exchange?version=1';
 
-  const body = `{
-      "userId":"${accountId}",
-      "exchangeTime":10,
-      "exchangeNum":10,
-      "accountId":"${mobile}"
-  }`;
+  const body = `{"userId":"${accountId}","exchangeTime":10,"exchangeNum":10,"accountId":"${mobile}"}`;
   const options = {
     url: url,
-    headers: headers,
-    body: body,
+    headers: headers2,
+    body,
   };
 
   options.headers.Referer =
@@ -164,7 +169,6 @@ function receiveVideoRewards() {
 
   $.post(options, (err, resp, data) => {
     try {
-      const data = resp.body;
       $.receiveVideoRewards = data;
     } catch (err) {
       console.log(err);
@@ -188,10 +192,15 @@ function getUserAssets() {
     options.headers.Referer = `http://task.jegotrip.com.cn:8080/`;
 
     $.post(options, (err, resp, data) => {
-      const data = resp.body;
-      let res = JSON.parse(data);
-      console.log('\ngetUserAssets body: \n' + data);
-      $.userAssets = res;
+      try {
+        let res = JSON.parse(data);
+        console.log('\ngetUserAssets body: \n' + data);
+        $.userAssets = res;
+      } catch (err) {
+        console.log(err);
+      } finally {
+        resolve(resp);
+      }
     });
   });
 }
