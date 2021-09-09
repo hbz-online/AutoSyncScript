@@ -1,202 +1,87 @@
-/*
-无忧行签到脚本
-*/
-const $ = new Env('无忧行');
-const accountId = $.getData('id77_jegotrip_accountId');
-const userId = $.getData('id77_jegotrip_userId');
-const mobile = $.getData('id77_jegotrip_mobile');
-const token = $.getData('id77_jegotrip_token');
-const taskId =
-  $.getData('id77_jegotrip_taskId') || '2c909969630101e7016325c827520000';
+/**
+v7.0.2
+获取Cookie说明：「 分为五部分: AccountID | UserID | Token | TaskID 」
 
-const headers = {
-  'Accept-Encoding': `gzip, deflate`,
-  Accept: `application/json, text/plain, */*`,
-  Connection: `keep-alive`,
-  'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 source/jegotrip`,
-  'Accept-Language': `zh-CN,zh-Hans;q=0.9`,
-};
+1.boxjs 订阅应用中填写手机号 [Mobile]
+2.打开无忧行App, 通知成功写入「 AccountID | UserID | Token 」.
+3.依次点击"我的" 👉 "任务中心". 通知成功写入「 TaskID 」.
+4.如上述步骤全部完成, 则可以使用签到脚本.
+获取Cookie后, 请将Cookie脚本禁用并移除主机名，以免产生不必要的MITM.
+脚本将在每天上午9:00执行, 您可以修改执行时间。
+
+[Mitm] 
+hostname= app*.jegotrip.com.cn, task.jegotrip.com.cn, *.easemob.com
+
+**********************
+QuantumultX 脚本配置:
+**********************
+
+[rewrite_local]
+# 获取无忧行Cookie
+https?:\/\/app.*\.jegotrip\.com\.cn\/.*getUser url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js
+https?:\/\/task\.jegotrip\.com\.cn\:8080\/app\/tasks\?userid url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js
+https:\/\/.+\.easemob\.com(:443)?\/\d+\/jegotrip\/users\/ url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js
+
+**********************
+Surge 4.2.0+ 脚本配置:
+**********************
+
+获取无忧行Cookie1 = type=http-response,pattern=https?:\/\/app.*\.jegotrip\.com\.cn\/.*getUser,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js, requires-body=true
+获取无忧行Cookie2 = type=http-response,pattern=https?:\/\/task\.jegotrip\.com\.cn\:8080\/app\/tasks\?userid,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js, requires-body=true
+获取无忧行Cookie3 = type=http-response,pattern=https:\/\/.+\.easemob\.com(:443)?\/\d+\/jegotrip\/users\/,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js, requires-body=true
+
+************************
+Loon 2.1.0+ 脚本配置:
+************************
+
+# 获取无忧行Cookie
+http-response https?:\/\/app.*\.jegotrip\.com\.cn\/.*getUser script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js, requires-body=true
+http-response https?:\/\/task\.jegotrip\.com\.cn\:8080\/app\/tasks\?userid script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js, requires-body=true
+http-response https:\/\/.+\.easemob\.com(:443)?\/\d+\/jegotrip\/users\/ script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.cookie.js, requires-body=true
+
+**/
+
+const $ = new Env('无忧行');
+$.ACCOUNT_ID_KEY = 'id77_jegotrip_accountId';
+$.USER_ID_KEY = 'id77_jegotrip_userId';
+$.MOBILE_KEY = 'id77_jegotrip_mobile';
+$.TOKEN_KEY = 'id77_jegotrip_token';
+$.TASK_ID_KEY = 'id77_jegotrip_taskId';
 
 !(async () => {
-  await getTaskList();
+  const { headers, url, method } = $request;
+  const { body } = $response;
+  $.desc = '';
 
-  let dailyTasks = $.taskList.rtn.tasks['日常任务'];
-  let status = dailyTasks[0].triggerAction;
-  console.log(status);
-  let coins = 0;
-  if (status.indexOf('已签到') >= 0) {
-    coins = dailyTasks[0].credits;
-    $.desc = `签到失败：今日已签到‼️ 无忧币 +${coins}`;
-  } else {
-    coins = dailyTasks[0].credits;
-    await sign();
-    if ($.sign.indexOf('true') >= 0) {
-      $.desc = `签到成功：无忧币 +${coins}🎉`;
-      $.log('\nsign body: \n' + $.sign);
-      await videoTask();
-      if ($.videoTask.indexOf('update success') >= 0) {
-        $.log('\n视频任务成功🎉\nVideoTask body: \n' + $.videoTask);
-        await receiveVideoRewards();
-        if ($.receiveVideoRewards.indexOf('exchangeNum') >= 0) {
-          $.log('\n兑换成功🎉\nExchange body: \n' + $.receiveVideoRewards);
-          $.desc += `\n视频任务：无忧币 +${
-            JSON.parse($.receiveVideoRewards).data.exchangeNum
-          }🎉`;
-        } else {
-          $.log('\n兑换失败‼️\nExchange body: \n' + $.receiveVideoRewards);
-          $.desc +=
-            '\n视频任务：' +
-            JSON.parse($.receiveVideoRewards.replace('.', '')).mes +
-            '‼️';
-        }
-      } else {
-        $.desc += '\n获取视频任务失败‼️';
-      }
-    }
+  if (url.includes('userid=')) {
+    const userId = url.match(/userid=(\w+)/)[1];
+    $.setData(userId, $.USER_ID_KEY);
+    $.desc += `获取用户ID: 成功 <userId> ${userId}`;
+
+    const taskId = body.match(/"id":"(\w+)",/)[1];
+    $.setData(taskId, $.TASK_ID_KEY);
+    $.desc += `获取任务ID: 成功 <taskId> ${taskId}`;
   }
 
-  await getUserAssets();
-  let total = $.userAssets.body.tripCoins;
-  $.desc += `\n无忧币总计：${total}💰`;
+  if (url.includes('getUserAssets')) {
+    const token = url.match(/token=(\w+)/)[1];
+    $.setData(token, $.TOKEN_KEY);
+    $.desc += `获取Token: 成功 <token> ${token}`;
+  }
+
+  if (url.includes('jegotrip/users')) {
+    const accountId = url.match(/jegotrip\/users\/(\d+)"/)[1];
+    $.setData(accountId, $.ACCOUNT_ID_KEY);
+    $.desc += `获取AccountId: 成功 <accountId> ${accountId}`;
+  }
+
   $.msg($.name, '', $.desc);
 })()
   .catch((e) => $.logErr(e))
   .finally(() => $.done());
 
-function getTaskList() {
-  return new Promise((resolve, reject) => {
-    const url = `http://task.jegotrip.com.cn:8080/app/tasks?userid=${userid}`;
-    const options = {
-      url: url,
-      headers: headers,
-    };
-
-    options.headers.Referer = `http://task.jegotrip.com.cn:8080/task/index.html`;
-
-    $.get(options, (err, resp, data) => {
-      try {
-        const data = resp.body;
-        let res = JSON.parse(data);
-        $.taskList = res;
-      } catch (err) {
-        console.log(err);
-      } finally {
-        resolve(resp);
-      }
-    });
-  });
-}
-
-function sign(coins) {
-  const url = 'http://task.jegotrip.com.cn:8080/app/sign';
-  const body = `{
-      "userid":"${userId}",
-      "taskId":"${taskId}"
-  }`;
-  const options = {
-    url: url,
-    headers: headers,
-    body: body,
-  };
-
-  options.headers.Referer = `http://task.jegotrip.com.cn:8080/task/index.html`;
-
-  $.post(options, (err, resp, data) => {
-    try {
-      const data = resp.body;
-      $.sign = data;
-    } catch (err) {
-      console.log(err);
-    }
-  });
-}
-
-function videoTask() {
-  return new Promise(async (resolve) => {
-    const url =
-      'https://uds-i.cmishow.com:1443/uds/cloud/watch/update?version=1';
-
-    const body = `{
-      "userId":"${accountId}",
-      "userWatchTime":"10.0",
-      "accountId":"${mobile}"
-  }`;
-    const options = {
-      url: url,
-      headers: headers,
-      body: body,
-    };
-
-    options.headers.Origin = `https://ishow.jegotrip.com.cn`;
-    options.headers.Referer = `https://ishow.jegotrip.com.cn/`;
-
-    $.post(options, (err, resp, data) => {
-      try {
-        const data = resp.body;
-        $.videoTask = data;
-      } catch (err) {
-        console.log(err);
-      } finally {
-        resolve(resp);
-      }
-    });
-  });
-}
-
-function receiveVideoRewards() {
-  const url =
-    'https://uds-i.cmishow.com:1443/uds/cloud/watch/exchange?version=1';
-
-  const body = `{
-      "userId":"${accountId}",
-      "exchangeTime":10,
-      "exchangeNum":10,
-      "accountId":"${mobile}"
-  }`;
-  const options = {
-    url: url,
-    headers: headers,
-    body: body,
-  };
-
-  options.headers.Referer =
-    'https://ishow.jegotrip.com.cn/freeStyleTourism/activity';
-
-  $.post(options, (err, resp, data) => {
-    try {
-      const data = resp.body;
-      $.receiveVideoRewards = data;
-    } catch (err) {
-      console.log(err);
-    } finally {
-      resolve(resp);
-    }
-  });
-}
-
-function getUserAssets() {
-  return new Promise((resolve, reject) => {
-    const url = `https://app.jegotrip.com.cn/api/service/user/v1/getUserAssets?lang=zh_cn&token=${token}`;
-    const body = `{"token":"${token}"}`;
-
-    const options = {
-      url: url,
-      headers: headers,
-      body: body,
-    };
-
-    options.headers.Referer = `http://task.jegotrip.com.cn:8080/`;
-
-    $.post(options, (err, resp, data) => {
-      const data = resp.body;
-      let res = JSON.parse(data);
-      console.log('\ngetUserAssets body: \n' + data);
-      $.userAssets = res;
-    });
-  });
-}
-
 // https://github.com/chavyleung/scripts/blob/master/Env.js
+// prettier-ignore
 function Env(name, opts) {
   class Http {
     constructor(env) {
@@ -343,7 +228,7 @@ function Env(name, opts) {
             ? curDirDataFilePath
             : rootDirDataFilePath;
           try {
-            return JSON.parse(this.fs.getDataFileSync(datPath));
+            return JSON.parse(this.fs.readFileSync(datPath));
           } catch (e) {
             return {};
           }
@@ -446,7 +331,7 @@ function Env(name, opts) {
 
     getVal(key) {
       if (this.isSurge() || this.isLoon()) {
-        return $persistentStore.getData(key);
+        return $persistentStore.read(key);
       } else if (this.isQuanX()) {
         return $prefs.valueForKey(key);
       } else if (this.isNode()) {

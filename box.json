@@ -197,6 +197,66 @@
       ]
     },
     {
+      "id": "id77_jegotrip",
+      "name": "网易游戏会员",
+      "keys": [
+        "id77_jegotrip_accountId",
+        "id77_jegotrip_userId",
+        "id77_jegotrip_mobile",
+        "id77_jegotrip_token",
+        "id77_jegotrip_taskId"
+      ],
+      "settings": [
+        {
+          "id": "id77_jegotrip_mobile",
+          "name": "手机号码",
+          "val": "",
+          "type": "number",
+          "autoGrow": true,
+          "rows": 2
+        },
+        {
+          "id": "id77_jegotrip_userId",
+          "name": "User Id",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 2
+        },
+        {
+          "id": "id77_jegotrip_accountId",
+          "name": "Account Id",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 2
+        },
+        {
+          "id": "id77_jegotrip_token",
+          "name": "Token",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 2
+        },
+        {
+          "id": "id77_jegotrip_taskId",
+          "name": "视频任务Id",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 2
+        }
+      ],
+      "script": "https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.js",
+      "author": "@id77",
+      "repo": "https://raw.githubusercontent.com/id77/QuantumultX/master/task/jegotrip.js",
+      "icons": [
+        "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/wyx.png",
+        "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/wyx.png"
+      ]
+    },
+    {
       "id": "_163GameVip",
       "name": "网易游戏会员",
       "keys": ["id77_163GameVip"],
