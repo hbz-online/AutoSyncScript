@@ -80,10 +80,12 @@ function getTaskList() {
     const url = `http://task.jegotrip.com.cn:8080/app/tasks?userid=${userId}`;
     const options = {
       url: url,
-      headers: headers,
+      headers: {
+        ...headers,
+        Referer: `http://task.jegotrip.com.cn:8080/task/index.html`,
+        Host: `task.jegotrip.com.cn:8080`,
+      },
     };
-
-    options.headers.Referer = `http://task.jegotrip.com.cn:8080/task/index.html`;
 
     $.get(options, (err, resp, data) => {
       try {
@@ -186,7 +188,7 @@ function getUserAssets() {
     const options = {
       url: url,
       headers: {
-        headers,
+        ...headers,
         Referer: `http://app.jegotrip.com.cn:8080/`,
         Host: `app.jegotrip.com.cn`,
       },
