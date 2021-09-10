@@ -32,19 +32,19 @@ const headers2 = {
 
 !(async () => {
   await getTaskList();
-
+  console.log(JSON.stringify($.taskList));
   let dailyTasks = $.taskList.rtn.tasks['日常任务'];
   let status = dailyTasks[0].triggerAction;
-  console.log(status);
+
   let coins = 0;
   coins = dailyTasks[0].credits;
   if (status.indexOf('已签到') >= 0) {
     $.desc = `签到失败：今日已签到‼️ 无忧币 +${coins}`;
   } else {
     await sign();
+    $.log('\nsign body: \n' + $.sign);
     if ($.sign.indexOf('true') >= 0) {
       $.desc = `签到成功：无忧币 +${coins}🎉`;
-      $.log('\nsign body: \n' + $.sign);
     }
   }
 
@@ -59,10 +59,7 @@ const headers2 = {
       }🎉`;
     } else {
       $.log('\n兑换失败‼️\nExchange body: \n' + $.receiveVideoRewards);
-      $.desc +=
-        '\n视频任务：' +
-        JSON.parse($.receiveVideoRewards.replace('.', '')).mes +
-        '‼️';
+      $.desc += '\n视频任务：' + JSON.parse($.receiveVideoRewards).mes + '‼️';
     }
   } else {
     $.desc += '\n获取视频任务失败‼️';
@@ -139,8 +136,6 @@ function videoTask() {
       body,
     };
 
-    console.log(JSON.stringify(options));
-
     $.post(options, (err, resp, data) => {
       try {
         $.videoTask = data;
@@ -154,27 +149,29 @@ function videoTask() {
 }
 
 function receiveVideoRewards() {
-  const url =
-    'https://uds-i.cmishow.com:1443/uds/cloud/watch/exchange?version=1';
+  return new Promise(async (resolve) => {
+    const url =
+      'https://uds-i.cmishow.com:1443/uds/cloud/watch/exchange?version=1';
 
-  const body = `{"userId":"${accountId}","exchangeTime":10,"exchangeNum":10,"accountId":"${mobile}"}`;
-  const options = {
-    url: url,
-    headers: headers2,
-    body,
-  };
+    const body = `{"userId":"${accountId}","exchangeTime":10,"exchangeNum":10,"accountId":"${mobile}"}`;
+    const options = {
+      url: url,
+      headers: headers2,
+      body,
+    };
 
-  options.headers.Referer =
-    'https://ishow.jegotrip.com.cn/freeStyleTourism/activity';
+    options.headers.Referer =
+      'https://ishow.jegotrip.com.cn/freeStyleTourism/activity';
 
-  $.post(options, (err, resp, data) => {
-    try {
-      $.receiveVideoRewards = data;
-    } catch (err) {
-      console.log(err);
-    } finally {
-      resolve(resp);
-    }
+    $.post(options, (err, resp, data) => {
+      try {
+        $.receiveVideoRewards = data;
+      } catch (err) {
+        console.log(err);
+      } finally {
+        resolve(resp);
+      }
+    });
   });
 }
 
