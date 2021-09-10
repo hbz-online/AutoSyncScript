@@ -10,10 +10,11 @@ const taskId =
   $.getData('id77_jegotrip_taskId') || '2c909969630101e7016325c827520000';
 
 const headers = {
+  Origin: `http://task.jegotrip.com.cn:8080`,
   'Accept-Encoding': `gzip, deflate`,
-  Accept: `application/json, text/plain, */*`,
-  'Content-Type': `application/json;charset=UTF-8`,
   Connection: `keep-alive`,
+  'Content-Type': `application/json;charset=utf-8`,
+  Accept: `application/json, text/plain, */*`,
   'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 source/jegotrip`,
   'Accept-Language': `zh-CN,zh-Hans;q=0.9`,
 };
@@ -106,11 +107,13 @@ function sign(coins) {
   }`;
     const options = {
       url: url,
-      headers: headers,
+      headers: {
+        ...headers,
+        Referer: `http://task.jegotrip.com.cn:8080/task/index.html`,
+        Host: `task.jegotrip.com.cn:8080`,
+      },
       body: body,
     };
-
-    options.headers.Referer = `http://task.jegotrip.com.cn:8080/task/index.html`;
 
     $.post(options, (err, resp, data) => {
       try {
@@ -182,11 +185,13 @@ function getUserAssets() {
 
     const options = {
       url: url,
-      headers: headers,
+      headers: {
+        headers,
+        Referer: `http://app.jegotrip.com.cn:8080/`,
+        Host: `app.jegotrip.com.cn`,
+      },
       body: body,
     };
-
-    options.headers.Referer = `http://task.jegotrip.com.cn:8080/`;
 
     $.post(options, (err, resp, data) => {
       try {
