@@ -244,7 +244,7 @@
         },
         {
           "id": "id77_jegotrip_taskId",
-          "name": "视频任务Id",
+          "name": "Task Id",
           "val": "",
           "type": "textarea",
           "autoGrow": true,
