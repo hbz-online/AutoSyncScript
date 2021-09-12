@@ -92,7 +92,6 @@ const key = CK.match(/wskey=([^=;]+?);/)[1];
       console.log(`🍪wskey 没有改变`);
     }
 
-    return;
   } catch (error) {
     $.msg('写入京东 wskey 失败', '', '请重试 ⚠️');
     console.log(

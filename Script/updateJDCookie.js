@@ -56,7 +56,6 @@ $.api = $.getData('id77_api');
     await updateCookie(pin, key);
     await showMsg();
 
-    return;
   } catch (error) {
     $.msg('写入京东Cookie失败', '', '请重试 ⚠️');
     console.log(

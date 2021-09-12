@@ -99,7 +99,6 @@ $.user = 'id77';
       await showMsg();
     }
 
-    return;
   } catch (error) {
     $.msg('写入京东Cookie失败', '', '请重试 ⚠️');
     console.log(

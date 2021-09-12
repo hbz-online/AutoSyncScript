@@ -21,7 +21,7 @@ $.api = $.getData('id77_api_sync_cookie');
     $.setData(JSON.stringify($.cookieArr, null, 2), 'CookiesJD');
     await showMsg();
 
-    return;
+    
   } catch (error) {
     $.msg($.name, '', '同步失败，请重试 ⚠️');
   }
