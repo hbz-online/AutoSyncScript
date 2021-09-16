@@ -170,8 +170,13 @@ function getWuLiu(orderId) {
 
 function showMsg(userInfo, wuLiuDetail, orderId, k) {
   return new Promise((resolve) => {
-    const { carrier, carriageId, recvMobile, orderWareList, dealLogList } =
-      wuLiuDetail;
+    const {
+      carrier = '',
+      carriageId,
+      recvMobile,
+      orderWareList,
+      dealLogList,
+    } = wuLiuDetail;
     // 部分订单属于敏感信息，收货之后，物流信息不会返回
     // 比如购药订单
     if (!dealLogList) {
@@ -203,7 +208,10 @@ function showMsg(userInfo, wuLiuDetail, orderId, k) {
 
     $.name = `京东物流 账号：${userInfo.baseInfo.nickname}`;
     $.subt = ``;
-    $.desc = `📦${carrier}：${carriageId}\n📱手机尾号：${recvMobile.slice(-4)}`;
+    $.desc = `📦${carrier.replace(
+      '包裹',
+      ''
+    )}：${carriageId}\n📱手机尾号：${recvMobile.slice(-4)}`;
     $.info = `📘包含商品：${orderWareList[0].itemName}\n📗商品数目：${orderWareList.length}\n📕订单编号：${orderId}`;
     $.wl = `🚚最新物流：${dealLog}`;
     $.imgPath = `https://img30.360buyimg.com/jdwlcms/${orderWareList[0].itemImgPath}`;
