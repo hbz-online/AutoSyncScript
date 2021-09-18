@@ -19,7 +19,7 @@ http-request ^https:\/\/api\.m\.jd\.com\/client.action\?functionId=(serverConfig
 【 QX  脚本配置 】:
 ===================
 [rewrite_local]
-^https:\/\/api\.m\.jd\.com\/client.action\?functionId=(serverConfig|welcomeHome) url script-echo-response https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js
+^https:\/\/api\.m\.jd\.com\/client.action\?functionId=(serverConfig|welcomeHome) url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js
  *
  */
 
