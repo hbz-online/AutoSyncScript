@@ -55,7 +55,7 @@ try {
   if (isJD) {
     for (let index = 0; index < cookies.length; index++) {
       const cookie = cookies[index];
-      const pin = cookie.match(/pt_pin=(.+?);/)[1];
+      const pin = decodeURI(cookie.match(/pt_pin=(.+?);/)[1]);
       cookieListDom += `<li id="_${pin}" onclick="_changeCookie('${cookie}')">${pin}</li>`;
     }
   }
@@ -91,7 +91,7 @@ try {
       background: url(https://avatarimg.smzdm.com/default/8282685611/5d146cda8a63a-small.jpg) #FFF no-repeat 0.3571em/1.64em;
     }
     #cks {
-      top: 12.8571em;
+      top: 12.7571em;
       background: url(https://iconfont.alicdn.com/t/1520995303822.jpg@200h_200w.jpg) #FFF no-repeat 0.3571em/1.64em;
     }
     ._btn {
@@ -134,7 +134,20 @@ try {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
   <script>
 
-    const _currentPin = Cookies.get('pt_pin');
+    const _currentPin = decodeURI(Cookies.get('pt_pin'));
+
+    const cookies = ${JSON.stringify(cookies)};
+
+    // ck同步最新
+    if(_currentPin) {
+      for (const ck of cookies) {
+        if(ck.includes(encodeURI(_currentPin))) {
+          _setCookie(ck);
+          console.log('已同步 cookie');
+        }
+      }
+    }
+
     const _host = window.location.host;
 
     function _clearData() {
