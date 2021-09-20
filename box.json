@@ -270,6 +270,28 @@
         "https://raw.githubusercontent.com/Orz-3/mini/master/163GameVip.png",
         "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/163GameVip.png"
       ]
+    },
+    {
+      "id": "id77_ex",
+      "name": "通用重放脚本",
+      "keys": ["id77_ex_request"],
+      "settings": [
+        {
+          "id": "id77_ex_request",
+          "name": "请求信息",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 2
+        }
+      ],
+      "script": "https://raw.githubusercontent.com/id77/QuantumultX/master/task/ex.task.js",
+      "author": "@id77",
+      "repo": "https://raw.githubusercontent.com/id77/QuantumultX/master/task/ex.task.js",
+      "icons": [
+        "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/ex.png",
+        "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/ex.png"
+      ]
     }
   ]
 }
