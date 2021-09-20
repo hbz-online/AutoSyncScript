@@ -16,10 +16,22 @@ https://raw.githubusercontent.com/id77/QuantumultX/master/task/ex.task.js
 const $ = new Env('通用重放脚本');
 
 const ex_request = JSON.parse($.getData(`id77_ex_request`));
+const ex_run_num = $.getData('id77_ex_run_num') || 1;
+const ex_interval = $.getData('id77_ex_interval') || 100;
 $.type = ex.method.toLowerCase();
 
+console.log(`设置执行 ${ex_run_num} 次`);
+console.log(`设置执行间隔 ${ex_interval} ms`);
+
 !(async () => {
-  await ex();
+  $.desc = '';
+  for (let i = 0; i < ex_run_num; i = i + 1) {
+    await ex();
+    const text = `\n\n- - - 执行第 ${i + 1} 次 - - -\n\n${$.data}`;
+    $.desc += text;
+    console.log(text);
+    await $.wait(ex_interval);
+  }
   await showMsg();
 })()
   .catch((e) => $.logErr(e))
@@ -36,7 +48,6 @@ function ex() {
 
 function showMsg() {
   return new Promise((resolve) => {
-    $.desc = $.data;
     $.msg($.name, $.subt, $.desc);
 
     console.log(`${$.name}\n${$.desc}`);

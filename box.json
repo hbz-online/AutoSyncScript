@@ -274,8 +274,21 @@
     {
       "id": "id77_ex",
       "name": "通用重放脚本",
-      "keys": ["id77_ex_request"],
+      "keys": ["id77_ex_run_num", "id77_ex_request"],
       "settings": [
+        {
+          "id": "id77_ex_run_num",
+          "name": "自动循环次数",
+          "val": "",
+          "type": "number"
+        },
+        {
+          "id": "id77_ex_interval",
+          "name": "间隔时间",
+          "val": "",
+          "type": "number",
+          "desc": "单位：毫秒"
+        },
         {
           "id": "id77_ex_request",
           "name": "请求信息",
