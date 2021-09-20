@@ -18,7 +18,7 @@ const $ = new Env('通用重放脚本');
 const ex_request = JSON.parse($.getData(`id77_ex_request`));
 const ex_run_num = $.getData('id77_ex_run_num') || 1;
 const ex_interval = $.getData('id77_ex_interval') || 100;
-$.type = ex.method.toLowerCase();
+$.type = ex_request.method.toLowerCase();
 
 console.log(`设置执行 ${ex_run_num} 次`);
 console.log(`设置执行间隔 ${ex_interval} ms`);
