@@ -14,27 +14,36 @@ https://raw.githubusercontent.com/id77/QuantumultX/master/task/ex.task.js
 配合 boxjs 管理
  */
 const $ = new Env('通用重放脚本');
-$.EX_REQUEST = 'id77_ex_request';
+
+const ex_request = JSON.parse($.getData(`id77_ex_request`));
+$.type = ex.method.toLowerCase();
 
 !(async () => {
-  const { headers, url, body, method } = $request;
-  const session = {};
-  session.url = url;
-  session.headers = headers;
-  session.body = body;
-  session.method = method;
-
-  let key = $.EX_REQUEST;
-
-  if ($.setData(JSON.stringify(session), key)) {
-    $.subt = `获取会话: 成功!`;
-  } else {
-    $.subt = `获取会话: 失败!`;
-  }
-  $.msg($.name, $.subt);
+  await ex();
+  await showMsg();
 })()
   .catch((e) => $.logErr(e))
   .finally(() => $.done());
+
+function ex() {
+  return new Promise((resolve) => {
+    $[$.type](ex_request, (err, resp, data) => {
+      $.data = data;
+      resolve(data);
+    });
+  });
+}
+
+function showMsg() {
+  return new Promise((resolve) => {
+    $.desc = $.data;
+    $.msg($.name, $.subt, $.desc);
+
+    console.log(`${$.name}\n${$.desc}`);
+
+    resolve();
+  });
+}
 
 // https://github.com/chavyleung/scripts/blob/master/Env.js
 // prettier-ignore
