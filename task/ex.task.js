@@ -29,7 +29,7 @@ console.log(`设置执行间隔 ${ex_interval} ms`);
     await ex();
     const text = `\n\n- - - 执行第 ${i + 1} 次 - - -\n\n${$.data}`;
     $.desc += text;
-    console.log(text);
+    // console.log(text);
     await $.wait(ex_interval);
   }
   await showMsg();
@@ -49,9 +49,6 @@ function ex() {
 function showMsg() {
   return new Promise((resolve) => {
     $.msg($.name, $.subt, $.desc);
-
-    console.log(`${$.name}\n${$.desc}`);
-
     resolve();
   });
 }
