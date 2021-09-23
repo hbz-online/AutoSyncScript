@@ -165,16 +165,15 @@ function setReqOpts(method, _360buy_param_json) {
     if (platformType === 'DIY') {
       if (!diyApi) return;
 
-      const diyData = await getData(`${diyApi}?skuId=${skuId}`);
+      const diyData = await getData({ url: `${diyApi}?skuId=${skuId}` });
+      console.log(JSON.stringify(diyData));
 
       $.desc = diyData.briefInfo;
 
       $.msgOpts = {
         openUrl: diyData.shortUrl,
-        mediaUrl: 
-        `https://img20.360buyimg.com/devfe/${diyData.imageUrl}`;,
-        'update-pasteboard':
-          diyData.shortUrl,
+        mediaUrl: `https://img20.360buyimg.com/devfe/${diyData.imageUrl}`,
+        'update-pasteboard': diyData.shortUrl,
       };
       $.setData($.subt, 'id77_JDSubt_Cache');
       $.setData($.desc, 'id77_JDDesc_Cache');
@@ -398,6 +397,11 @@ function getData(opts = {}) {
   return new Promise((resolve) => {
     try {
       $.get(opts, (err, resp, data) => {
+        if (err) {
+          console.log(JSON.stringify(err));
+          resolve();
+        }
+
         let resData;
         try {
           resData = JSON.parse(data);
