@@ -52,6 +52,7 @@
           "desc": "选择使用哪个平台进行转链",
           "items": [
             { "key": "WeChat-MiniApp", "label": "京粉小程序" },
+            { "key": "DIY", "label": "自建" },
             { "key": "JDLM-WEB/APP", "label": "京东联盟-WEB/APP" }
           ]
         },
@@ -70,6 +71,12 @@
         {
           "id": "id77_JDLM_appSecret",
           "name": "appSecret",
+          "val": "",
+          "type": "text"
+        },
+        {
+          "id": "id77_JDLM_diy_api",
+          "name": "DIY Api",
           "val": "",
           "type": "text"
         },

@@ -15,6 +15,7 @@ const $ = new Env('京东联盟');
 const siteId = $.getData('id77_JDLM_siteId'); // 网站或APP的ID
 const app_key = $.getData('id77_JDLM_app_key'); // 网站或APP的 app_key
 const appSecret = $.getData('id77_JDLM_appSecret'); // 网站或APP的 appSecret
+const diyApi = $.getData('id77_JDLM_diy_api'); // 自建服务
 
 console.log(`🔗捕获：\n${$request.url}`);
 let url = $request.url.replace(/https?:\/\//g, '');
@@ -22,7 +23,7 @@ const UA = $request.headers['User-Agent'];
 const appType = UA.match(/(.+?);/)[1];
 let sku;
 let arr = [];
-const isWeChatMiniApp = $.getData('id77_JDLM_platform') !== 'JDLM-WEB/APP';
+const platformType = $.getData('id77_JDLM_platform') || 'WeChat-MiniApp';
 
 if (url.includes('graphext/draw')) {
   arr = url.match(/sku=(\d+)/);
@@ -161,7 +162,30 @@ function setReqOpts(method, _360buy_param_json) {
 
 !(async () => {
   try {
-    if (isWeChatMiniApp) {
+    if (platformType === 'DIY') {
+      if (!diyApi) return;
+
+      const diyData = await getData(`${diyApi}?skuId=${skuId}`);
+
+      $.desc = diyData.briefInfo;
+
+      $.msgOpts = {
+        openUrl: diyData.shortUrl,
+        mediaUrl: 
+        `https://img20.360buyimg.com/devfe/${diyData.imageUrl}`;,
+        'update-pasteboard':
+          diyData.shortUrl,
+      };
+      $.setData($.subt, 'id77_JDSubt_Cache');
+      $.setData($.desc, 'id77_JDDesc_Cache');
+      $.setData(JSON.stringify($.msgOpts), 'id77_JDMsgOpts_Cache');
+
+      $.msg($.name, $.subt, $.desc, $.msgOpts);
+      $.done();
+      return;
+    }
+
+    if (platformType === 'WeChat-MiniApp') {
       baseurl = 'https://api.m.jd.com/api?';
       let cookies = [];
       $.getData('CookieJD') && cookies.push($.getData('CookieJD'));
@@ -221,7 +245,7 @@ function setReqOpts(method, _360buy_param_json) {
     const response = await getData($.opts);
 
     // 京东联盟-WEB/APP 需要 单独转链
-    if (!isWeChatMiniApp) {
+    if (platformType === 'JDLM-WEB/APP') {
       const productLinks = {
         jdltapp: `https://kpl.m.jd.com/product?wareId={{skuId}}`,
         jdapp: `https://item.m.jd.com/product/{{skuId}}.html`,
@@ -256,7 +280,7 @@ function setReqOpts(method, _360buy_param_json) {
       mediaUrl;
     $.name = '京东联盟商品信息';
 
-    if (isWeChatMiniApp) {
+    if (platformType === 'WeChat-MiniApp') {
       result = response;
       if (result.code !== 200) {
         $.desc = result.message;
@@ -282,7 +306,8 @@ function setReqOpts(method, _360buy_param_json) {
         ? `佣金比：${wlCommissionShare}% ${wlCommission.toFixed(2)}`
         : '未返回佣金信息。';
       $.desc = `点击前往：${$.convertedLink}`;
-    } else {
+    }
+    if (platformType === 'JDLM-WEB/APP') {
       result = JSON.parse(
         response.jd_union_open_goods_promotiongoodsinfo_query_responce
           .queryResult
