@@ -169,9 +169,10 @@ function setReqOpts(method, _360buy_param_json) {
       console.log(JSON.stringify(diyData));
 
       $.desc = diyData.briefInfo;
+      setScheme(diyData.shortUrl);
 
       $.msgOpts = {
-        openUrl: diyData.shortUrl,
+        openUrl: $.openUrl,
         mediaUrl: `https://img20.360buyimg.com/devfe/${diyData.imageUrl}`,
         'update-pasteboard': diyData.shortUrl,
       };
