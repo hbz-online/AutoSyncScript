@@ -168,6 +168,7 @@ function setReqOpts(method, _360buy_param_json) {
       const diyData = await getData({ url: `${diyApi}?skuId=${skuId}` });
       console.log(JSON.stringify(diyData));
 
+      $.subt = '';
       $.desc = diyData.briefInfo;
       setScheme(diyData.shortUrl);
 
