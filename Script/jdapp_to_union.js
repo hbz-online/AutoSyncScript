@@ -170,12 +170,12 @@ function setReqOpts(method, _360buy_param_json) {
 
       $.subt = '';
       $.desc = diyData.briefInfo;
-      setScheme(diyData.shortUrl);
+      setScheme(diyData.shortUrl || diy.promotionUrl);
 
       $.msgOpts = {
         openUrl: $.openUrl,
         mediaUrl: `https://img20.360buyimg.com/devfe/${diyData.imageUrl}`,
-        'update-pasteboard': diyData.shortUrl,
+        'update-pasteboard': diyData.shortUrl || diy.promotionUrl,
       };
       $.setData($.subt, 'id77_JDSubt_Cache');
       $.setData($.desc, 'id77_JDDesc_Cache');
