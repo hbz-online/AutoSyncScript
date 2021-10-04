@@ -1,6 +1,6 @@
 /**
  * 1、打开App，自动捕抓 wskey 上传
- * 2、点击APP-个人中心，或 个人中心 下拉刷新，自动捕抓 wskey 上传
+ * 2、或 首页 下拉刷新，自动捕抓 wskey 上传
  * 注：如有变更才会上传，如果 wskey 没变，不会重复上传；新人需要联系我，我手动确认一次才会入库。然后自己申请telegram bot，提供该bot token给我，以接收脚本通知。
  * https://t.me/id77_GitHub
  *
@@ -9,17 +9,17 @@
 【Surge脚本配置】:
 ===================
 [Script]
-自动上车-id77 = type=http-request,pattern=^https:\/\/api\.m\.jd\.com\/client.action\?functionId=(serverConfig|welcomeHome),requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js,script-update-interval=0
+自动上车-id77 = type=http-request,pattern=^https:\/\/api\.m\.jd\.com\/client.action\?functionId=welcomeHome,requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js,script-update-interval=0
 ===================
 【Loon脚本配置】:
 ===================
 [Script]
-http-request ^https:\/\/api\.m\.jd\.com\/client.action\?functionId=(serverConfig|welcomeHome) tag=自动上车-id77, script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js,requires-body=1
+http-request ^https:\/\/api\.m\.jd\.com\/client.action\?functionId=welcomeHome tag=自动上车-id77, script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js,requires-body=1
 ===================
 【 QX  脚本配置 】:
 ===================
 [rewrite_local]
-^https:\/\/api\.m\.jd\.com\/client.action\?functionId=(serverConfig|welcomeHome) url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js
+^https:\/\/api\.m\.jd\.com\/client.action\?functionId=welcomeHome url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js
  *
  */
 
@@ -34,6 +34,7 @@ if (!CK) {
 }
 
 const pin = CK.match(/pin=([^=;]+?);/)[1];
+console.log(CK);
 const key = CK.match(/wskey=([^=;]+?);/)[1];
 
 !(async () => {
