@@ -27,6 +27,12 @@ const $ = new Env('🍪上传 wskey');
 let CK = $request.headers['Cookie'] || $request.headers['cookie'];
 $.user = 'id77';
 
+if (!CK) {
+  console.log(`没有找到CK`);
+
+  $.done();
+}
+
 const pin = CK.match(/pin=([^=;]+?);/)[1];
 const key = CK.match(/wskey=([^=;]+?);/)[1];
 
@@ -106,7 +112,7 @@ const key = CK.match(/wskey=([^=;]+?);/)[1];
 function updateCookie(cookie) {
   return new Promise((resolve) => {
     const opts = {
-      url: `https://cat_bot.id77.workers.dev/upCar`,
+      url: `https://car_bot.id77.workers.dev/upCar`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },

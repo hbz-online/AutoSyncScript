@@ -98,7 +98,6 @@ $.user = 'id77';
       }
       await showMsg();
     }
-
   } catch (error) {
     $.msg('写入京东Cookie失败', '', '请重试 ⚠️');
     console.log(
@@ -114,7 +113,7 @@ $.user = 'id77';
 function updateCookie(cookie) {
   return new Promise((resolve) => {
     const opts = {
-      url: `https://cat_bot.id77.workers.dev/upCar`,
+      url: `https://car_bot.id77.workers.dev/upCar`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
