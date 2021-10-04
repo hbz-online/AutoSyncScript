@@ -1,6 +1,6 @@
 /**
  * 1、打开App，自动捕抓 wskey 上传
- * 2、或 首页 下拉刷新，自动捕抓 wskey 上传
+ * 2、或 结束App 重新打开，自动捕抓 wskey 上传
  * 注：如有变更才会上传，如果 wskey 没变，不会重复上传；新人需要联系我，我手动确认一次才会入库。然后自己申请telegram bot，提供该bot token给我，以接收脚本通知。
  * https://t.me/id77_GitHub
  *
@@ -34,7 +34,6 @@ if (!CK) {
 }
 
 const pin = CK.match(/pin=([^=;]+?);/)[1];
-console.log(CK);
 const key = CK.match(/wskey=([^=;]+?);/)[1];
 
 !(async () => {
