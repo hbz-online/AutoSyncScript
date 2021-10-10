@@ -18,15 +18,16 @@ const appSecret = $.getData('id77_JDLM_appSecret'); // 网站或APP的 appSecret
 const diyApi = $.getData('id77_JDLM_diy_api'); // 自建服务
 
 console.log(`🔗捕获：\n${$request.url}`);
-let url = $request.url.replace(/https?:\/\//g, '');
+const url = $request.url.replace(/https?:\/\//g, '');
 const UA = $request.headers['User-Agent'];
-const appType = UA.match(/(.+?);/)[1];
+let appType = UA.match(/(.+?);/)[1];
 let sku;
 let arr = [];
 const platformType = $.getData('id77_JDLM_platform') || 'WeChat-MiniApp';
 
 if (url.includes('graphext/draw')) {
   arr = url.match(/sku=(\d+)/);
+  appType = 'jdpingou';
 } else if (url.includes('wqsitem.jd.com/detail')) {
   arr = url.match(/wqsitem\.jd\.com\/detail\/(\d+)_/);
 } else {
