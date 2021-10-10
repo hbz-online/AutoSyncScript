@@ -285,7 +285,7 @@ try {
       JDCKPlugin.on('ready', function() {
       
         // vConsole.show();
-        if (_currentPin) {
+        if (_currentPin && document.querySelector("#_" + _currentPin)) {
           setTimeout(() => {
             document.querySelector("#_" + _currentPin).style.background = '#238636';
           });
