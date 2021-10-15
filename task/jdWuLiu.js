@@ -103,6 +103,7 @@ const opts = {
         wuLiuDetail = await getWuLiu(orderId);
         await showMsg(userInfo, wuLiuDetail, orderId, k);
         console.log($.logText);
+        await $.wait(777);
       }
     }
   }
