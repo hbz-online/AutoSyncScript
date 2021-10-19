@@ -12,14 +12,13 @@
   ^https?://api\.m\.jd\.com/client\.action\?functionId=(signBean|trade_config) url script-request-header NE.cookie.js
 
 快手Cookie：
-  hostname = nebula.kuaishou.com, *.gifshow.com, *.ksapisrv.com
+  hostname = nebula.kuaishou.com, encourage.kuaishou.com
 
-  访问快手极速版签到日历页面
-  ^https?://nebula\.kuaishou\.com/rest/n/nebula/sign/query url script-request-header NE.cookie.js
+  访问快手极速版签到日历/金币收益/可用礼品券页面获取cookie数据
+  ^https?://nebula\.kuaishou\.com/rest/n/nebula/(sign/query|account/overview) url script-request-header NE.cookie.js
 
-  点金币收益/积分收益/现金收益去访问我的收益页面时获取cookie数据
-  ^https://nebula\.kuaishou\.com/rest/n/nebula/account/overview url script-request-header NE.cookie.js
-  ^https://zt\.gifshow\.com/rest/zt/encourage/account/summary/withKscoinTrial url script-request-header NE.cookie.js
+  访问快手正式版签到/金币明细/现金收益页面获取cookie数据
+  https://encourage.kuaishou.com/rest/wd/encourage/(signIn/info|account/basicInfo) url script-request-header NE.cookie.js
   
 */
 
