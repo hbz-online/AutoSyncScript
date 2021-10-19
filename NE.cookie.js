@@ -18,7 +18,7 @@
   ^https?://nebula\.kuaishou\.com/rest/n/nebula/(sign/query|account/overview) url script-request-header NE.cookie.js
 
   访问快手正式版签到/金币明细/现金收益页面获取cookie数据
-  https://encourage.kuaishou.com/rest/wd/encourage/(signIn/info|account/basicInfo) url script-request-header NE.cookie.js
+  ^https://encourage\.kuaishou\.com/rest/wd/encourage/(signIn/info|account/basicInfo) url script-request-header NE.cookie.js
   
 */
 
@@ -33,7 +33,7 @@ $.isTask = `undefined` === typeof $request;
   if ($.isRewrite && $request.method != 'OPTIONS') {
     if ($request.url.match(/^https?:\/\/(wq|api\.m|un\.m)\.jd\.com/)) {
       await GetJDCookie('京东Cookie');
-    } else if ($request.url.match(/^https?:\/\/nebula\.kuaishou\.com/) || $request.url.match(/^https?:\/\/.+?\.(gifshow|ksapisrv)\.com/)) {
+    } else if ($request.url.match(/^https?:\/\/(nebula|encourage)\.kuaishou\.com/)) {
       await GetKSCookie('快手Cookie');
     }
   } else if ($.isTask) {
