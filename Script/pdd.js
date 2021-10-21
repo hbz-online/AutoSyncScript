@@ -7,7 +7,7 @@ if (/<\/html>|<\/body>/.test(body)) {
 
   <script>
   function init() {
-      const pList = document.querySelectorAll(".pdd-list-container span")
+      const pList = document.querySelectorAll(".pdd-list-container >div>div:nth-child(1)")
       document.documentElement.scrollTop = 200;
 
 
