@@ -8,7 +8,6 @@ if (/<\/html>|<\/body>/.test(body)) {
   <script>
   function init() {
       const pList = document.querySelectorAll(".pdd-list-container >div>div:nth-child(1)")
-      document.documentElement.scrollTop = 200;
 
       function cp(event) {
           // console.log(this.textContent.replace(/(.*)展开$/,'$1'));
@@ -32,6 +31,7 @@ if (/<\/html>|<\/body>/.test(body)) {
 
   window.addEventListener("scroll", init);
   document.addEventListener("DOMContentLoaded", init);
+  document.documentElement.scrollTop = 200;
   </script>
 </body>`
   );
