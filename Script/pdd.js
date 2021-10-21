@@ -10,9 +10,7 @@ if (/<\/html>|<\/body>/.test(body)) {
       const pList = document.querySelectorAll(".pdd-list-container >div>div:nth-child(1)")
       document.documentElement.scrollTop = 200;
 
-
-      for (const p of pList) {
-        p.addEventListener('click', function(event) {
+      function cp(event) {
           // console.log(this.textContent.replace(/(.*)展开$/,'$1'));
           const input = document.createElement('input');
           input.setAttribute('readonly', 'readonly');
@@ -24,10 +22,15 @@ if (/<\/html>|<\/body>/.test(body)) {
             console.log('复制成功');
           }
           document.body.removeChild(input);
-        })
+        }
+
+      for (const p of pList) {
+        p.removeEventListener("click", cp);
+        p.addEventListener('click', cp)
       }
   }
 
+  window.addEventListener("scroll", init);
   document.addEventListener("DOMContentLoaded", init);
   </script>
 </body>`
