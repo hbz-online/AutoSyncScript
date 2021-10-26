@@ -1,31 +1,31 @@
 /**
- * 1、打开App，自动捕抓 wskey 上传
- * 2、或 结束App 重新打开，自动捕抓 wskey 上传
+ * 打开App，点击右上角的消息图标，自动捕抓 wskey 上传
  * 注：如有变更才会上传，如果 wskey 没变，不会重复上传；新人需要联系我，我手动确认一次才会入库。然后自己申请telegram bot，提供该bot token给我，以接收脚本通知。
  * https://t.me/id77_GitHub
  *
- * hostname = api.m.jd.com
+ * hostname = api-dd.jd.com
  *
 【Surge脚本配置】:
 ===================
 [Script]
-自动上车-id77 = type=http-request,pattern=^https:\/\/api\.m\.jd\.com\/client.action\?functionId=welcomeHome,requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js,script-update-interval=0
+自动上车-id77 = type=http-request,pattern=^https:\/\/api\-dd\.jd\.com\/client\.action\?functionId=getSessionLog,requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js,script-update-interval=0
 ===================
 【Loon脚本配置】:
 ===================
 [Script]
-http-request ^https:\/\/api\.m\.jd\.com\/client.action\?functionId=welcomeHome tag=自动上车-id77, script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js,requires-body=1
+http-request ^https:\/\/api\-dd\.jd\.com\/client\.action\?functionId=getSessionLog tag=自动上车-id77, script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js,requires-body=1
 ===================
 【 QX  脚本配置 】:
 ===================
 [rewrite_local]
-^https:\/\/api\.m\.jd\.com\/client.action\?functionId=welcomeHome url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js
+^https:\/\/api\-dd\.jd\.com\/client\.action\?functionId=getSessionLog url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js
  *
  */
 
 const $ = new Env('🍪上传 wskey');
 let CK = $request.headers['Cookie'] || $request.headers['cookie'];
 $.user = 'id77';
+let pin, key;
 
 if (!CK) {
   console.log(`没有找到CK`);
@@ -33,8 +33,14 @@ if (!CK) {
   $.done();
 }
 
-const pin = CK.match(/pin=([^=;]+?);/)[1];
-const key = CK.match(/wskey=([^=;]+?);/)[1];
+try {
+  pin = CK.match(/pin=([^=;]+?);/)[1];
+  key = CK.match(/wskey=([^=;]+?);/)[1];
+} catch (error) {
+  console.log(error);
+
+  $.done();
+}
 
 !(async () => {
   if (!pin || !key) {
