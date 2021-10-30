@@ -134,7 +134,7 @@ try {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
   <script>
 
-    const _currentPin = decodeURI(Cookies.get('pt_pin'));
+    const _currentPin = Cookies.get('pt_pin');
 
     const cookies = ${JSON.stringify(cookies)};
 
@@ -188,7 +188,7 @@ try {
         other.domain = domains[l];
         
         Cookies.set('pt_key', cookie.match(/pt_key=(.+?);/)[1], other);
-        Cookies.set('pt_pin', cookie.match(/pt_pin=(.+?);/)[1], other);
+        Cookies.set('pt_pin', decodeURI(cookie.match(/pt_pin=(.+?);/)[1]), other);
 
       }
 
