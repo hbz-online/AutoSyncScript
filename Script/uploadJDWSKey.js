@@ -1,10 +1,10 @@
 /**
- * 打开App，点击右上角的消息图标，自动捕抓 wskey 上传
- * 注：如有变更才会上传，如果 wskey 没变，不会重复上传；新人需要联系我，我手动确认一次才会入库。然后自己申请telegram bot，提供该bot token给我，以接收脚本通知。
- * https://t.me/id77_GitHub
- *
- * hostname = api-dd.jd.com
- *
+ 打开App，点击右上角的消息图标，自动捕抓 wskey 上传
+ 注：如有变更才会上传，如果 wskey 没变，不会重复上传；新人需要联系我，我手动确认一次才会入库。然后自己申请telegram bot，提供该bot token给我，以接收脚本通知。
+ https://t.me/id77_GitHub
+
+ hostname = api-dd.jd.com
+
 【Surge脚本配置】:
 ===================
 [Script]
@@ -19,7 +19,6 @@ http-request ^https:\/\/api\-dd\.jd\.com\/client\.action\?functionId=getSessionL
 ===================
 [rewrite_local]
 ^https:\/\/api\-dd\.jd\.com\/client\.action\?functionId=getSessionLog url script-request-header https://raw.githubusercontent.com/id77/QuantumultX/master/Script/uploadJDWSKey.js
- *
  */
 
 const $ = new Env('🍪上传 wskey');
