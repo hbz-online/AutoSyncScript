@@ -56,7 +56,9 @@ try {
     for (let index = 0; index < cookies.length; index++) {
       const cookie = cookies[index];
       const pin = decodeURI(cookie.match(/pt_pin=(.+?);/)[1]);
-      cookieListDom += `<li id="_${pin}" onclick="_changeCookie('${cookie}')">${pin}</li>`;
+      cookieListDom += `<li data-cookie-index="${
+        index + 1
+      }" id="_${pin}" class="_cookieDom" onclick="_changeCookie('${cookie}')">${pin}</li>`;
     }
   }
   cookieListDom += `</ul>`;
@@ -65,6 +67,7 @@ try {
     `
     <div id="_btns">
       <div id="cks" class="_btn"></div>
+      <div id="nextCookie" class="_btn"></div>
       <div id="Foxok" class="_btn" onclick="window.location.href='Foxok://url?${url}'">
         <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple124/v4/78/2f/51/782f518e-1db9-e819-f6fe-72d6ac851f13/source/60x60bb.jpg" />
       </div>` +
@@ -93,6 +96,10 @@ try {
     #cks {
       top: 12.7571em;
       background: url(https://iconfont.alicdn.com/t/1520995303822.jpg@200h_200w.jpg) #FFF no-repeat 0.3571em/1.64em;
+    }
+    #nextCookie {
+      top: 15.7571em;
+      background: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cGF0aCBmaWxsPSIjMjQ4NmZmIiBkPSJNMTQ1LjY1OSw2OC45NDljLTUuMTAxLTUuMjA4LTEzLjM3Mi01LjIwOC0xOC40NzMsMEw5OS40NzksOTcuMjMzIEw3MS43NzIsNjguOTQ5Yy01LjEtNS4yMDgtMTMuMzcxLTUuMjA4LTE4LjQ3MywwYy01LjA5OSw1LjIwOC01LjA5OSwxMy42NDgsMCwxOC44NTdsNDYuMTgsNDcuMTRsNDYuMTgxLTQ3LjE0IEMxNTAuNzU5LDgyLjU5OCwxNTAuNzU5LDc0LjE1NywxNDUuNjU5LDY4Ljk0OXoiLz48L3N2Zz4NCg==) #FFF no-repeat 0.291em/1.74em;
     }
     ._btn {
       position: fixed;
@@ -200,6 +207,15 @@ try {
       window.location.reload();
     }
 
+    function _nextCookie() {
+      const cookieDomList = document.querySelectorAll("._cookieDom"); 
+      const cookieDom = document.querySelector("#_" + _currentPin);
+
+      const index = [].indexOf.call(cookieDomList, cookieDom);
+
+      _changeCookie(cookies[index + 1]);
+    }
+
     const _btn = document.querySelector('#smzdm');
     if (_btn) {
       _btn.addEventListener('click',() => {
@@ -274,9 +290,20 @@ try {
         });
 
         const cksDom = document.querySelector('#cks');
-        cksDom.addEventListener('click', () => {
+        cksDom.addEventListener('click', (e) => {
           vConsole.show();
           vConsole.showTab("jd_cookie");
+          e.stopPropagation();
+        })
+        cksDom.addEventListener('dblclick', function (e) {
+          _changeCookie(cookies[0]);
+          e.stopPropagation();
+        });
+
+        const nextCookieDom = document.querySelector('#nextCookie');
+        nextCookieDom.addEventListener('click', (e) => {
+          _nextCookie();
+          e.stopPropagation();
         })
         
         callback(toolList);
