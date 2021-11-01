@@ -66,12 +66,12 @@ try {
   let tools =
     `
     <div id="_btns">
-      <div id="cks" class="_btn"></div>
-      <div id="nextCookie" class="_btn"></div>
-      <div id="Foxok" class="_btn" onclick="window.location.href='Foxok://url?${url}'">
+      <div id="cks" class="_btn hide"></div>
+      <div id="nextCookie" class="_btn hide"></div>
+      <div id="Foxok" class="_btn hide" onclick="window.location.href='Foxok://url?${url}'">
         <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple124/v4/78/2f/51/782f518e-1db9-e819-f6fe-72d6ac851f13/source/60x60bb.jpg" />
       </div>` +
-    (!sku ? `` : `<button id="smzdm" class="_btn"></button>`) +
+    (!sku ? `` : `<button id="smzdm" class="_btn hide"></button>`) +
     `</div>`;
 
   html =
@@ -142,6 +142,7 @@ try {
   <script>
 
     const _currentPin = Cookies.get('pt_pin');
+    const needHideSwitch = localStorage.getItem('vConsole_switch_hide') === 'Y';
 
     const cookies = ${JSON.stringify(cookies)};
 
@@ -243,11 +244,38 @@ try {
     
     
     document.getElementsByTagName('head')[0].appendChild(_script);
-    
+
+    function _changeBtns() {
+      const $btns = vConsole.$.all('._btn');
+
+      if (vConsole.$.hasClass($btns[0], 'hide')) {
+        // do something
+        vConsole.$.removeClass($btns, 'hide');
+      } else {
+        vConsole.$.addClass($btns, 'hide'); 
+      }
+    }
+
+    function _changeMitmUI() {
+      const vcSwitch = document.querySelector('.vc-switch');
+      if (vcSwitch.style.display == 'none') {
+        vConsole.showSwitch();
+        localStorage.setItem('vConsole_switch_hide', 'N')
+      } else {
+        vConsole.hideSwitch();
+        localStorage.setItem('vConsole_switch_hide', 'Y')
+      }
+
+      _changeBtns();
+    }
     
     function __init () {
       
       window.vConsole = new VConsole();
+      if (needHideSwitch) {
+        vConsole.hideSwitch(); 
+      }
+
       vConsole.setSwitchPosition(10, 50);
       const JDCKPlugin = new VConsole.VConsolePlugin("jd_cookie", "京东CK");
 
@@ -277,34 +305,12 @@ try {
           global: false,
           onClick: function (event) {
             vConsole.hide();
-            const $btns = vConsole.$.all('._btn');
-
-            if (vConsole.$.hasClass($btns[0], 'hide')) {
-              // do something
-              vConsole.$.removeClass($btns, 'hide');
-            } else {
-              vConsole.$.addClass($btns, 'hide'); 
-            }
-
+            _changeBtns();
           },
         });
 
         document.addEventListener('dblclick', function (e) {
-          const vcSwitch = document.querySelector('.vc-switch');
-          if (vcSwitch.style.display == 'none') {
-            vConsole.showSwitch();
-          } else {
-            vConsole.hideSwitch();
-          }
-
-          const $btns = vConsole.$.all('._btn');
-
-            if (vConsole.$.hasClass($btns[0], 'hide')) {
-              // do something
-              vConsole.$.removeClass($btns, 'hide');
-            } else {
-              vConsole.$.addClass($btns, 'hide'); 
-            }
+          _changeMitmUI();
         });
 
         const cksDom = document.querySelector('#cks');
@@ -328,8 +334,12 @@ try {
       });
       
       JDCKPlugin.on('ready', function() {
-      
-        // vConsole.show();
+
+        if (!needHideSwitch) {
+          const $btns = vConsole.$.all('._btn');
+          vConsole.$.removeClass($btns, 'hide');
+        }
+
         if (_currentPin && document.querySelector("#_" + _currentPin)) {
           setTimeout(() => {
             document.querySelector("#_" + _currentPin).style.background = '#238636';
@@ -350,7 +360,6 @@ try {
 
       setTimeout(() => {
         console.log(window.location.href);
-
       },3000);
       
     }
