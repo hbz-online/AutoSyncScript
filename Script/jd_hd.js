@@ -289,6 +289,24 @@ try {
           },
         });
 
+        document.addEventListener('dblclick', function (e) {
+          const vcSwitch = document.querySelector('.vc-switch');
+          if (vcSwitch.style.display == 'none') {
+            vConsole.showSwitch();
+          } else {
+            vConsole.hideSwitch();
+          }
+
+          const $btns = vConsole.$.all('._btn');
+
+            if (vConsole.$.hasClass($btns[0], 'hide')) {
+              // do something
+              vConsole.$.removeClass($btns, 'hide');
+            } else {
+              vConsole.$.addClass($btns, 'hide'); 
+            }
+        });
+
         const cksDom = document.querySelector('#cks');
         cksDom.addEventListener('click', (e) => {
           vConsole.show();
