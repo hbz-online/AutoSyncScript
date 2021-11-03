@@ -78,7 +78,7 @@ try {
     html.replace(/(<\/html>)/, '') +
     `
   <style>
-    html, body {
+    * {
       -webkit-user-select: auto !important;
       user-select: auto !important;
     }
