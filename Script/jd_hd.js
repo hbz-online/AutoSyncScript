@@ -359,7 +359,7 @@ try {
       }
 
       setTimeout(() => {
-        console.log(window.location.href);
+        console.info(window.location.href);
       },3000);
       
     }
