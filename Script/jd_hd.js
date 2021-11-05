@@ -148,8 +148,12 @@ try {
 
     // ck同步最新
     if(_currentPin) {
+      // console.log('_currentPin', encodeURI(_currentPin));
       for (const ck of cookies) {
-        if(ck.includes(encodeURI(_currentPin))) {
+        const _pin = ck.match(/pt_pin=(.+?);/)[1];
+        // console.log('_pin', _pin);
+        
+        if(_pin === encodeURI(_currentPin)) {
           _setCookie(ck);
           console.log('已同步 cookie');
         }
