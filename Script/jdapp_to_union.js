@@ -368,7 +368,7 @@ function setReqOpts(method, _360buy_param_json) {
       openUrl: $.openUrl,
       mediaUrl,
       'update-pasteboard':
-        $.convertedLink || `https://item.jd.com/${skuId}.html`,
+        $.convertedLink || `https://item.jd.com/${skuId}.html?${Math.random()}`,
     };
     $.setData($.subt, 'id77_JDSubt_Cache');
     $.setData($.desc, 'id77_JDDesc_Cache');
