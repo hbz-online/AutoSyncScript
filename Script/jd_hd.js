@@ -71,7 +71,9 @@ try {
       <div id="Foxok" class="_btn hide" onclick="window.location.href='Foxok://url?${url}'">
         <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple124/v4/78/2f/51/782f518e-1db9-e819-f6fe-72d6ac851f13/source/60x60bb.jpg" />
       </div>` +
-    (!sku ? `` : `<button id="smzdm" class="_btn hide"></button>`) +
+    (!sku
+      ? ``
+      : `<button id="smzdm" class="_btn hide"></button><button id="manmanbuy" class="_btn hide"></button>`) +
     `</div>`;
 
   html =
@@ -92,6 +94,11 @@ try {
       top: 21.7571em;
       font-size: inherit;
       background: url(https://avatarimg.smzdm.com/default/8282685611/5d146cda8a63a-small.jpg) #FFF no-repeat 0.3571em/1.64em;
+    }
+    #manmanbuy {
+      top: 24.7571em;
+      font-size: inherit;
+      background: url(https://app.manmanbuy.com/images/app_logo.png) #FFF no-repeat 0.3571em/1.64em;
     }
     #cks {
       top: 12.7571em;
@@ -221,21 +228,31 @@ try {
       _changeCookie(cookies[index + 1]);
     }
 
-    const _btn = document.querySelector('#smzdm');
-    if (_btn) {
-      _btn.addEventListener('click',() => {
-        const input = document.createElement('input');
-        input.setAttribute('readonly', 'readonly');
-        input.setAttribute('value', 'https://item.jd.com/${sku}.html');
-        document.body.appendChild(input);
-        input.setSelectionRange(0, input.value.length);
-        if (document.execCommand('copy')) {
-          document.execCommand('copy');
-          console.log('复制成功');
+    const _btnIDs = [
+      'smzdm',
+      'manmanbuy',
+    ];
+    
+    if (_btnIDs.length > 0) {
+      for (const _btnID of _btnIDs) {
+        const _btn = document.querySelector('#' + _btnID);
+
+        if (_btn) {
+          _btn.addEventListener('click',() => {
+            const input = document.createElement('input');
+            input.setAttribute('readonly', 'readonly');
+            input.setAttribute('value', 'https://item.jd.com/${sku}.html?' + Math.random());
+            document.body.appendChild(input);
+            input.setSelectionRange(0, input.value.length);
+            if (document.execCommand('copy')) {
+              document.execCommand('copy');
+              console.log('复制成功');
+            }
+            document.body.removeChild(input);
+            window.location.href= _btnID + '://';
+          })
         }
-        document.body.removeChild(input);
-        window.location.href='smzdm://';
-      })
+      }
     }
 
     const _script = document.createElement('script');
