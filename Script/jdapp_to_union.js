@@ -46,7 +46,6 @@ if ($.getData('id77_JDSkuId_Cache') === sku) {
     JSON.parse($.getData('id77_JDMsgOpts_Cache'))
   );
   $.done();
-  return;
 } else {
   $.setData(sku, 'id77_JDSkuId_Cache');
 }
