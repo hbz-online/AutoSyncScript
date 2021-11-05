@@ -86,10 +86,10 @@ try {
       bottom: 17.8571em;
     }
     #Foxok {
-      bottom: 17.5em;
+      top: 18.7571em;
     }
     #smzdm {
-      bottom: 20.2143em;
+      top: 21.7571em;
       font-size: inherit;
       background: url(https://avatarimg.smzdm.com/default/8282685611/5d146cda8a63a-small.jpg) #FFF no-repeat 0.3571em/1.64em;
     }
