@@ -22,9 +22,16 @@ http-request ^https:\/\/api\-dd\.jd\.com\/client\.action\?functionId=getSessionL
  */
 
 const $ = new Env('🍪上传 wskey');
+const UA = $request.headers['User-Agent'];
 let CK = $request.headers['Cookie'] || $request.headers['cookie'];
 $.user = 'id77';
 let pin, key;
+
+if (!UA.includes('JD4iPhone')) {
+  console.log(`需要在京东App触发``);
+
+  $.done();
+}
 
 if (!CK) {
   console.log(`没有找到CK`);
