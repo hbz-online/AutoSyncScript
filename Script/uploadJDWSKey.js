@@ -28,7 +28,7 @@ $.user = 'id77';
 let pin, key;
 
 if (!UA.includes('JD4iPhone')) {
-  console.log(`需要在京东App触发``);
+  console.log(`需要在京东App触发`);
 
   $.done();
 }
