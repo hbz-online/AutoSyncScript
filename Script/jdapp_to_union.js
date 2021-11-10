@@ -10,7 +10,7 @@ hostname = *.jd.com, *.*.jd.com
 
 const noLogKey = 'id77_JDLM_NO_LOG';
 const $ = new Env('京东联盟');
-$.isMuteLog = false;
+$.isMuteLog = true;
 // 以下三个参数可以去该地址申请
 // https://union.jd.com/manager/webMng
 // 提示：需要备案域名 或 上架 安卓或ios商店 的APP
