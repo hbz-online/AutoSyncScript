@@ -81,12 +81,12 @@
           "type": "text"
         },
         {
-          "id": "id77_JDLM_log",
-          "name": "输出结果到日志",
-          "val": "y",
+          "id": "id77_JDLM_NO_LOG",
+          "name": "是否禁止输出日志",
+          "val": "Y",
           "type": "text",
-          "placeholder": "y/n",
-          "desc": "y需要打印结果，n不需要"
+          "placeholder": "Y/N",
+          "desc": "Y禁止打印结果，N不禁止"
         }
       ],
       "author": "@id77",

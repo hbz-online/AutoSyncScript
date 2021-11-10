@@ -240,7 +240,7 @@ function Env(name, opts) {
   }
 
   return new (class {
-    constructor(name, opts) {
+    constructor(name, opts = {}) {
       this.name = name;
       this.http = new Http(this);
       this.data = null;

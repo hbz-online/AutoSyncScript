@@ -16,6 +16,8 @@ $.done({ headers: modifiedHeaders });
 
 // https://github.com/chavyleung/scripts/blob/master/Env.js
 // prettier-ignore
+// https://github.com/chavyleung/scripts/blob/master/Env.js
+// prettier-ignore
 function Env(name, opts) {
   class Http {
     constructor(env) {
@@ -46,13 +48,14 @@ function Env(name, opts) {
   }
 
   return new (class {
-    constructor(name, opts) {
+    constructor(name, opts = {}) {
       this.name = name;
       this.http = new Http(this);
       this.data = null;
       this.dataFile = 'box.dat';
       this.logs = [];
       this.isMute = false;
+      this.noLog = opts.noLog;
       this.isNeedRewrite = false;
       this.logSeparator = '\n';
       this.startTime = new Date().getTime();
@@ -513,6 +516,9 @@ function Env(name, opts) {
     }
 
     log(...logs) {
+      if (this.noLog || (noLogKey && (this.getData(noLogKey) || 'N').toLocaleUpperCase() === 'Y')) {
+        return;
+      }
       if (logs.length > 0) {
         this.logs = [...this.logs, ...logs];
       }

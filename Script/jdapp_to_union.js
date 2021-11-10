@@ -8,6 +8,7 @@ https:\/\/.+\.jd\.com\/product\/.*\/(\d+)\.html url script-request-header https:
 hostname = *.jd.com, *.*.jd.com
 */
 
+const noLogKey = 'id77_JDLM_NO_LOG';
 const $ = new Env('京东联盟');
 // 以下三个参数可以去该地址申请
 // https://union.jd.com/manager/webMng
@@ -17,7 +18,7 @@ const app_key = $.getData('id77_JDLM_app_key'); // 网站或APP的 app_key
 const appSecret = $.getData('id77_JDLM_appSecret'); // 网站或APP的 appSecret
 const diyApi = $.getData('id77_JDLM_diy_api'); // 自建服务
 
-console.log(`🔗捕获：\n${$request.url}`);
+$.log(`🔗捕获：\n${$request.url}`);
 const url = $request.url.replace(/https?:\/\//g, '');
 const UA = $request.headers['User-Agent'];
 let appType = UA.match(/(.+?);/)[1];
@@ -36,7 +37,7 @@ if (url.includes('graphext/draw')) {
 
 sku = arr[1];
 
-console.log(`👾SKU：${sku}`);
+$.log(`👾SKU：${sku}`);
 
 if ($.getData('id77_JDSkuId_Cache') === sku) {
   $.msg(
@@ -166,7 +167,7 @@ function setReqOpts(method, _360buy_param_json) {
       if (!diyApi) return;
 
       const diyData = await getData({ url: `${diyApi}?skuId=${skuId}` });
-      console.log(JSON.stringify(diyData));
+      // $.log(JSON.stringify(diyData));
 
       $.subt = '';
       $.desc = diyData.briefInfo;
@@ -219,7 +220,7 @@ function setReqOpts(method, _360buy_param_json) {
         },
       };
 
-      console.log(`🔗materialUrl：\nhttps://item.jd.com/${skuId}.html`);
+      // $.log(`🔗materialUrl：\nhttps://item.jd.com/${skuId}.html`);
 
       const options = {
         url: `${baseurl}functionId=ConvertSuperLink&appid=u&_=${Date.now()}&body=${encodeURIComponent(
@@ -260,7 +261,7 @@ function setReqOpts(method, _360buy_param_json) {
         ? productLinks[appType].replace(/{{skuId}}/, skuId)
         : `https://item.jd.com/${skuId}.html`;
 
-      console.log(`🔗materialUrl：\n${materialUrl}`);
+      // $.log(`🔗materialUrl：\n${materialUrl}`);
 
       setReqOpts('jd.union.open.promotion.common.get', {
         promotionCodeReq: {
@@ -272,10 +273,7 @@ function setReqOpts(method, _360buy_param_json) {
       $.linkData = await getData($.opts);
     }
 
-    const needLog = $.getData('id77_JDLM_log');
-    if (needLog === 'y' || needLog === 'Y') {
-      console.log(`本次结果：${JSON.stringify(response)}`);
-    }
+    $.log(`本次结果：${JSON.stringify(response)}`);
 
     let result = {},
       linkResult = {},
@@ -454,13 +452,14 @@ function Env(name, opts) {
   }
 
   return new (class {
-    constructor(name, opts) {
+    constructor(name, opts = {}) {
       this.name = name;
       this.http = new Http(this);
       this.data = null;
       this.dataFile = 'box.dat';
       this.logs = [];
       this.isMute = false;
+      this.noLog = opts.noLog;
       this.isNeedRewrite = false;
       this.logSeparator = '\n';
       this.startTime = new Date().getTime();
@@ -921,6 +920,13 @@ function Env(name, opts) {
     }
 
     log(...logs) {
+      if (
+        this.noLog ||
+        (noLogKey &&
+          (this.getData(noLogKey) || 'N').toLocaleUpperCase() === 'Y')
+      ) {
+        return;
+      }
       if (logs.length > 0) {
         this.logs = [...this.logs, ...logs];
       }
