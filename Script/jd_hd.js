@@ -16,7 +16,7 @@ https?://.*\.isvjcloud\.com url script-response-body https://raw.githubuserconte
 https?://.*\.moxigame\.cn url script-response-body https://raw.githubusercontent.com/id77/QuantumultX/master/Script/jd_hd.js
 
 [mitm]
-hostname = *.jd.com, *.*.jd.com, *.moxigame.cn
+hostname = -lite-msg.m.jd.com, -jdcs.m.jd.com, -ddms.jd.com, -redpoint-msg.m.jd.com, -msjdpay.jd.com, -payfinish.jd.com, -payfinish.m.jd.com, *.jd.com, *.*.jd.com, *.moxigame.cn
 */
 const $ = new Env('京东助手', { noLog: true });
 
