@@ -247,6 +247,8 @@ function Env(name, opts) {
       this.dataFile = 'box.dat';
       this.logs = [];
       this.isMute = false;
+      this.noLogKey = opts.noLogKey || '';
+      this.noLog = opts.noLog;
       this.isNeedRewrite = false;
       this.logSeparator = '\n';
       this.startTime = new Date().getTime();
@@ -356,7 +358,7 @@ function Env(name, opts) {
             ? curDirDataFilePath
             : rootDirDataFilePath;
           try {
-            return JSON.parse(this.fs.getDataFileSync(datPath));
+            return JSON.parse(this.fs.readFileSync(datPath));
           } catch (e) {
             return {};
           }
@@ -459,7 +461,7 @@ function Env(name, opts) {
 
     getVal(key) {
       if (this.isSurge() || this.isLoon()) {
-        return $persistentStore.getData(key);
+        return $persistentStore.read(key);
       } else if (this.isQuanX()) {
         return $prefs.valueForKey(key);
       } else if (this.isNode()) {
@@ -707,6 +709,13 @@ function Env(name, opts) {
     }
 
     log(...logs) {
+      if (
+        this.noLog ||
+        (this.noLogKey &&
+          (this.getData(this.noLogKey) || 'N').toLocaleUpperCase() === 'Y')
+      ) {
+        return;
+      }
       if (logs.length > 0) {
         this.logs = [...this.logs, ...logs];
       }

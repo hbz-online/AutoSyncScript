@@ -570,6 +570,7 @@ function Env(name, opts) {
       this.dataFile = 'box.dat';
       this.logs = [];
       this.isMute = false;
+      this.noLogKey = opts.noLogKey || '';
       this.noLog = opts.noLog;
       this.isNeedRewrite = false;
       this.logSeparator = '\n';
@@ -1031,7 +1032,7 @@ function Env(name, opts) {
     }
 
     log(...logs) {
-      if (this.noLog || (noLogKey && (this.getData(noLogKey) || 'N').toLocaleUpperCase() === 'Y')) {
+      if (this.noLog || (this.noLogKey && (this.getData(this.noLogKey) || 'N').toLocaleUpperCase() === 'Y')) {
         return;
       }
       if (logs.length > 0) {

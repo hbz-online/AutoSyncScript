@@ -7,9 +7,7 @@ https:\/\/.+\.jd\.com\/product\/.*\/(\d+)\.html url script-request-header https:
 [mitm]
 hostname = *.jd.com, *.*.jd.com
 */
-
-const noLogKey = 'id77_JDLM_NO_LOG';
-const $ = new Env('京东联盟');
+const $ = new Env('京东联盟', { noLogKey: 'id77_JDLM_NO_LOG' });
 $.isMuteLog = true;
 // 以下三个参数可以去该地址申请
 // https://union.jd.com/manager/webMng
@@ -460,6 +458,7 @@ function Env(name, opts) {
       this.dataFile = 'box.dat';
       this.logs = [];
       this.isMute = false;
+      this.noLogKey = opts.noLogKey || '';
       this.noLog = opts.noLog;
       this.isNeedRewrite = false;
       this.logSeparator = '\n';
@@ -923,8 +922,8 @@ function Env(name, opts) {
     log(...logs) {
       if (
         this.noLog ||
-        (noLogKey &&
-          (this.getData(noLogKey) || 'N').toLocaleUpperCase() === 'Y')
+        (this.noLogKey &&
+          (this.getData(this.noLogKey) || 'N').toLocaleUpperCase() === 'Y')
       ) {
         return;
       }
