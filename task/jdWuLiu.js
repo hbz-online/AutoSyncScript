@@ -19,7 +19,6 @@
  *
  */
 const $ = new Env('京东物流');
-$.SESSION_KEY = 'id77_jdWuLiu';
 $.PAGE_MAX_KEY = 'id77_jdWuLiu_pageMax';
 $.CARRIAGE_ID_ARR_KEY = 'id77_carriageIdArr';
 $.USER_NUM = 'id77_jdWuLiu_userNum';
@@ -41,7 +40,7 @@ cookies = Array.from(new Set([...cookies, ...extraCookies]));
 const length = $.carriageIdArr.length;
 $.log(`💡缓存数据：${length}条`);
 
-$.userNum = $.USER_NUM ? $.getData($.USER_NUM) : cookies.length;
+$.userNum = $.getData($.USER_NUM) || cookies.length;
 
 const total = $.pageMax * $.userNum;
 if (length > total) {
