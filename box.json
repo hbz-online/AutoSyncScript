@@ -8,7 +8,7 @@
     {
       "id": "jdWulLiu",
       "name": "京东物流",
-      "keys": ["id77_jdWulLiu_userNum", "id77_jdWulLiu_pageMax"],
+      "keys": ["id77_jdWuLiu_userNum", "id77_jdWuLiu_pageMax"],
       "descs_html": [
         "<p>查询的账号数量，不要大于 cookie 数量；默认值是 cookie 数量。</p>",
         "<p>查询条目只能设置「整十」的数字。</p>",
@@ -16,7 +16,7 @@
       ],
       "settings": [
         {
-          "id": "id77_jdWulLiu_userNum",
+          "id": "id77_jdWuLiu_userNum",
           "name": "需要查询的账号数量",
           "val": "",
           "type": "number",
@@ -24,7 +24,7 @@
           "desc": "默认值是最大 cookie 数量，不要大于 cookie 数量"
         },
         {
-          "id": "id77_jdWulLiu_pageMax",
+          "id": "id77_jdWuLiu_pageMax",
           "name": "查询条目",
           "val": "",
           "type": "number",

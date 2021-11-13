@@ -19,10 +19,10 @@
  *
  */
 const $ = new Env('京东物流');
-$.SESSION_KEY = 'id77_jdWulLiu';
-$.PAGE_MAX_KEY = 'id77_jdWulLiu_pageMax';
+$.SESSION_KEY = 'id77_jdWuLiu';
+$.PAGE_MAX_KEY = 'id77_jdWuLiu_pageMax';
 $.CARRIAGE_ID_ARR_KEY = 'id77_carriageIdArr';
-$.USER_NUM = 'id77_jdWulLiu_userNum';
+$.USER_NUM = 'id77_jdWuLiu_userNum';
 $.pageMax = $.getData($.PAGE_MAX_KEY) || 10;
 $.carriageIdArr = JSON.parse($.getData($.CARRIAGE_ID_ARR_KEY) || '[]');
 $.isMuteLog = true;
